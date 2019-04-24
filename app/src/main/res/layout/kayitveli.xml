@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/mainbackground"
+    >
+    <EditText
+        android:id="@+id/tc_kimlikNo"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:inputType="number"
+        android:textColorHint="@android:color/background_dark"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:layout_marginTop="40dp"
+        android:hint="TC KIMLIK NUMARASI"
+        />
+    <EditText
+        android:id="@+id/AdiSoyadi"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tc_kimlikNo"
+        android:layout_centerHorizontal="true"
+        android:hint="Adiniz Soyadiniz"
+        android:textColorHint="@android:color/background_dark"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:layout_marginTop="15dp"
+        />
+
+    <EditText
+        android:id="@+id/ogrenci_tc_kimlikNo"
+        android:layout_below="@id/AdiSoyadi"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:inputType="number"
+        android:textColorHint="@android:color/background_dark"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:layout_marginTop="15dp"
+        android:hint="Ogrenci TC KIMLIK NO "
+        />
+
+    <EditText
+        android:id="@+id/KayitSifre"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ogrenci_tc_kimlikNo"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/kullaniciSifre"
+        android:textColorHint="@android:color/background_dark"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:layout_marginTop="15dp"
+        android:inputType="textPassword"
+        />
+    <EditText
+        android:id="@+id/KayitSifreTekrar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/KayitSifre"
+        android:layout_centerHorizontal="true"
+        android:hint="SIFREYI TEKRAR YAZIN"
+        android:textColorHint="@android:color/background_dark"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:layout_marginTop="15dp"
+        android:inputType="textPassword"
+        />
+    <Button
+        android:id="@+id/btnVKayitTamamla"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/KayitSifreTekrar"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="KAYITI TAMAMLA"
+        android:background="@drawable/btnbg"
+        android:textStyle="bold|italic"
+
+
+        />
+
+
+
+</RelativeLayout>

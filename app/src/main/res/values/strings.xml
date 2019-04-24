@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name" formatted="false" translatable="false"></string>
+    <string name="banner">OGRENCI TAKIP SISTEMI</string>
+    <string name="kullaniciAdi">KULLANICI ADI</string>
+    <string name="kullaniciSifre">SIFRE</string>
+    <array name="siniflar">
+        <item>1-A</item>
+        <item>1-B</item>
+        <item>1-C</item>
+        <item>2-A</item>
+        <item>2-B</item>
+        <item>2-C</item>
+        <item>3-A</item>
+        <item>3-B</item>
+        <item>3-C</item>
+    </array>
+    <array name="ogrenciBilgiler">
+        <item>NOTLAR</item>
+        <item>DEVAMSIZLIK</item>
+    </array>
+</resources>

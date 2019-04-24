@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/mainbackground"
+    >
+<TextView
+    android:id="@+id/ikaz"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Lutfen Onay Kodunu Onayladiktan Sonra Kayit Olunuz !"
+    android:layout_centerHorizontal="true"
+    android:textColor="@android:color/holo_red_dark"
+    android:textSize="15sp"
+    android:textStyle="bold|italic"
+    />
+    <EditText
+        android:id="@+id/onayKodu"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ikaz"
+        android:layout_marginLeft="85dp"
+        android:hint="ONAY KODU"
+        android:textColorHint="@android:color/background_dark"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:layout_marginTop="30dp"
+        />
+    <Button
+        android:id="@+id/btnOnay"
+        android:layout_width="85dp"
+        android:layout_height="43dp"
+        android:layout_toEndOf="@id/onayKodu"
+        android:layout_below="@id/ikaz"
+        android:layout_marginLeft="15dp"
+        android:text="Kontrol"
+        android:textSize="15sp"
+        android:background="@drawable/btnbg"
+        android:layout_marginTop="30dp"
+         />
+
+    <EditText
+        android:id="@+id/tc_kimlikNo"
+        android:layout_below="@id/onayKodu"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:inputType="number"
+        android:textColorHint="@android:color/background_dark"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="10dp"
+        android:hint="TC KIMLIK NUMARASI"
+        android:textSize="17sp"
+        />
+
+    <EditText
+        android:id="@+id/AdiSoyadi"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tc_kimlikNo"
+        android:layout_centerHorizontal="true"
+        android:hint="Adiniz Soyadiniz"
+        android:textColorHint="@android:color/background_dark"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="10dp"
+        android:textSize="17sp"
+        />
+    <EditText
+        android:id="@+id/OgretmenBolum"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/AdiSoyadi"
+        android:layout_centerHorizontal="true"
+        android:hint="BOLUMUNUZ"
+        android:textColorHint="@android:color/background_dark"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="10dp"
+        android:textSize="17sp"
+        />
+
+    <EditText
+        android:id="@+id/KayitSifre"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/OgretmenBolum"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/kullaniciSifre"
+        android:textColorHint="@android:color/background_dark"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"
+        android:textSize="17sp"
+        />
+    <EditText
+        android:id="@+id/KayitSifreTekrar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/KayitSifre"
+        android:layout_centerHorizontal="true"
+        android:hint="SIFREYI TEKRAR YAZIN"
+        android:textColorHint="@android:color/background_dark"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"
+        android:textSize="17sp"
+        />
+    <Button
+        android:id="@+id/btnKayitTamamla"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/KayitSifreTekrar"
+        android:layout_marginTop="25dp"
+        android:layout_centerHorizontal="true"
+        android:text="KAYITI TAMAMLA"
+        android:background="@drawable/btnbg"
+        android:textStyle="bold|italic"
+        android:textSize="17sp"
+        />
+
+
+
+</RelativeLayout>

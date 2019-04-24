@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/mainbackground"
+    >
+
+    <ImageView
+        android:id="@+id/ogrenciFotograf"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="151dp"
+        android:layout_height="145dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        app:srcCompat="@drawable/ogrencifoto"
+        />
+    <TextView
+        android:id="@+id/OgrenciAdiSoyadi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ogrenciFotograf"
+        android:text="MEHMET AKTAS"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="45dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        />
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ogrenciFotograf"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:entries="@array/ogrenciBilgiler"
+        ></Spinner>
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinner"
+        ></ListView>
+</RelativeLayout>

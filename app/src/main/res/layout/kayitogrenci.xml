@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/mainbackground"
+    >
+    <EditText
+        android:id="@+id/tc_kimlikNo"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:inputType="number"
+        android:textColorHint="@android:color/background_dark"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:layout_marginTop="40dp"
+        android:hint="TC KIMLIK NUMARASI"
+        />
+    <EditText
+        android:id="@+id/AdiSoyadi"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tc_kimlikNo"
+        android:layout_centerHorizontal="true"
+        android:hint="Adiniz Soyadiniz"
+        android:textColorHint="@android:color/background_dark"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:layout_marginTop="15dp"
+        />
+    <TextView
+        android:id="@+id/sinifiniz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SINIFINIZ :"
+        android:textColorHint="@android:color/background_dark"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:layout_below="@id/AdiSoyadi"
+        android:layout_marginLeft="91dp"
+        android:layout_marginTop="15dp"
+        />
+    <Spinner
+    android:id="@+id/OgrenciSinif"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/sinifiniz"
+    android:layout_centerHorizontal="true"
+    android:hint=""
+        android:popupBackground="@android:color/holo_blue_dark"
+        android:backgroundTint="@android:color/holo_red_dark"
+    android:textSize="17sp"
+    android:layout_marginTop="15dp"
+        android:entries="@array/siniflar"
+    />
+
+    <EditText
+        android:id="@+id/KayitSifre"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/OgrenciSinif"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/kullaniciSifre"
+        android:textColorHint="@android:color/background_dark"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:layout_marginTop="15dp"
+        android:inputType="textPassword"
+        />
+    <EditText
+        android:id="@+id/KayitSifreTekrar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/KayitSifre"
+        android:layout_centerHorizontal="true"
+        android:hint="SIFREYI TEKRAR YAZIN"
+        android:textColorHint="@android:color/background_dark"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:layout_marginTop="15dp"
+        android:inputType="textPassword"
+        />
+    <Button
+        android:id="@+id/btnKayitTamamla"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/KayitSifreTekrar"
+        android:layout_marginTop="25dp"
+        android:layout_centerHorizontal="true"
+        android:text="KAYITI TAMAMLA"
+        android:background="@drawable/btnbg"
+        android:textStyle="bold|italic"
+
+        />
+
+
+
+</RelativeLayout>
