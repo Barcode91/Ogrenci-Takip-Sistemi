@@ -1,1 +1,2 @@
-# proje
+# MOBİL PLATFORMDA ÖGRENCİ TAKİP SİSTEMİ 
+# 
