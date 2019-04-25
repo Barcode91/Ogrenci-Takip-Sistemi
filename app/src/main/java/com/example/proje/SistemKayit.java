@@ -36,9 +36,11 @@ public class SistemKayit extends AppCompatActivity {
     }
 
     public boolean sifreDogrulukKontrol(String strSifre,String strSifreTekrar){
+        return strSifre.equals(strSifreTekrar);
+        /* kod kısaltıldı
         if (strSifre.equals(strSifreTekrar)) {gate=true;}
         else{gate=false;}
-        return gate;
+        return gate;*/
     }
 }
 

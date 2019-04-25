@@ -9,8 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class kayitOgrenci extends Fragment {
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.kayitogrenci, container,false);// Bu javanin gosterecegi xmli tanimladik.
+        final View view =  inflater.inflate(R.layout.kayitogrenci, container,false);// Bu javanin gosterecegi xmli tanimladik.
+        return view;
+
+
+
+
+
+
+
 
     }
+
+
+
 }

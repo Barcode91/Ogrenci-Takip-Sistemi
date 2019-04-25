@@ -3,7 +3,7 @@ package com.example.proje;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Ogrenci extends AppCompatActivity {
+public class OgrenciActivitiy extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

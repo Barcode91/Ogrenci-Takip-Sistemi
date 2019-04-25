@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Veli"></activity>
-        <activity android:name=".Ogrenci" />
-        <activity android:name=".Ogretmen" />
+        <activity android:name=".VeliActivity"></activity>
+        <activity android:name=".OgrenciActivitiy" />
+        <activity android:name=".OgretmenActivity" />
         <activity android:name=".SistemKayit" />
         <activity android:name=".MainActivity">
             <intent-filter>
