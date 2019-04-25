@@ -15,6 +15,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity {
 Button btnKayitol,btnGiris;
 CheckBox beniHatirla;
@@ -33,7 +36,9 @@ PreferenceMekanizmasi preferenceMekanizmasi;
             @Override
             public void onClick(View v) {
 
-
+                FirebaseDatabase db = FirebaseDatabase.getInstance();
+                DatabaseReference reference = db.getReference().child("kullanıcılar").child("mehmet");
+                reference.setValue("hey adamım ");
                 if(beniHatirla.isChecked()){
                     preferenceMekanizmasi.save(context,txtKullaniciAdi.getText().toString(),"KullaniciAdi");
                     preferenceMekanizmasi.save(context,txtKullaniciSifre.getText().toString(),"KullaniciSifre");

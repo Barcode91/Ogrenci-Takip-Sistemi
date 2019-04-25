@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "813636383259",
+    "firebase_url": "https://ogrenci-takip-sistemi-44747.firebaseio.com",
+    "project_id": "ogrenci-takip-sistemi-44747",
+    "storage_bucket": "ogrenci-takip-sistemi-44747.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813636383259:android:fba6ec6c235404d3",
+        "android_client_info": {
+          "package_name": "com.example.proje"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "813636383259-lq5g97leq3nrtgh8rddr745gojghi2tr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.proje",
+            "certificate_hash": "370e4789c498d3a21a42e8ca97f4e5e2086ab94c"
+          }
+        },
+        {
+          "client_id": "813636383259-1ecmibri2qns8tgqb7a20cjbj3oj0ln0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHEqqJa4lkJhUtaEsjZC4p8hGb5gGyhfE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "813636383259-1ecmibri2qns8tgqb7a20cjbj3oj0ln0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
