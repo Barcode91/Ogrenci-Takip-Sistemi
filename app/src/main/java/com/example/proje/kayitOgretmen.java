@@ -25,9 +25,6 @@ public class kayitOgretmen extends Fragment {
     Button btnOnay,btnKaydet;
     TextView txtOnayKodu,txtSifre,txtSifreTekrar;
     EditText tcNo, adSoyad,passwd, bolum;
-
-
-
     Database database;
     Ogretmen ogretmen = new Ogretmen();
     boolean onayDogruluk=false,sifreDogruluk=false;
@@ -110,10 +107,6 @@ public class kayitOgretmen extends Fragment {
     ogretmen.setBolum(bolum.getText().toString());
     database = new Database(ogretmen); // ogretmen nesnesini veritabanı constructer aracılığyla gönderilir
     database.userAdd(); // kullanıcı veritabanına eklenir.
-
-
-
-
 
     }
 

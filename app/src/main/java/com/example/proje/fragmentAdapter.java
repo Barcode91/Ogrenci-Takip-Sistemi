@@ -28,7 +28,7 @@ public class fragmentAdapter extends FragmentPagerAdapter {
         }
         else
         {
-            kayitOgrenci kayitOgrenci=new kayitOgrenci();
+            kayitOgrenci kayitOgrenci=new kayitOgrenci(context);
             return kayitOgrenci;
 
         }

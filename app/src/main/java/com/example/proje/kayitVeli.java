@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,9 +18,12 @@ import android.widget.Toast;
 public class kayitVeli extends Fragment {
     Context context;
     SistemKayit sistemKayit ;
-    TextView txtSifre,txtSifreTekrar;
+    TextView txtSifreTekrar;
+    EditText tcNo, adSoyad,passwd, cocukTc;
     Button btnKaydet;
+    Veli veli = new Veli();
     boolean sifreDogruluk=false;
+    Database database;
     @SuppressLint("ValidFragment")
     public kayitVeli(Context context) {
         this.context = context;
@@ -28,8 +32,11 @@ public class kayitVeli extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.kayitveli,container,false);
         btnKaydet=view.findViewById(R.id.btnVKayitTamamla);
-        txtSifre=view.findViewById(R.id.KayitSifre);
+        passwd=view.findViewById(R.id.KayitSifre);
         txtSifreTekrar=view.findViewById(R.id.KayitSifreTekrar);
+        tcNo = view.findViewById(R.id.tc_kimlikNo);
+        adSoyad = view.findViewById(R.id.AdiSoyadi);
+        cocukTc = view.findViewById(R.id.ogrenci_tc_kimlikNo);
         sistemKayit=new SistemKayit();
 
         //EGER SIFREYI VE ONAY KODUNU DOGRU GIRDIYSE VERITABANINA KAYIT EDECEK BUTON!!!!!!
@@ -37,12 +44,12 @@ public class kayitVeli extends Fragment {
             @Override
             public void onClick(View v) {
 
-                sifreDogruluk=sistemKayit.sifreDogrulukKontrol(txtSifre.getText().toString(),txtSifreTekrar.getText().toString());
+                sifreDogruluk=sistemKayit.sifreDogrulukKontrol(passwd.getText().toString(),txtSifreTekrar.getText().toString());
 
                 if (sifreDogruluk)
                 {
-                    Toast.makeText(context,"KAYIT YAPILABILIR",Toast.LENGTH_SHORT).show();
 
+                    kullaniciEkle();
 
                 }
                 else
@@ -52,9 +59,31 @@ public class kayitVeli extends Fragment {
         });
 
 
-        return inflater.inflate(R.layout.kayitveli, container,false);// Bu javanin gosterecegi xmli tanimladik.
+        return view;
 
 
     }
+
+    public void kullaniciEkle(){
+        // Arayüz Bilgilerini nesne değişkine atar ve veri tabanı insert eder.
+//        String ad = adSoyad.getText().toString();
+//        String tCNo = tcNo.getText().toString();
+//        String sinif = ogrenciSinif.getSelectedItem().toString();
+//        String sifre = passwd.getText().toString();
+
+        //System.out.println(ad+" "+tCNo+" "+sinif+" "+sifre );
+
+        veli.setAdSoyad(adSoyad.getText().toString());
+        veli.settCNo(tcNo.getText().toString());
+        veli.setPass(passwd.getText().toString());
+        veli.setCocukTc(cocukTc.getText().toString());
+        database = new Database(veli); // ogretmen nesnesini veritabanı constructer aracılığyla gönderilir
+        database.userAdd(); // kullanıcı veritabanına eklenir.
+
+    }
+
+
+
+
 
 }
