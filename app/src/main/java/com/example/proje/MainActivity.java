@@ -40,7 +40,7 @@ PreferenceMekanizmasi preferenceMekanizmasi;
                 }
                 else
                     Toast.makeText(context,"KAYIT EDILMEDI",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(context, OgrenciActivitiy.class);
+                Intent intent = new Intent(context, OgretmenActivity.class);
                 startActivity(intent);
             }
         });
