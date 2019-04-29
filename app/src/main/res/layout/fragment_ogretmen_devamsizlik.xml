@@ -1,15 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/OgrenciAdiSoyadi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="OGRENCI ADI SOYADI"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        />
+
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txt_DevamsizlikBilgisi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Devamsizlik Bilgisi Girlecek"
-        tools:layout_editor_absoluteX="106dp"
-        tools:layout_editor_absoluteY="335dp" />
-</android.support.constraint.ConstraintLayout>
+        android:text="Devamsizlik Durumu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/OgrenciAdiSoyadi"
+        />
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+
+        />
+
+    <Button
+        android:layout_width="257dp"
+        android:layout_height="41dp"
+        android:layout_below="@id/calendarView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/btnbg"
+
+        android:text="Devamsizlik Girisi" />
+</RelativeLayout>

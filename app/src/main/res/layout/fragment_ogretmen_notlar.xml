@@ -1,15 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    xmlns:android="http://schemas.android.com/apk/res/android" >
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/OgrenciAdiSoyadi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="OGRENCI ADI SOYADI"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/txt_NotBilgisi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NOTLAR GORUNTULENCEK"
-        tools:layout_editor_absoluteX="109dp"
-        tools:layout_editor_absoluteY="293dp" />
-</android.support.constraint.ConstraintLayout>
+        android:text="NOT BILGISI"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/OgrenciAdiSoyadi"
+        android:textSize="18sp"
+        />
+    <TextView
+        android:id="@+id/txtVize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VIZE"
+        android:layout_below="@id/txt_NotBilgisi"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="45dp"
+        />
+    <TextView
+        android:id="@+id/txtFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FINAL"
+        android:layout_below="@id/txt_NotBilgisi"
+        android:layout_toRightOf="@id/txtVize"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="45dp"
+        />
+    <TextView
+        android:id="@+id/txtOdevler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ODEVLER"
+        android:layout_below="@id/txt_NotBilgisi"
+        android:layout_toRightOf="@id/txtFinal"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="45dp"
+        />
+    <TextView
+        android:id="@+id/txtProje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PROJE"
+        android:layout_below="@id/txt_NotBilgisi"
+        android:layout_toRightOf="@id/txtOdevler"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="45dp"
+        />
+    <EditText
+        android:id="@+id/vizeNotu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtVize"
+        android:layout_marginLeft="32dp"
+        android:ems="2"
+        android:gravity="center"
+        android:inputType="number"
+
+        />
+
+    <EditText
+        android:id="@+id/FinalNotu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtFinal"
+        android:layout_toRightOf="@id/vizeNotu"
+        android:layout_marginLeft="40dp"
+        android:ems="2"
+        android:gravity="center"
+        android:inputType="number" />
+    <EditText
+        android:id="@+id/odevNotu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtOdevler"
+        android:layout_toRightOf="@id/FinalNotu"
+        android:layout_marginLeft="40dp"
+        android:ems="4"
+        android:gravity="center"
+        android:inputType="number" />
+    <EditText
+        android:id="@+id/ProjeNotu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtOdevler"
+        android:layout_toRightOf="@id/odevNotu"
+        android:layout_marginLeft="40dp"
+        android:ems="2"
+        android:gravity="center"
+        android:inputType="number" />
+    <TextView
+        android:id="@+id/txt_harfNotu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/odevNotu"
+        android:layout_centerHorizontal="true"
+        android:text="Harf Notu"
+        android:layout_marginTop="15dp"
+        />
+
+    <Button
+        android:id="@+id/btnHarfNotuHesapla"
+        android:layout_width="198dp"
+        android:layout_height="49dp"
+        android:layout_below="@id/odevNotu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="242dp"
+        android:background="@drawable/btnbg"
+        android:text="HARF NOTU HESAPLA" />
+    <Button
+        android:id="@+id/btnNotKaydet"
+        android:layout_width="198dp"
+        android:layout_height="49dp"
+        android:layout_below="@id/btnHarfNotuHesapla"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/btnbg"
+        android:text="KAYDET" />
+
+
+
+</RelativeLayout>
+
+
+
