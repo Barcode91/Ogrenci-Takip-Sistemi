@@ -14,6 +14,30 @@
         <item>3-B</item>
         <item>3-C</item>
     </array>
+    <array name="devamsizlik">
+        <item>26/05/2030</item>
+        <item>02/05/2030</item>
+        <item>04/07/2030</item>
+        <item>26/05/2030</item>
+        <item>26/05/2030</item>
+        <item>26/05/2030</item>
+        <item>26/05/2030</item>
+    </array>
+    <array name="degerlendirme">
+        <item>DEGERLENDIRME</item>
+        <item>DEGERLENDIRME</item>
+        <item>DEGERLENDIRME</item>
+        <item>DEGERLENDIRME</item>
+        <item>DEGERLENDIRME</item>
+        <item>DEGERLENDIRME</item>
+        <item>DEGERLENDIRME</item>
+        <item>DEGERLENDIRME</item>
+        <item>DEGERLENDIRME</item>
+        <item>DEGERLENDIRME</item>
+        <item>DEGERLENDIRME</item>
+        <item>DEGERLENDIRME</item>
+        <item>DEGERLENDIRME</item>
+    </array>
     <array name="ogrenciBilgiler">
         <item>NOTLAR</item>
         <item>DEVAMSIZLIK</item>
@@ -31,4 +55,6 @@
     <string name="menu_tools">OGRENCI DEGERLENDIRMESI</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="title_activity_veli"></string>
+    <string name="title_activity_ogrenci">OgrenciActivity</string>
 </resources>

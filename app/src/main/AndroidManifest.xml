@@ -10,11 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".OgrenciActivity"
+            android:label="@string/title_activity_ogrenci"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".VeliActivity"
+            android:label="@string/title_activity_veli"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".OgretmenActivity"
             android:label="@string/title_activity_ogretmen"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".VeliActivity" />
-        <activity android:name=".OgrenciActivitiy" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SistemKayit" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbackground"
+    >
+
+    <ImageView
+        android:id="@+id/ogrenciFotograf"
+        android:layout_width="139dp"
+        android:layout_height="155dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/nav_header_desc"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:src="@drawable/ogrencifoto"
+         />
+
+    <TextView
+        android:id="@+id/ogrenci_tc_kimlikNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OGRENCI TC KIMLIK NO"
+        android:layout_below="@id/ogrenciFotograf"
+        android:layout_marginTop="25dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/OgrenciAdiSoyadi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OGRENCI ADI SOYADI"
+        android:layout_below="@id/ogrenci_tc_kimlikNo"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="18dp"
+        />
+    <TextView
+        android:id="@+id/OgrenciEposta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ogrencieposta@hotmail.com"
+        android:layout_below="@id/OgrenciAdiSoyadi"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:id="@+id/OgrenciSinif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OGRENCI sinif"
+        android:layout_below="@id/OgrenciEposta"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>
