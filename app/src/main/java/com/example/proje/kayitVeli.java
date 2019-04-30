@@ -68,12 +68,6 @@ public class kayitVeli extends Fragment {
 
     public void kullaniciEkle(){
         // Arayüz Bilgilerini nesne değişkine atar ve veri tabanı insert eder.
-//        String ad = adSoyad.getText().toString();
-//        String tCNo = tcNo.getText().toString();
-//        String sinif = ogrenciSinif.getSelectedItem().toString();
-//        String sifre = passwd.getText().toString();
-
-        //System.out.println(ad+" "+tCNo+" "+sinif+" "+sifre );
 
         veli.setAdSoyad(adSoyad.getText().toString());
         veli.settCNo(tcNo.getText().toString());

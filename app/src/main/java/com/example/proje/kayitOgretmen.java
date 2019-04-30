@@ -96,7 +96,7 @@ public class kayitOgretmen extends Fragment {
            }
        });
 
-        return view;// Bu javanin gosterecegi xmli tanimladik.
+        return view;
 
     }
 
