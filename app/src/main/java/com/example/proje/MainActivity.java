@@ -134,6 +134,7 @@ private String email, passwd;
         txtKullaniciSifre.setText(preferenceMekanizmasi.read(context,"KullaniciSifre"));
     }
     //kamera uygulaması eklenecek
+    //Firebase stroge yüklenecek
 
 
 
