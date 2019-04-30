@@ -23,6 +23,13 @@
         <item>26/05/2030</item>
         <item>26/05/2030</item>
     </array>
+    <array name="dersler">
+        <item>MATEMATIK</item>
+        <item>FIZIK</item>
+        <item>KIMYA</item>
+        <item>TURKCE</item>
+        <item>INGILIZCE</item>
+    </array>
     <array name="degerlendirme">
         <item>DEGERLENDIRME</item>
         <item>DEGERLENDIRME</item>
@@ -56,5 +63,5 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="title_activity_veli"></string>
-    <string name="title_activity_ogrenci">OgrenciActivity</string>
+    <string name="title_activity_ogrenci"></string>
 </resources>
