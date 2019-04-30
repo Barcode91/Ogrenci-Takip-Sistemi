@@ -133,6 +133,7 @@ private String email, passwd;
         txtKullaniciAdi.setText(preferenceMekanizmasi.read(context,"KullaniciAdi"));
         txtKullaniciSifre.setText(preferenceMekanizmasi.read(context,"KullaniciSifre"));
     }
+    //kamera uygulaması eklenecek
 
 
 

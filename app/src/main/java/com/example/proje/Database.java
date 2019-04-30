@@ -69,7 +69,7 @@ public class Database <tip> {
     }
 
 
-
+    /*
     public String loginCont(String email, String password, Activity activity, final Context context){ // PASİF
 
         //System.out.println("tc no : "+ tcNo+ "  activity gelen şifre : "+password);
@@ -90,6 +90,7 @@ public class Database <tip> {
 
         return loginId; // kullanıcını tipini döndürdü
     }
+    */
 
     public void typeCont(){
     // Nesne tipi kontrol edilir. Kullanıcı rolüne göre işlem yapılması için
