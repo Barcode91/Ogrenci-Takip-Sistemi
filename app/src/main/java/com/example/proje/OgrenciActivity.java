@@ -16,13 +16,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
-public class VeliActivity extends AppCompatActivity
+public class OgrenciActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_veli);
+        setContentView(R.layout.activity_ogrenci);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FragmentManager fragmentManager = getFragmentManager();
@@ -52,7 +52,7 @@ public class VeliActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.veli, menu);
+        getMenuInflater().inflate(R.menu.ogrenci, menu);
         return true;
     }
 
@@ -76,31 +76,25 @@ public class VeliActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         int id = item.getItemId();
 
         if (id == R.id.nav_kimlikBilgisi) {
-            fragmentKimlikBilgisi kimlikBilgisi =new fragmentKimlikBilgisi();
-            fragmentTransaction.replace(R.id.content_frame,kimlikBilgisi);
+            fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi();
+            fragmentTransaction.replace(R.id.content_frame, kimlikBilgisi);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_notlar) {
-            fragmentNotGoruntuleme fragmentNotGoruntuleme =new fragmentNotGoruntuleme();
-            fragmentTransaction.replace(R.id.content_frame,fragmentNotGoruntuleme);
+            fragmentNotGoruntuleme fragmentNotGoruntuleme = new fragmentNotGoruntuleme();
+            fragmentTransaction.replace(R.id.content_frame, fragmentNotGoruntuleme);
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_devamsizlik) {
-            fragmentDevamsizlikGoruntuleme fragmentDevamsizlikGoruntuleme=new fragmentDevamsizlikGoruntuleme();
-            fragmentTransaction.replace(R.id.content_frame,fragmentDevamsizlikGoruntuleme);
+            fragmentDevamsizlikGoruntuleme fragmentDevamsizlikGoruntuleme = new fragmentDevamsizlikGoruntuleme();
+            fragmentTransaction.replace(R.id.content_frame, fragmentDevamsizlikGoruntuleme);
             fragmentTransaction.commit();
-
-        } else if (id == R.id.nav_degerlendirme) {
-            fragmentDegerlendirmeGoruntuleme fragmentDegerlendirmeGoruntuleme = new fragmentDegerlendirmeGoruntuleme();
-            fragmentTransaction.replace(R.id.content_frame,fragmentDegerlendirmeGoruntuleme);
-            fragmentTransaction.commit();
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);}
+            return true;
         }
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
-}

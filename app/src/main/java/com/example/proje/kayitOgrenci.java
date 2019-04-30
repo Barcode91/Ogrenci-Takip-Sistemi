@@ -49,8 +49,10 @@ public class kayitOgrenci extends Fragment {
             @Override
             public void onClick(View v) {
                 sifreDogruluk = sistemKayit.sifreDogrulukKontrol(passwd.getText().toString(),txtSifreTekrar.getText().toString());
-                if(sifreDogruluk)
+                if(sifreDogruluk) {
                     kullaniciEkle();
+                    Toast.makeText(context,"Kayıt Basarılı",Toast.LENGTH_SHORT).show();
+                }
                 else
                     Toast.makeText(context,"Şifreler Uyuşmuyor",Toast.LENGTH_SHORT).show();
 
