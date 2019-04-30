@@ -5,6 +5,16 @@ public class Ogretmen {
     private String tCNo;
     private String pass;
     private String bolum;
+    private String emailAdres;
+
+    public String getEmailAdres() {
+        return emailAdres;
+    }
+
+    public void setEmailAdres(String emailAdres) {
+        this.emailAdres = emailAdres;
+    }
+
     private String onayKod;
 
     public String getAdSoyad() {

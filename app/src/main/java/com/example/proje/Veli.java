@@ -5,6 +5,15 @@ public class Veli {
     private String tCNo;
     private String pass;
     private String cocukTc;
+    private String emailAdres;
+
+    public String getEmailAdres() {
+        return emailAdres;
+    }
+
+    public void setEmailAdres(String emailAdres) {
+        this.emailAdres = emailAdres;
+    }
 
     public String getAdSoyad() {
         return adSoyad;

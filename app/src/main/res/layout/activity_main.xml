@@ -18,24 +18,24 @@
 
 
    <EditText
-       android:id="@+id/kullaniciTC"
-       android:layout_width="200dp"
+       android:id="@+id/emailAdresi"
+       android:layout_width="220dp"
        android:layout_height="wrap_content"
        android:layout_below="@id/logo"
        android:layout_centerHorizontal="true"
        android:layout_marginTop="10dp"
-       android:hint="TC Kimlik NO"
+       android:hint="Email Adresini Giriniz"
        android:textColorHint="@android:color/black"
        android:textColor="@android:color/black"
        android:textStyle="bold"
-       android:inputType="number"
+       android:inputType="textEmailAddress"
        android:textSize="20dp"
        />
    <EditText
        android:id="@+id/kullaniciSifre"
-       android:layout_width="200dp"
+       android:layout_width="220dp"
        android:layout_height="wrap_content"
-       android:layout_below="@id/kullaniciTC"
+       android:layout_below="@id/emailAdresi"
        android:layout_centerHorizontal="true"
        android:layout_marginTop="30dp"
        android:hint="@string/kullaniciSifre"

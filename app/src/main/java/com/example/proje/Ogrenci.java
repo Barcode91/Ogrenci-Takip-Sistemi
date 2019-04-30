@@ -5,10 +5,19 @@ public class Ogrenci {
     private String tCNo;
     private String pass;
     private String classNumber;
+    private String emailAdres;
     private String yorum;
 
     public String getAdSoyad() {
         return adSoyad;
+    }
+
+    public String getEmailAdres() {
+        return emailAdres;
+    }
+
+    public void setEmailAdres(String emailAdres) {
+        this.emailAdres = emailAdres;
     }
 
     public void setAdSoyad(String adSoyad) {

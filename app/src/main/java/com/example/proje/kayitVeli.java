@@ -19,7 +19,7 @@ public class kayitVeli extends Fragment {
     Context context;
     SistemKayit sistemKayit ;
     TextView txtSifreTekrar;
-    EditText tcNo, adSoyad,passwd, cocukTc;
+    EditText tcNo, adSoyad,passwd, cocukTc,emailAdres;
     Button btnKaydet;
     Veli veli = new Veli();
     boolean sifreDogruluk=false;
@@ -37,7 +37,9 @@ public class kayitVeli extends Fragment {
         tcNo = view.findViewById(R.id.tc_kimlikNo);
         adSoyad = view.findViewById(R.id.AdiSoyadi);
         cocukTc = view.findViewById(R.id.ogrenci_tc_kimlikNo);
+        emailAdres = view.findViewById(R.id.emailAdresi);
         sistemKayit=new SistemKayit();
+
 
         //EGER SIFREYI VE ONAY KODUNU DOGRU GIRDIYSE VERITABANINA KAYIT EDECEK BUTON!!!!!!
         btnKaydet.setOnClickListener(new View.OnClickListener() {
@@ -77,8 +79,9 @@ public class kayitVeli extends Fragment {
         veli.settCNo(tcNo.getText().toString());
         veli.setPass(passwd.getText().toString());
         veli.setCocukTc(cocukTc.getText().toString());
+        veli.setEmailAdres(emailAdres.getText().toString());
         database = new Database(veli); // ogretmen nesnesini veritabanı constructer aracılığyla gönderilir
-        database.userAdd(); // kullanıcı veritabanına eklenir.
+        database.userAdd(new SistemKayit(),context); // kullanıcı veritabanına eklenir.
 
     }
 

@@ -3,6 +3,7 @@
     <string name="banner">OGRENCI TAKIP SISTEMI</string>
     <string name="kullaniciAdi">KULLANICI ADI</string>
     <string name="kullaniciSifre">SIFRE</string>
+    <string name="EmailAdresi">EMAİL ADRESİ</string>
     <array name="siniflar">
         <item>1-A</item>
         <item>1-B</item>
