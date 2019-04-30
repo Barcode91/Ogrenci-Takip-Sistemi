@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_kimlikBilgisi"
+            android:icon="@drawable/ogrencikimlik"
+            android:title="OGRENCI KIMLIK BILGILERI" />
+        <item
+            android:id="@+id/nav_notlar"
+            android:icon="@drawable/notlar"
+            android:title="NOTLAR" />
+        <item
+            android:id="@+id/nav_devamsizlik"
+            android:icon="@drawable/devamsizlik"
+            android:title="DEVAMSIZLIK" />
+    </group>
+
+
+</menu>

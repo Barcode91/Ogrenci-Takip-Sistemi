@@ -51,60 +51,6 @@ private String email, passwd;
                 email = txtKullaniciAdi.getText().toString();
                 passwd = txtKullaniciSifre.getText().toString();
 
-//                if(beniHatirla.isChecked()){
-//                    preferenceMekanizmasi.save(context,txtKullaniciAdi.getText().toString(),"KullaniciAdi");
-//                    preferenceMekanizmasi.save(context,txtKullaniciSifre.getText().toString(),"KullaniciSifre");
-//                }
-//                else
-//                    Toast.makeText(context,"KAYIT EDILMEDI",Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(context, OgretmenActivity.class);
-//                startActivity(intent);
-                ///database = new Database();
-                //String kulllaniciId = database.loginCont(email,passwd,MainActivity.this,context);
-               // System.out.println("-------------------- "+kulllaniciId);
-
-
-                mAuth.signInWithEmailAndPassword(email,passwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            //Toast.makeText(context,"Giriş Başarılı Yönlendiriliyorsunuz",Toast.LENGTH_LONG).show();
-                            String loginId = task.getResult().getUser().getUid();
-                            System.out.println("-------------------- "+loginId);
-                            // İLGİLİ ACTİVİTY EKRANINA YÖNLENDİRMEK İÇİN LOGİN OLAN KULLANICININ TİPİ BELİRLENİR
-                            db=FirebaseDatabase.getInstance();
-                            myRef=db.getReference().child("girisBilgileri").child(loginId);
-                            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    //veritabanında login idsi ile kullanıcı tipi eşleştirilir
-                                    String kullaniciTur = dataSnapshot.getValue().toString();
-                                    Intent intent;
-                                    // ilgili türe göre activity sayfasına yönlendirilir.
-                                    if(kullaniciTur.equals("ogretmen")){
-                                        intent=new Intent(context,OgretmenActivity.class);
-                                        startActivity(intent);
-                                    }
-                                    else if(kullaniciTur.equals("ogrenci")){
-                                        intent=new Intent(context,OgrenciActivitiy.class);
-                                        startActivity(intent);
-                                    }
-                                    else if(kullaniciTur.equals("veli")){
-                                        intent = new Intent(context,VeliActivity.class);
-                                        startActivity(intent);
-                                    }
-                                }
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-                        }
-                        else { // GİRİŞ HATALI İSE
-                            Toast.makeText(context,"Giriş Bilgileriniz Hatalı",Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
             }
         });
 

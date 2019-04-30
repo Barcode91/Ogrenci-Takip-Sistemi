@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbackground"
+    >
+    <TextView
+        android:id="@+id/OgrenciAdiSoyadi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OGRENCI ADI SOYADI"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textSize="25sp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ogretmen Degerlendirmesi"
+        android:layout_below="@id/OgrenciAdiSoyadi"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        />
+    <ListView
+        android:id="@+id/listviewDevamsizlikCizelgesi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/OgrenciAdiSoyadi"
+        android:layout_marginTop="35dp"
+        android:entries="@array/degerlendirme"
+        ></ListView>
+</RelativeLayout>
