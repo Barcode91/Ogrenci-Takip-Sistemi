@@ -24,7 +24,7 @@ public class kayitOgretmen extends Fragment {
     Context context;
     Button btnOnay,btnKaydet;
     TextView txtOnayKodu,txtSifre,txtSifreTekrar;
-    EditText tcNo, adSoyad,passwd, bolum;
+    EditText tcNo, adSoyad,passwd, bolum, emailAdres;
     Database database;
     Ogretmen ogretmen = new Ogretmen();
     boolean onayDogruluk=false,sifreDogruluk=false;
@@ -44,6 +44,7 @@ public class kayitOgretmen extends Fragment {
         adSoyad = view.findViewById(R.id.AdiSoyadi);
         passwd = view.findViewById(R.id.KayitSifre);
         bolum = view.findViewById(R.id.OgretmenBolum);
+        emailAdres = view.findViewById(R.id.emailAdresi);
 
         sistemKayit=new SistemKayit();
 
@@ -105,8 +106,9 @@ public class kayitOgretmen extends Fragment {
     ogretmen.settCNo(tcNo.getText().toString());
     ogretmen.setPass(passwd.getText().toString());
     ogretmen.setBolum(bolum.getText().toString());
+    ogretmen.setEmailAdres(emailAdres.getText().toString());
     database = new Database(ogretmen); // ogretmen nesnesini veritabanı constructer aracılığyla gönderilir
-    database.userAdd(); // kullanıcı veritabanına eklenir.
+    database.userAdd(new SistemKayit(),context); // kullanıcı veritabanına eklenir.
 
     }
 

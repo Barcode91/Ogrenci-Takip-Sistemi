@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class kayitOgrenci extends Fragment {
 
@@ -20,11 +21,12 @@ public class kayitOgrenci extends Fragment {
     Context context;
     Button btnOnay,btnKaydet;
     TextView txtSifreTekrar;
-    EditText tcNo, adSoyad,passwd;
+    EditText tcNo, adSoyad,passwd, emailAdres;
     Database database;
     boolean sifreDogruluk=false;
     Spinner ogrenciSinif;
     Ogrenci ogrenci = new Ogrenci();
+    FirebaseAuth myAuth;
 
     kayitOgrenci(Context contex){
         this.context=contex;
@@ -40,7 +42,8 @@ public class kayitOgrenci extends Fragment {
         adSoyad = view.findViewById(R.id.AdiSoyadi);
         passwd = view.findViewById(R.id.KayitSifre);
         ogrenciSinif = view.findViewById(R.id.OgrenciSinif);
-
+        emailAdres = view.findViewById(R.id.emailAdresi);
+        myAuth=FirebaseAuth.getInstance();
         sistemKayit=new SistemKayit();
         btnKaydet.setOnClickListener(new View.OnClickListener() { // kaydet butonu işlevi
             @Override
@@ -61,21 +64,14 @@ public class kayitOgrenci extends Fragment {
     }
 
 
-    public void kullaniciEkle(){
-        // Arayüz Bilgilerini nesne değişkine atar ve veri tabanı insert eder.
-//        String ad = adSoyad.getText().toString();
-//        String tCNo = tcNo.getText().toString();
-//        String sinif = ogrenciSinif.getSelectedItem().toString();
-//        String sifre = passwd.getText().toString();
-
-        //System.out.println(ad+" "+tCNo+" "+sinif+" "+sifre );
-
+    private void kullaniciEkle(){
         ogrenci.setAdSoyad(adSoyad.getText().toString());
         ogrenci.settCNo(tcNo.getText().toString());
         ogrenci.setPass(passwd.getText().toString());
         ogrenci.setClassNumber(ogrenciSinif.getSelectedItem().toString());
+        ogrenci.setEmailAdres(emailAdres.getText().toString());
         database = new Database(ogrenci); // ogretmen nesnesini veritabanı constructer aracılığyla gönderilir
-        database.userAdd(); // kullanıcı veritabanına eklenir.
+        database.userAdd(new SistemKayit(),context);
 
     }
 
