@@ -57,7 +57,7 @@ public class kayitOgretmen extends Fragment {
 
                if (sifreDogruluk&&onayDogruluk)
                {
-                   //Toast.makeText(context,"KAYIT YAPILABILIR",Toast.LENGTH_SHORT).show();
+                   Toast.makeText(context,"Kayıt Başarılı",Toast.LENGTH_SHORT).show();
                     kullaniciEkle();
 
                }

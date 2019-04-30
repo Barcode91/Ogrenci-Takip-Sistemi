@@ -40,6 +40,8 @@ PreferenceMekanizmasi preferenceMekanizmasi;
                 }
                 else
                     Toast.makeText(context,"KAYIT EDILMEDI",Toast.LENGTH_LONG).show();
+
+                //VERI TABANINDAN GELEN KULLANICI BILGISINE GORE KOSUL YAZILACAK!!!
                 Intent intent = new Intent(context, VeliActivity.class);
                 startActivity(intent);
             }

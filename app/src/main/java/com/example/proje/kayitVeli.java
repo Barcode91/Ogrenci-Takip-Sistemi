@@ -48,7 +48,7 @@ public class kayitVeli extends Fragment {
 
                 if (sifreDogruluk)
                 {
-
+                    Toast.makeText(context,"Kayıt Başarılı",Toast.LENGTH_SHORT).show();
                     kullaniciEkle();
 
                 }
