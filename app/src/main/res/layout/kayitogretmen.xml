@@ -69,7 +69,7 @@
         android:layout_marginTop="10dp"
         android:textSize="17sp"
         />
-    <EditText
+    <Spinner
         android:id="@+id/OgretmenBolum"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -80,6 +80,7 @@
         android:textColor="@android:color/black"
         android:layout_marginTop="10dp"
         android:textSize="17sp"
+        android:entries="@array/dersler"
         />
 
     <EditText

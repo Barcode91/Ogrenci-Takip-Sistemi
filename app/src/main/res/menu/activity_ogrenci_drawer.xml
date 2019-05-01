@@ -16,6 +16,14 @@
             android:id="@+id/nav_devamsizlik"
             android:icon="@drawable/devamsizlik"
             android:title="DEVAMSIZLIK" />
+
+        <item
+            android:id="@+id/nav_cikis"
+            android:icon="@drawable/exit"
+            android:title="CIKIS"
+
+            />
+
     </group>
 
 
