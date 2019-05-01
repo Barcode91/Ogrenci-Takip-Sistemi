@@ -7,6 +7,17 @@
     tools:context=".MainActivity"
     android:background="@drawable/mainbackground"
     >
+    <ImageView
+        android:id="@+id/profil_photo"
+        android:layout_width="150dp"
+        android:layout_height="140dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/kayıt_bosluk"
+        android:src="@drawable/profil_add"
+        android:clickable="true"
+        android:foreground="@drawable/image_radius"
+
+        />
     <EditText
         android:id="@+id/tc_kimlikNo"
         android:layout_width="200dp"
@@ -16,8 +27,9 @@
         android:textColorHint="@android:color/background_dark"
         android:textColor="@android:color/black"
         android:textSize="17sp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/kayıt_bosluk"
         android:ems="11"
+        android:layout_below="@id/profil_photo"
         android:hint="TC KIMLIK NUMARASI"
         />
     <EditText
@@ -30,7 +42,7 @@
         android:textColorHint="@android:color/background_dark"
         android:textColor="@android:color/black"
         android:textSize="17sp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/kayıt_bosluk"
         />
     <TextView
         android:id="@+id/sinifiniz"
@@ -42,7 +54,7 @@
         android:textSize="17sp"
         android:layout_below="@id/AdiSoyadi"
         android:layout_marginLeft="91dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/kayıt_bosluk"
         />
     <Spinner
     android:id="@+id/OgrenciSinif"
@@ -54,7 +66,7 @@
         android:popupBackground="@android:color/holo_blue_dark"
         android:backgroundTint="@android:color/holo_red_dark"
     android:textSize="17sp"
-    android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/kayıt_bosluk"
         android:entries="@array/siniflar"
     />
     <EditText
@@ -68,7 +80,7 @@
         android:textColor="@android:color/black"
         android:layout_below="@id/OgrenciSinif"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="@dimen/kayıt_bosluk"/>
 
 
     <EditText
@@ -81,7 +93,7 @@
         android:textColorHint="@android:color/background_dark"
         android:textColor="@android:color/black"
         android:textSize="17sp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/kayıt_bosluk"
         android:inputType="textPassword"
         />
     <EditText
@@ -94,7 +106,7 @@
         android:textColorHint="@android:color/background_dark"
         android:textColor="@android:color/black"
         android:textSize="17sp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/kayıt_bosluk"
         android:inputType="textPassword"
         />
     <Button
@@ -102,7 +114,7 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_below="@+id/KayitSifreTekrar"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:text="KAYITI TAMAMLA"
         android:background="@drawable/btnbg"

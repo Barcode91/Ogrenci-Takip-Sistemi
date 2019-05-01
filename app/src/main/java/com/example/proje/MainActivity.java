@@ -86,7 +86,7 @@ private String email, passwd;
                                         startActivity(intent);
                                     }
                                     else if(kullaniciTur.equals("ogrenci")){
-                                        intent=new Intent(context,OgrenciActivitiy.class);
+                                        intent=new Intent(context,OgrenciActivity.class);
                                         startActivity(intent);
                                     }
                                     else if(kullaniciTur.equals("veli")){

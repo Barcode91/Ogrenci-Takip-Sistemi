@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,31 +23,46 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 
 //generic tip tanımlaması kullanıldı.
 public class Database <tip> {
     FirebaseDatabase db;
     private String loginId;
+
+    public String getLoginId() {
+        return loginId;
+    }
+
     DatabaseReference myRef, oku;
     public static String veri;
     public static boolean sonuc;
     String userType, id, password, email;
     tip t;
     FirebaseAuth myAuth;
+    FirebaseStorage firebaseStorage;
+    StorageReference storageReference;
+    byte [] profilPhoto;
 
 
     public Database(tip tip) {
         db = FirebaseDatabase.getInstance();
         myRef = db.getReference();
         myAuth=FirebaseAuth.getInstance();
+        firebaseStorage = FirebaseStorage.getInstance();
+        storageReference = firebaseStorage.getReference();
         this.t = tip;
         typeCont(); //ilk olarak nesne tipi belirlenir
     }
     public Database (){
-        myAuth=FirebaseAuth.getInstance();
-        db = FirebaseDatabase.getInstance();
+        firebaseStorage = FirebaseStorage.getInstance(); // stroge bağlantısı
+        storageReference = firebaseStorage.getReference(); // bağlantı referansı
+        myAuth=FirebaseAuth.getInstance(); // yetkilendirme bağlantı referansı
+        db = FirebaseDatabase.getInstance(); // realtime veri tabanı bağlantısı
+        myRef = db.getReference();
 
     }
     //aldığı nesne tipine göre veritabanına kayıt yapıları.
@@ -58,6 +75,7 @@ public class Database <tip> {
                     loginId = task.getResult().getUser().getUid();
                     myRef.child("kullanicilar").child(userType).child(loginId).setValue(t);
                     myRef.child("girisBilgileri").child(loginId).setValue(userType);
+
                 }
                 else {
 
@@ -65,6 +83,7 @@ public class Database <tip> {
                 }
             }
         });
+
 
     }
 
@@ -105,6 +124,7 @@ public class Database <tip> {
             id = ((Ogrenci) t).gettCNo();
             email = ((Ogrenci) t).getEmailAdres();
             password = ((Ogrenci) t).getPass();
+            //profilPhoto = ((Ogrenci) t).getProfilPhoto();
         }
         else if (t instanceof Veli){
             userType = "veli";
@@ -113,6 +133,8 @@ public class Database <tip> {
             password = ((Veli) t).getPass();
         }
     }
+
+
 
 
 

@@ -7,6 +7,16 @@ public class Ogrenci {
     private String classNumber;
     private String emailAdres;
     private String yorum;
+    private String loginId;
+
+    public String getLoginId() {
+        return loginId;
+    }
+
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
+    }
+
 
     public String getAdSoyad() {
         return adSoyad;
