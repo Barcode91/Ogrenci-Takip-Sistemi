@@ -20,6 +20,12 @@
             android:id="@+id/nav_degerlendirme"
             android:icon="@drawable/degerlendirme"
             android:title="OGRETMEN GORUSLERI" />
+        <item
+            android:id="@+id/nav_cikis"
+            android:icon="@drawable/exit"
+            android:title="CIKIS"
+
+            />
     </group>
 
 
