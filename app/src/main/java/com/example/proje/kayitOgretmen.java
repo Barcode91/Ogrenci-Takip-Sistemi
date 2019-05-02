@@ -3,6 +3,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +26,8 @@ public class kayitOgretmen extends Fragment {
     Context context;
     Button btnOnay,btnKaydet;
     TextView txtOnayKodu,txtSifre,txtSifreTekrar;
-    EditText tcNo, adSoyad,passwd, bolum, emailAdres;
+    EditText tcNo, adSoyad,passwd, emailAdres;
+    Spinner bolum;
     Database database;
     Ogretmen ogretmen = new Ogretmen();
     boolean onayDogruluk=false,sifreDogruluk=false;
@@ -60,6 +63,9 @@ public class kayitOgretmen extends Fragment {
                {
                    Toast.makeText(context,"Kayıt Başarılı",Toast.LENGTH_SHORT).show();
                     kullaniciEkle();
+                   Toast.makeText(context,"Kayıt Basarılı",Toast.LENGTH_SHORT).show();
+                   Intent intent=new Intent(context,MainActivity.class);
+                   startActivity(intent);
 
                }
                else
@@ -105,7 +111,7 @@ public class kayitOgretmen extends Fragment {
     ogretmen.setAdSoyad(adSoyad.getText().toString());
     ogretmen.settCNo(tcNo.getText().toString());
     ogretmen.setPass(passwd.getText().toString());
-    ogretmen.setBolum(bolum.getText().toString());
+    ogretmen.setBolum(bolum.getSelectedItem().toString());
     ogretmen.setEmailAdres(emailAdres.getText().toString());
     database = new Database(ogretmen); // ogretmen nesnesini veritabanı constructer aracılığyla gönderilir
     database.userAdd(new SistemKayit(),context); // kullanıcı veritabanına eklenir.

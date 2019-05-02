@@ -1,13 +1,17 @@
 package com.example.proje;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 Button btnKayitol,btnGiris;
 CheckBox beniHatirla;
 Context context;
-TextView txtKullaniciAdi,txtKullaniciSifre;
+TextView txtKullaniciAdi,txtKullaniciSifre, paraloSifirla;
 PreferenceMekanizmasi preferenceMekanizmasi;
 FirebaseAuth mAuth;
 FirebaseUser firebaseUser;
@@ -42,8 +46,8 @@ private String email, passwd;
         //oturum açıkmı kapalımı kontrol edilir.
         mAuth=FirebaseAuth.getInstance();
         firebaseUser=mAuth.getCurrentUser();
-        if (firebaseUser!= null)
-            Toast.makeText(context,"oturum açık devam et",Toast.LENGTH_SHORT).show();
+      /*  if (firebaseUser!= null)
+            Toast.makeText(context,"oturum açık devam et",Toast.LENGTH_SHORT).show();*/
 
         btnGiris.setOnClickListener(new View.OnClickListener() { // GİRİŞ BUTONU AKSİYONU
             @Override
@@ -118,6 +122,9 @@ private String email, passwd;
         });
 
 
+
+
+
     }
     public void init(){
         context=this;
@@ -127,8 +134,40 @@ private String email, passwd;
         txtKullaniciAdi=findViewById(R.id.emailAdresi);
         txtKullaniciSifre=findViewById(R.id.kullaniciSifre);
         preferenceMekanizmasi=new PreferenceMekanizmasi();
+        paraloSifirla = findViewById(R.id.txt_sifremiUnuttum);
     }
+    public void parolaReset(View v){
 
+        final String email=txtKullaniciAdi.getText().toString();
+        final AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setTitle("PARALO SIFIRLAMA");
+        alert.setMessage(email+"EMAIL ADRESINIZI GONDERILSIN MI?");
+        alert.setPositiveButton("GONDER", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //mail adresini alert dialogdaki edittextten alacak
+
+                mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(context, "Yeni parola için gerekli bağlantı adresinize gönderildi!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "Mail gönderme hatası!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+
+        alert.setNegativeButton("IPTAL", null).show();
+
+
+
+
+
+
+    }
     public void preferencedanVeriCek(){
         txtKullaniciAdi.setText(preferenceMekanizmasi.read(context,"KullaniciAdi"));
         txtKullaniciSifre.setText(preferenceMekanizmasi.read(context,"KullaniciSifre"));

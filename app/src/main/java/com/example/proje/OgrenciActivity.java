@@ -2,6 +2,8 @@ package com.example.proje;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,13 +18,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class OgrenciActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ogrenci);
+        context=this;
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FragmentManager fragmentManager = getFragmentManager();
@@ -94,7 +99,16 @@ public class OgrenciActivity extends AppCompatActivity
             fragmentTransaction.commit();
             DrawerLayout drawer = findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);}
-            return true;
+        else if (id == R.id.nav_cikis){
+            FirebaseAuth auth=FirebaseAuth.getInstance();
+            auth.signOut();
+            startActivity(new Intent(context,MainActivity.class));
+
+
+
+        }
+
+        return true;
         }
 
     }
