@@ -89,7 +89,9 @@ public class kayitOgrenci extends Fragment {
                 sifreDogruluk = sistemKayit.sifreDogrulukKontrol(passwd.getText().toString(),txtSifreTekrar.getText().toString());
                 if(sifreDogruluk) {
                     kullaniciEkle();
-                    //Toast.makeText(context,"Kayıt Basarılı",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Kayıt Basarılı",Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(context,MainActivity.class);
+                    startActivity(intent);
                 }
                 else
                     Toast.makeText(context,"Şifreler Uyuşmuyor",Toast.LENGTH_SHORT).show();
