@@ -126,9 +126,13 @@ public class kayitOgrenci extends Fragment {
         ogrenci.setPass(passwd.getText().toString());
         ogrenci.setClassNumber(ogrenciSinif.getSelectedItem().toString());
         ogrenci.setEmailAdres(emailAdres.getText().toString());
+
         database = new Database(ogrenci); // ogretmen nesnesini veritabanı constructer aracılığyla gönderilir
         database.userAdd(new SistemKayit(),context);
-        String dosya = tcNo.getText().toString();
+
+
+        String dosya =tcNo.getText().toString();
+        //ogrenci.setLoginId(dosya);
         System.out.println("----------------"+dosya+"-----------------------");
         StorageReference ref = storageReference.child("pht_"+dosya);
         UploadTask uploadTask = ref.putBytes(bytArray);

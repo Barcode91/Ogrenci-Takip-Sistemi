@@ -1,11 +1,15 @@
 package com.example.proje;
 
-public class Ogretmen {
+import java.io.Serializable;
+
+public class Ogretmen implements Serializable {
+    final public String kulTip="ögretmen";
     private String adSoyad;
     private String tCNo;
     private String pass;
     private String bolum;
     private String emailAdres;
+
 
     public String getEmailAdres() {
         return emailAdres;

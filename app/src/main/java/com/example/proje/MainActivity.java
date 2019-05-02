@@ -35,8 +35,9 @@ PreferenceMekanizmasi preferenceMekanizmasi;
 FirebaseAuth mAuth;
 FirebaseUser firebaseUser;
 FirebaseDatabase db;
-DatabaseReference myRef;
+DatabaseReference myRef, myRefOku;
 private String email, passwd;
+Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,49 +56,35 @@ private String email, passwd;
                 email = txtKullaniciAdi.getText().toString();
                 passwd = txtKullaniciSifre.getText().toString();
 
-//                if(beniHatirla.isChecked()){
-//                    preferenceMekanizmasi.save(context,txtKullaniciAdi.getText().toString(),"KullaniciAdi");
-//                    preferenceMekanizmasi.save(context,txtKullaniciSifre.getText().toString(),"KullaniciSifre");
-//                }
-//                else
-//                    Toast.makeText(context,"KAYIT EDILMEDI",Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(context, OgretmenActivity.class);
-//                startActivity(intent);
-                ///database = new Database();
-                //String kulllaniciId = database.loginCont(email,passwd,MainActivity.this,context);
-               // System.out.println("-------------------- "+kulllaniciId);
+                if(beniHatirla.isChecked()){
+                    preferenceMekanizmasi.save(context,txtKullaniciAdi.getText().toString(),"KullaniciAdi");
+                    preferenceMekanizmasi.save(context,txtKullaniciSifre.getText().toString(),"KullaniciSifre");
+                }
+
 
 
                 mAuth.signInWithEmailAndPassword(email,passwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+
                             //Toast.makeText(context,"Giriş Başarılı Yönlendiriliyorsunuz",Toast.LENGTH_LONG).show();
-                            String loginId = task.getResult().getUser().getUid();
+                            final String loginId = task.getResult().getUser().getUid();
                             System.out.println("-------------------- "+loginId);
                             // İLGİLİ ACTİVİTY EKRANINA YÖNLENDİRMEK İÇİN LOGİN OLAN KULLANICININ TİPİ BELİRLENİR
                             db=FirebaseDatabase.getInstance();
                             myRef=db.getReference().child("girisBilgileri").child(loginId);
+
                             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     //veritabanında login idsi ile kullanıcı tipi eşleştirilir
                                     String kullaniciTur = dataSnapshot.getValue().toString();
-                                    Intent intent;
-                                    // ilgili türe göre activity sayfasına yönlendirilir.
-                                    if(kullaniciTur.equals("ogretmen")){
-                                        intent=new Intent(context,OgretmenActivity.class);
-                                        startActivity(intent);
-                                    }
-                                    else if(kullaniciTur.equals("ogrenci")){
-                                        intent=new Intent(context,OgrenciActivity.class);
-                                        startActivity(intent);
-                                    }
-                                    else if(kullaniciTur.equals("veli")){
-                                        intent = new Intent(context,VeliActivity.class);
-                                        startActivity(intent);
-                                    }
+                                    kullaniciBilgiGetir(kullaniciTur,loginId);
+
                                 }
+
+
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -160,20 +147,76 @@ private String email, passwd;
             }
         });
 
-        alert.setNegativeButton("IPTAL", null).show();
+        alert.setNegativeButton("IPTAL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        }).create().show();
 
+    }
+
+    public void kullaniciBilgiGetir(final String userType, final String userId){
+        System.out.println("tip      :"+userType+"       ıd:"+userId);
+        myRefOku = db.getReference().child("kullanicilar").child(userType).child(userId);
+        myRefOku.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Intent intent;
+                if(userType.equals("ogretmen")){
+                    System.out.println("-------------13333");
+
+                    Ogretmen ogretmen = dataSnapshot.getValue(Ogretmen.class);
+                    intent=new Intent(context,OgretmenActivity.class);
+                    intent.putExtra("ogretmen",ogretmen);
+                    startActivity(intent);
+
+                }
+                else if(userType.equals("ogrenci")){
+                    System.out.println("-------------14444");
+
+                    Ogrenci ogrenci = dataSnapshot.getValue(Ogrenci.class);
+                    System.out.println("-----------------------111111"+ogrenci.getAdSoyad());
+                    intent=new Intent(context,OgrenciActivity.class);
+                    intent.putExtra("ogrenci",ogrenci);
+                    startActivity(intent);
+
+                }
+                else if(userType.equals("veli")){
+                    System.out.println("-------------55555");
+
+                    Veli veli = dataSnapshot.getValue(Veli.class);
+                    intent=new Intent(context,VeliActivity.class);
+                    intent.putExtra("veli",veli);
+                    startActivity(intent);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
 
 
 
     }
+
     public void preferencedanVeriCek(){
         txtKullaniciAdi.setText(preferenceMekanizmasi.read(context,"KullaniciAdi"));
         txtKullaniciSifre.setText(preferenceMekanizmasi.read(context,"KullaniciSifre"));
     }
     //kamera uygulaması eklenecek
     //Firebase stroge yüklenecek
+
+
+
+
+
+
 
 
 

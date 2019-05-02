@@ -15,7 +15,7 @@
         android:layout_marginTop="30dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@drawable/ogrencifoto"
+
          />
 
     <TextView
@@ -27,9 +27,10 @@
         android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"
+        android:textStyle="italic"
         />
     <TextView
-        android:id="@+id/OgrenciAdiSoyadi"
+        android:id="@+id/OgrenciAdSoyad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="OGRENCI ADI SOYADI"
@@ -37,15 +38,17 @@
         android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:textSize="18dp"
+        android:textStyle="italic"
         />
     <TextView
         android:id="@+id/OgrenciEposta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ogrencieposta@hotmail.com"
-        android:layout_below="@id/OgrenciAdiSoyadi"
+        android:layout_below="@id/OgrenciAdSoyad"
         android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
+        android:textStyle="italic"
         />
     <TextView
         android:id="@+id/OgrenciSinif"
@@ -55,6 +58,7 @@
         android:layout_below="@id/OgrenciEposta"
         android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
+        android:textStyle="italic"
         />
 
 </RelativeLayout>

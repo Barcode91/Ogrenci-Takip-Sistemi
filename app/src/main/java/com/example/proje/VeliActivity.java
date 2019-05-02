@@ -23,16 +23,20 @@ import com.google.firebase.auth.FirebaseAuth;
 public class VeliActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Context context;
+    Veli veli;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_veli);
         context=this;
+        Intent intent=getIntent();
+        veli=(Veli) intent.getSerializableExtra("veli");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi();
+        kimlikBilgisi.setVeli(veli); // veli nesnesi fragmente taşınır.
         fragmentTransaction.replace(R.id.content_frame,kimlikBilgisi);
         fragmentTransaction.commit();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

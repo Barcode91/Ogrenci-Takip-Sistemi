@@ -11,7 +11,7 @@
    <ImageView
        android:id="@+id/logo"
        android:layout_width="228dp"
-       android:layout_height="241dp"
+       android:layout_height="150dp"
        android:layout_centerHorizontal="true"
        android:layout_marginTop="25dp"
        app:srcCompat="@drawable/gazilogo" />
@@ -91,10 +91,11 @@
        android:text="Sifremi Unuttum!"
        android:layout_below="@+id/btnKayitOl"
        android:layout_centerHorizontal="true"
-       android:layout_marginTop="20dp"
+       android:layout_marginTop="10dp"
        android:textStyle="bold|italic"
        android:textSize="18dp"
        android:clickable="true"
+       android:background="#00000000"
        android:onClick="parolaReset"
 
        />

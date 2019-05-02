@@ -1,5 +1,6 @@
 package com.example.proje;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -20,13 +21,18 @@ import com.google.firebase.auth.FirebaseAuth;
 public class OgretmenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
         Context context;
+        Ogretmen ogretmen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ogretmen);
         context=this;
+        Intent intent=getIntent();
+        ogretmen=(Ogretmen) intent.getSerializableExtra("ogretmen");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi();
+        kimlikBilgisi.setOgretmen(ogretmen);  // öğretmen profil bilgileri için nesne taşınır
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         fragmentSiniflar siniflar = new fragmentSiniflar();

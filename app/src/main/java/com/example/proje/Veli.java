@@ -1,11 +1,16 @@
 package com.example.proje;
 
-public class Veli {
+import android.media.Image;
+
+import java.io.Serializable;
+
+public class Veli implements Serializable {
     private String adSoyad;
     private String tCNo;
     private String pass;
     private String cocukTc;
     private String emailAdres;
+    final public String kulTip="veli";
 
     public String getEmailAdres() {
         return emailAdres;

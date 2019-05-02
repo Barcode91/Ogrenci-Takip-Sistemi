@@ -32,11 +32,6 @@ import com.google.firebase.storage.UploadTask;
 public class Database <tip> {
     FirebaseDatabase db;
     private String loginId;
-
-    public String getLoginId() {
-        return loginId;
-    }
-
     DatabaseReference myRef, oku;
     public static String veri;
     public static boolean sonuc;
@@ -73,8 +68,16 @@ public class Database <tip> {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){// yetkilendirme başarılı ise diğer bilgiler kayıt edilir
                     loginId = task.getResult().getUser().getUid();
+                   // myRef.child("kullanicilar").child(loginId).setValue(t);
+
                     myRef.child("kullanicilar").child(userType).child(loginId).setValue(t);
                     myRef.child("girisBilgileri").child(loginId).setValue(userType);
+                    if (t instanceof Ogrenci){
+                        String sinif = ((Ogrenci) t).getClassNumber();
+                        myRef.child("Class").child(sinif).child(myAuth.getUid()).setValue(((Ogrenci) t).getAdSoyad());
+
+                    }
+
 
                 }
                 else {
@@ -86,47 +89,25 @@ public class Database <tip> {
 
 
     }
-
-
-    /*
-    public String loginCont(String email, String password, Activity activity, final Context context){ // PASİF
-
-        //System.out.println("tc no : "+ tcNo+ "  activity gelen şifre : "+password);
-
-        myAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(context,"Giriş Başarılı Yönlendiriliyorsunuz",Toast.LENGTH_LONG).show();
-                    loginId = task.getResult().getUser().getUid();
-                    // İLGİLİ ACTİVİTY EKRANINA YÖNLENDİRMEK İÇİN LOGİN OLAN KULLANICININ TİPİ BELİRLENİR
-                }
-                else {
-                    Toast.makeText(context,"Giriş Bilgileriniz Hatalı",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-        return loginId; // kullanıcını tipini döndürdü
+    public String getLoginId() {
+        return loginId;
     }
-    */
 
-    public void typeCont(){
-    // Nesne tipi kontrol edilir. Kullanıcı rolüne göre işlem yapılması için
-        if(t instanceof Ogretmen){
+
+    public void typeCont() {
+        // Nesne tipi kontrol edilir. Kullanıcı rolüne göre işlem yapılması için
+        if (t instanceof Ogretmen) {
             userType = "ogretmen";
             id = ((Ogretmen) t).gettCNo();
             email = ((Ogretmen) t).getEmailAdres();
             password = ((Ogretmen) t).getPass();
-        }
-        else if (t instanceof Ogrenci){
+        } else if (t instanceof Ogrenci) {
             userType = "ogrenci";
             id = ((Ogrenci) t).gettCNo();
             email = ((Ogrenci) t).getEmailAdres();
             password = ((Ogrenci) t).getPass();
             //profilPhoto = ((Ogrenci) t).getProfilPhoto();
-        }
-        else if (t instanceof Veli){
+        } else if (t instanceof Veli) {
             userType = "veli";
             id = ((Veli) t).gettCNo();
             email = ((Veli) t).getEmailAdres();
@@ -134,6 +115,24 @@ public class Database <tip> {
         }
     }
 
+/*
+    public int tipCont(){
+
+            int veri;
+
+            // Nesne tipi kontrol edilir. Kullanıcı rolüne göre işlem yapılması için
+            if(t instanceof Ogretmen){
+                veri=0;
+            }
+            else if (t instanceof Ogrenci){
+                veri=1;
+            }
+            else if (t instanceof Veli){
+               veri=2;
+            }
+            return veri;
+    }
+*/
 
 
 

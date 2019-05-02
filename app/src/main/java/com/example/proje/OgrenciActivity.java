@@ -23,18 +23,23 @@ import com.google.firebase.auth.FirebaseAuth;
 public class OgrenciActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Context context;
+    Ogrenci ogrenci;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ogrenci);
         context=this;
+        Intent intent=getIntent();
+        ogrenci=(Ogrenci)intent.getSerializableExtra("ogrenci");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi();
+        kimlikBilgisi.setOgrenci(ogrenci); // ögrenci kimlik bilgisi taşınır
         fragmentTransaction.replace(R.id.content_frame,kimlikBilgisi);
         fragmentTransaction.commit();
+        System.out.println("------------------------------------------"+ogrenci.getAdSoyad());
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -86,6 +91,8 @@ public class OgrenciActivity extends AppCompatActivity
 
         if (id == R.id.nav_kimlikBilgisi) {
             fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi();
+            kimlikBilgisi.setOgrenci(ogrenci);
+            System.out.println(ogrenci.getAdSoyad());
             fragmentTransaction.replace(R.id.content_frame, kimlikBilgisi);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_notlar) {

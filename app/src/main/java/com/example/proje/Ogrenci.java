@@ -1,6 +1,11 @@
 package com.example.proje;
 
-public class Ogrenci {
+import android.media.Image;
+
+import java.io.Serializable;
+
+public class Ogrenci implements Serializable {
+    final public String kulTip="ögrenci";
     private String adSoyad;
     private String tCNo;
     private String pass;
@@ -8,6 +13,15 @@ public class Ogrenci {
     private String emailAdres;
     private String yorum;
     private String loginId;
+    private Image resim;
+
+    public Image getResim() {
+        return resim;
+    }
+
+    public void setResim(Image resim) {
+        this.resim = resim;
+    }
 
     public String getLoginId() {
         return loginId;
@@ -16,7 +30,6 @@ public class Ogrenci {
     public void setLoginId(String loginId) {
         this.loginId = loginId;
     }
-
 
     public String getAdSoyad() {
         return adSoyad;
