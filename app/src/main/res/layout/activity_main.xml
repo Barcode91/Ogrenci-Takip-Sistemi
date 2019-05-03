@@ -30,6 +30,8 @@
        android:textStyle="bold"
        android:inputType="textEmailAddress"
        android:textSize="20dp"
+       android:clickable="true"
+       android:onClick="ekranTemizle"
        />
    <EditText
        android:id="@+id/kullaniciSifre"

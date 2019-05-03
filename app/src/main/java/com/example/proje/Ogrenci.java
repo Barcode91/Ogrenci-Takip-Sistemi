@@ -1,5 +1,6 @@
 package com.example.proje;
 
+import android.graphics.Bitmap;
 import android.media.Image;
 
 import java.io.Serializable;
@@ -13,15 +14,23 @@ public class Ogrenci implements Serializable {
     private String emailAdres;
     private String yorum;
     private String loginId;
-    private Image resim;
 
-    public Image getResim() {
+    public Ogrenci(){
+        this.resim=null;
+
+    }
+
+    public Bitmap getResim() {
         return resim;
     }
 
-    public void setResim(Image resim) {
+    public void setResim(Bitmap resim) {
         this.resim = resim;
     }
+
+    private Bitmap resim;
+
+
 
     public String getLoginId() {
         return loginId;

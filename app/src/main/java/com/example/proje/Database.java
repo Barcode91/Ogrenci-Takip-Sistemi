@@ -74,6 +74,7 @@ public class Database <tip> {
                     myRef.child("girisBilgileri").child(loginId).setValue(userType);
                     if (t instanceof Ogrenci){
                         String sinif = ((Ogrenci) t).getClassNumber();
+                        myRef.child("ogrenciler").child(((Ogrenci) t).gettCNo()).setValue(myAuth.getUid());
                         myRef.child("Class").child(sinif).child(myAuth.getUid()).setValue(((Ogrenci) t).getAdSoyad());
 
                     }

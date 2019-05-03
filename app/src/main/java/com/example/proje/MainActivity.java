@@ -3,6 +3,8 @@ package com.example.proje;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +28,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 Button btnKayitol,btnGiris;
@@ -43,10 +52,12 @@ Bundle bundle;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+
         preferencedanVeriCek();
         //oturum açıkmı kapalımı kontrol edilir.
         mAuth=FirebaseAuth.getInstance();
         firebaseUser=mAuth.getCurrentUser();
+
       /*  if (firebaseUser!= null)
             Toast.makeText(context,"oturum açık devam et",Toast.LENGTH_SHORT).show();*/
 
@@ -161,7 +172,7 @@ Bundle bundle;
         myRefOku = db.getReference().child("kullanicilar").child(userType).child(userId);
         myRefOku.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
                 Intent intent;
                 if(userType.equals("ogretmen")){
                     System.out.println("-------------13333");
@@ -174,7 +185,6 @@ Bundle bundle;
                 }
                 else if(userType.equals("ogrenci")){
                     System.out.println("-------------14444");
-
                     Ogrenci ogrenci = dataSnapshot.getValue(Ogrenci.class);
                     System.out.println("-----------------------111111"+ogrenci.getAdSoyad());
                     intent=new Intent(context,OgrenciActivity.class);
@@ -211,14 +221,19 @@ Bundle bundle;
     }
     //kamera uygulaması eklenecek
     //Firebase stroge yüklenecek
+    public void ekranTemizle(View v){
+        txtKullaniciAdi.setText("");
+        txtKullaniciSifre.setText("");
+        //preferenceMekanizmasi.delete(context);
 
+    }
 
+    @Override
+    public void onBackPressed() { // geri tuşuna basınca uygulama kapansın
+       mAuth.signOut();
+        finish();
 
-
-
-
-
-
+    }
 
 
 

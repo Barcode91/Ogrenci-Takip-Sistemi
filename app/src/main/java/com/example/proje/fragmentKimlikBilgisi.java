@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FileDownloadTask;
@@ -26,13 +25,19 @@ public class fragmentKimlikBilgisi extends Fragment {
     private Ogretmen ogretmen =null;
     private Ogrenci ogrenci = null;
     private Veli veli = null;
-    TextView adSoyad, email,tcNo, sinif, headerAd, headerMail ;
-    ImageView resim, headerResim;
+    private Bitmap resim1;
+
+    public void setResim1(Bitmap resim1) {
+        this.resim1 = resim1;
+    }
+
+    TextView adSoyad, email,tcNo, sinif;
+    ImageView resim;
     LinearLayout linearLayout;
     FirebaseStorage storage;
     StorageReference storageReference;
     File localFile;
-    FirebaseAuth auth;
+
 
 //    T tip;
 //    Database database;
@@ -42,24 +47,14 @@ public class fragmentKimlikBilgisi extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view =inflater.inflate(R.layout.fragmen_kimlik_bilgisi,container,false);
-        View view1 = inflater.inflate(R.layout.nav_header_ogrenci,container,false);
+        //View view1 = inflater.inflate(R.layout.nav_header_ogrenci,container,false);
         adSoyad = view.findViewById(R.id.OgrenciAdSoyad);
         email = view.findViewById(R.id.OgrenciEposta);
         tcNo = view.findViewById(R.id.ogrenci_tc_kimlikNo);
         sinif = view.findViewById(R.id.OgrenciSinif);
         resim = view.findViewById(R.id.ogrenciFotograf);
-        //linearLayout = view.findViewById(R.id.ogrenci_nav_header);
-        headerAd = view1.findViewById(R.id.OgrenciAdiSoyadi);
-        headerMail = view1.findViewById(R.id.OgrenciEmail);
-        headerResim = view1.findViewById(R.id.ogrenciFotograf);
         storageReference = FirebaseStorage.getInstance().getReference();
-        auth=FirebaseAuth.getInstance();
-        //ogrenci.setLoginId(auth.getUid());
-        try {
-            localFile = File.createTempFile("resim","jpg");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         bilgiGoster();
 
 
@@ -107,16 +102,20 @@ public class fragmentKimlikBilgisi extends Fragment {
             tcNo.setText(ogrenci.gettCNo());
             email.setText(ogrenci.getEmailAdres());
             sinif.setText(ogrenci.getClassNumber());
-            headerAd.setText(ogrenci.getAdSoyad());
-            headerMail.setText(ogrenci.getEmailAdres());
+            if (ogrenci.getResim()==null)
+                System.out.println("resim boş  müdür-----------------------------------");
+            //resim.setImageBitmap(resim1);
+            try {
+                localFile = File.createTempFile("resim","jpg");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             StorageReference ref = storageReference.child("pht_"+ogrenci.gettCNo());
             ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                     Bitmap res = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                     resim.setImageBitmap(res);
-                    headerResim.setImageBitmap(res);
-
                 }
             });
 

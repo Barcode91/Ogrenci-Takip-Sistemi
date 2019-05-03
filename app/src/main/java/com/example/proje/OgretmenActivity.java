@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +16,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -22,6 +26,8 @@ public class OgretmenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
         Context context;
         Ogretmen ogretmen;
+    TextView headerAd, headerMail ;
+    ImageView headerResim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +46,18 @@ public class OgretmenActivity extends AppCompatActivity
         fragmentTransaction.commit();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        View head = navigationView.getHeaderView(0);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        headerAd = head.findViewById(R.id.OgretmenAdiSoyadi);
+        headerMail = head.findViewById(R.id.OgretmenEposta);
+        headerResim = head.findViewById(R.id.OgretmenFotograf);
+        headerAd.setText(ogretmen.getAdSoyad());
+        headerMail.setText(ogretmen.getEmailAdres());
     }
 
     @Override
@@ -116,4 +129,5 @@ public class OgretmenActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
