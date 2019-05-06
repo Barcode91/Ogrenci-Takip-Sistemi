@@ -169,8 +169,8 @@ public class OgrenciActivity extends AppCompatActivity
             DrawerLayout drawer = findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);}
         else if (id == R.id.nav_cikis){
-            FirebaseAuth auth=FirebaseAuth.getInstance();
-            auth.signOut();
+
+            mAuth.signOut();
             startActivity(new Intent(context,MainActivity.class));
 
 

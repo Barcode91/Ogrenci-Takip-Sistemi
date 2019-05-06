@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -92,6 +93,7 @@ public class kayitOgrenci extends Fragment {
                     Toast.makeText(context,"Kayıt Basarılı",Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(context,MainActivity.class);
                     startActivity(intent);
+
                 }
                 else
                     Toast.makeText(context,"Şifreler Uyuşmuyor",Toast.LENGTH_SHORT).show();
@@ -130,11 +132,13 @@ public class kayitOgrenci extends Fragment {
         database = new Database(ogrenci); // ogretmen nesnesini veritabanı constructer aracılığyla gönderilir
         database.userAdd(new SistemKayit(),context);
 
-
+        String sinif = ogrenciSinif.getSelectedItem().toString();
         String dosya =tcNo.getText().toString();
         //ogrenci.setLoginId(dosya);
         System.out.println("----------------"+dosya+"-----------------------");
-        StorageReference ref = storageReference.child("pht_"+dosya);
+        final StorageReference ref = storageReference.child("pht_"+dosya);
+        //StorageReference ref = storageReference.child(sinif).child("pht_"+dosya);
+
         UploadTask uploadTask = ref.putBytes(bytArray);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
@@ -145,8 +149,19 @@ public class kayitOgrenci extends Fragment {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
+
+//                ogrenci.setResimUri();
+//                System.out.println("adres                "+indirmeLink);
+//                System.out.println(ogrenci.getResimUri());
+
+
+
+
             }
         });
+
+
+
 /*
         Uri file = Uri.fromFile(new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/OTS/fotograf.jpg"));
         StorageReference ref = storageReference.child("resim");
