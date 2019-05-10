@@ -159,6 +159,7 @@ public class VeliActivity extends AppCompatActivity
             FirebaseAuth auth=FirebaseAuth.getInstance();
             auth.signOut();
             startActivity(new Intent(context,MainActivity.class));
+            finish();
 
 
 

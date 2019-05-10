@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,13 +20,24 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 import static android.app.Activity.RESULT_OK;
@@ -45,6 +57,10 @@ public class kayitOgrenci extends Fragment {
     Ogrenci ogrenci = new Ogrenci();
     FirebaseAuth myAuth;
     Bitmap resim;
+    File resimYolu;
+    FirebaseDatabase db;
+    DatabaseReference myRef;
+
     byte [] bytArray; //resimi tutacak hamveri
     StorageReference storageReference ;
 
@@ -61,6 +77,7 @@ public class kayitOgrenci extends Fragment {
         //View nesne tanımları
 
         //init(view);
+        db = FirebaseDatabase.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
         btnKaydet=view.findViewById(R.id.btnKayitTamamla);
         txtSifreTekrar=view.findViewById(R.id.KayitSifreTekrar);
@@ -70,7 +87,7 @@ public class kayitOgrenci extends Fragment {
         ogrenciSinif = view.findViewById(R.id.OgrenciSinif);
         emailAdres = view.findViewById(R.id.emailAdresi);
         profilPhoto = view.findViewById(R.id.profil_photo);
-        //myAuth=FirebaseAuth.getInstance();
+        myAuth=FirebaseAuth.getInstance();
         sistemKayit=new SistemKayit();
         profilPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,29 +153,75 @@ public class kayitOgrenci extends Fragment {
         String dosya =tcNo.getText().toString();
         //ogrenci.setLoginId(dosya);
         System.out.println("----------------"+dosya+"-----------------------");
-        final StorageReference ref = storageReference.child("pht_"+dosya);
+        //final StorageReference ref = storageReference.child("pht_"+dosya);
         //StorageReference ref = storageReference.child(sinif).child("pht_"+dosya);
-
-        UploadTask uploadTask = ref.putBytes(bytArray);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Toast.makeText(context,"Fotoğraf yükleme hatası",Toast.LENGTH_SHORT);
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        Uri uri = Uri.fromFile(new File("/storage/emulated/0/OTS/fotograf.jpg"));
+        final StorageReference ref = storageReference.child("pht_"+dosya);
+        UploadTask uploadTask = ref.putFile(uri);
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-
-//                ogrenci.setResimUri();
-//                System.out.println("adres                "+indirmeLink);
-//                System.out.println(ogrenci.getResimUri());
-
-
-
-
             }
         });
+//        Task<Uri> uriTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+//            @Override
+//            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+//                if (!task.isSuccessful()) {
+//                    throw task.getException();
+//                }
+//
+//                // Continue with the task to get the download URL
+//                return ref.getDownloadUrl();
+//            }
+//        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Uri> task) {
+//                if (task.isSuccessful()) {
+//                    Uri downloadUri = task.getResult();
+//                    final Ogrenci ogrenci = new Ogrenci();
+//                    ogrenci.setAdSoyad(adSoyad.getText().toString());
+//                    ogrenci.settCNo(tcNo.getText().toString());
+//                    ogrenci.setPass(passwd.getText().toString());
+//                    ogrenci.setClassNumber(ogrenciSinif.getSelectedItem().toString());
+//                    ogrenci.setEmailAdres(emailAdres.getText().toString());
+//                    ogrenci.setResimUri(downloadUri);
+//                    System.out.println(" downlado adresi     :"+downloadUri);
+//                    Database database = new Database(ogrenci); // ogrenci nesnesini veritabanı constructer aracılığyla gönderilir
+//                    database.userAdd(new SistemKayit(),context);
+//
+//                }
+//            }
+//        });
+
+       // System.out.println(" get path "+uriTask.getResult().getPath());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// bytearray kullanılarak upload
+//        UploadTask uploadTask = ref.putBytes(bytArray);
+//        uploadTask.addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception exception) {
+//                Toast.makeText(context,"Fotoğraf yükleme hatası",Toast.LENGTH_SHORT);
+//            }
+//        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//
+//            }
+//        });
 
 
 
@@ -212,17 +275,17 @@ public class kayitOgrenci extends Fragment {
             resim.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream); // resim sıkıştırılır ve formatı değiştirilir.
             bytArray = byteArrayOutputStream.toByteArray();
 
-            /*
+
             // TELEFON HAFIZASINA KAYIT İŞLEMİ
             File sd = Environment.getExternalStorageDirectory();
             File dir = new File(sd.getAbsolutePath()+"/OTS");
             dir.mkdirs();
-            File file = new File(dir,"fotograf.jpg");
+            resimYolu = new File(dir,"fotograf.jpg");
             System.out.println("VERİ YOLU            "+dir);
             System.out.println("array verisi : "+"array boyutu  :"+bytArray.length+"     "+bytArray);
 
             try {
-                FileOutputStream fileOutputStream = new FileOutputStream(file);
+                FileOutputStream fileOutputStream = new FileOutputStream(resimYolu);
                 fileOutputStream.write(bytArray);
                 fileOutputStream.close();
                 //byteArrayOutputStream.close();
@@ -233,7 +296,7 @@ public class kayitOgrenci extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
                 System.out.println(e+"hataaaaaa");
-            }*/
+            }
 
 
             /*

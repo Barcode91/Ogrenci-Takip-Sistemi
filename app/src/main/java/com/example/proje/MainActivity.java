@@ -58,8 +58,8 @@ Bundle bundle;
         mAuth=FirebaseAuth.getInstance();
         firebaseUser=mAuth.getCurrentUser();
 
-      /*  if (firebaseUser!= null)
-            Toast.makeText(context,"oturum açık devam et",Toast.LENGTH_SHORT).show();*/
+       if (firebaseUser!= null)
+            mAuth.signOut();
 
         btnGiris.setOnClickListener(new View.OnClickListener() { // GİRİŞ BUTONU AKSİYONU
             @Override

@@ -172,6 +172,7 @@ public class OgrenciActivity extends AppCompatActivity
 
             mAuth.signOut();
             startActivity(new Intent(context,MainActivity.class));
+            finish();
 
 
 

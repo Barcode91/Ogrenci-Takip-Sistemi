@@ -82,11 +82,6 @@ public class Database <tip> {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){// yetkilendirme başarılı ise diğer bilgiler kayıt edilir
                     loginId = task.getResult().getUser().getUid();
-                   // myRef.child("kullanicilar").child(loginId).setValue(t);
-                    HashMap<String , Object>hashMap = new HashMap<>();
-                    hashMap.put(userType,t);
-                    hashMap.put("id",loginId);
-                    myRef.child("deneme").setValue(hashMap);
                     myRef.child("kullanicilar").child(userType).child(loginId).setValue(t);
                     myRef.child("girisBilgileri").child(loginId).setValue(userType);
                     if (t instanceof Ogrenci){
@@ -108,9 +103,7 @@ public class Database <tip> {
 
 
     }
-    public String getLoginId() {
-        return loginId;
-    }
+
 
 
     public void typeCont() {
