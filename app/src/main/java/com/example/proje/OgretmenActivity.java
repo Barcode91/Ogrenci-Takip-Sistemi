@@ -41,7 +41,7 @@ public class OgretmenActivity extends AppCompatActivity
         kimlikBilgisi.setOgretmen(ogretmen);  // öğretmen profil bilgileri için nesne taşınır
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentSiniflar siniflar = new fragmentSiniflar();
+        fragmentSiniflar siniflar = new fragmentSiniflar(context);
         fragmentTransaction.replace(R.id.content_frame,siniflar);
         fragmentTransaction.commit();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -113,7 +113,7 @@ public class OgretmenActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.content_frame,devamsizlik);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_sinfilar) {
-            fragmentSiniflar siniflar = new fragmentSiniflar();
+            fragmentSiniflar siniflar = new fragmentSiniflar(context);
             fragmentTransaction.replace(R.id.content_frame,siniflar);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_cikis){
