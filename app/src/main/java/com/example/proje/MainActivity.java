@@ -120,6 +120,7 @@ Bundle bundle;
             public void onClick(View v) {
                 Intent intent = new Intent(context,SistemKayit.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -185,6 +186,7 @@ Bundle bundle;
                     intent=new Intent(context,OgretmenActivity.class);
                     intent.putExtra("ogretmen",ogretmen);
                     startActivity(intent);
+                    finish();
 
                 }
                 else if(userType.equals("ogrenci")){
@@ -194,6 +196,7 @@ Bundle bundle;
                     intent=new Intent(context,OgrenciActivity.class);
                     intent.putExtra("ogrenci",ogrenci);
                     startActivity(intent);
+                    finish();
 
                 }
                 else if(userType.equals("veli")){
@@ -203,6 +206,7 @@ Bundle bundle;
                     intent=new Intent(context,VeliActivity.class);
                     intent.putExtra("veli",veli);
                     startActivity(intent);
+                    finish();
 
                 }
             }

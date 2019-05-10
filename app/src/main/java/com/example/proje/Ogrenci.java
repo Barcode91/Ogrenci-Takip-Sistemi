@@ -2,6 +2,7 @@ package com.example.proje;
 
 import android.graphics.Bitmap;
 import android.media.Image;
+import android.net.Uri;
 
 import java.io.Serializable;
 
@@ -13,7 +14,7 @@ public class Ogrenci implements Serializable {
     private String classNumber;
     private String emailAdres;
     private String yorum;
-    private String loginId;
+    private Uri resimUri;
 
     public Ogrenci(){
         this.resim=null;
@@ -31,13 +32,12 @@ public class Ogrenci implements Serializable {
     private Bitmap resim;
 
 
-
-    public String getLoginId() {
-        return loginId;
+    public Uri getResimUri() {
+        return resimUri;
     }
 
-    public void setLoginId(String loginId) {
-        this.loginId = loginId;
+    public void setResimUri(Uri resimUri) {
+        this.resimUri = resimUri;
     }
 
     public String getAdSoyad() {

@@ -27,9 +27,13 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import java.util.HashMap;
+
 
 
 //generic tip tanımlaması kullanıldı.
@@ -73,15 +77,19 @@ public class Database <tip> {
                 if(task.isSuccessful()){// yetkilendirme başarılı ise diğer bilgiler kayıt edilir
                     loginId = task.getResult().getUser().getUid();
                    // myRef.child("kullanicilar").child(loginId).setValue(t);
-
+                    HashMap<String , Object>hashMap = new HashMap<>();
+                    hashMap.put(userType,t);
+                    hashMap.put("id",loginId);
+                    myRef.child("deneme").setValue(hashMap);
                     myRef.child("kullanicilar").child(userType).child(loginId).setValue(t);
                     myRef.child("girisBilgileri").child(loginId).setValue(userType);
                     if (t instanceof Ogrenci){
                         String sinif = ((Ogrenci) t).getClassNumber();
-                        myRef.child("ogrenciler").child(((Ogrenci) t).gettCNo()).setValue(myAuth.getUid());
-                        myRef.child("Class").child(sinif).child(myAuth.getUid()).setValue(((Ogrenci) t).getAdSoyad());
+                        myRef.child("ogrenciler").child(((Ogrenci) t).gettCNo()).setValue(loginId);
+                        myRef.child("Class").child(sinif).child(myAuth.getUid()).setValue(t);
 
                     }
+
 
 
                 }
