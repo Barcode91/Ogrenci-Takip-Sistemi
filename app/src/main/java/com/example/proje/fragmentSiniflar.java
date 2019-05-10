@@ -1,5 +1,6 @@
 package com.example.proje;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 
@@ -19,20 +20,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-public class fragmentSiniflar extends Fragment {
-
-    Database database;
-    Context context;
-
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -47,8 +38,11 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
+@SuppressLint("ValidFragment")
 public class fragmentSiniflar extends Fragment {
     RecyclerView recyclerView;
     Spinner sinifSecim;
@@ -75,10 +69,6 @@ public class fragmentSiniflar extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_ogretmen_siniflar, container, false);
-        context = getActivity();
-
         View view =inflater.inflate(R.layout.fragment_ogretmen_siniflar,container,false);
         recyclerView = view.findViewById(R.id.recyler_view_sinif);
         sinifSecim = (Spinner) view.findViewById(R.id.sinifSecimi);
