@@ -11,11 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class fragmentNotlar extends Fragment {
     @Nullable
     Button harfNotuHesapla;
-    TextView vizeNotu,finalNotu,odevNotu,projeNotu,txtHarfNotu;
+    TextView vizeNotu,finalNotu,odevNotu,projeNotu,txtHarfNotu,txt55,txt56,txt57,txt58;
     double harfNotu;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -26,6 +27,10 @@ public class fragmentNotlar extends Fragment {
         projeNotu=view.findViewById(R.id.ProjeNotu);
         txtHarfNotu=view.findViewById(R.id.txt_SETharfNotu);
         harfNotuHesapla=view.findViewById(R.id.btnHarfNotuHesapla);
+        txt55=view.findViewById(R.id.txt55);
+        txt56=view.findViewById(R.id.txt56);
+        txt57=view.findViewById(R.id.txt57);
+        txt58=view.findViewById(R.id.txt58);
 
         harfNotuHesapla.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +52,12 @@ public class fragmentNotlar extends Fragment {
                 else if(harfNotu<26&&harfNotu>=25){txtHarfNotu.setText("FD"); txtHarfNotu.setTextColor(Color.parseColor("#e5312e")); }
                 else if(harfNotu<24&&harfNotu>=0){txtHarfNotu.setText("FF"); txtHarfNotu.setTextColor(Color.parseColor("#e5312e")); }
                 else {txtHarfNotu.setText("XX");txtHarfNotu.setTextColor(Color.parseColor("#e5312e"));}
+                txt55.setText(vizeNotu.getText());
+                txt56.setText(finalNotu.getText());
+                txt57.setText(odevNotu.getText());
+                txt58.setText(projeNotu.getText());
+                Toast.makeText(getActivity(),"NOT HESAPLANDI LUTFEN KAYDEDINIZ.",Toast.LENGTH_LONG).show();
+
                 Log.e("SAAAAA",String.valueOf(harfNotu));
             }
         });

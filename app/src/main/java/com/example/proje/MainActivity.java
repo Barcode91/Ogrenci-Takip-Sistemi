@@ -139,12 +139,12 @@ Bundle bundle;
         preferenceMekanizmasi=new PreferenceMekanizmasi();
         paraloSifirla = findViewById(R.id.txt_sifremiUnuttum);
     }
-    public void parolaReset(View v){
+    public void parolaReset(){
 
         final String email=txtKullaniciAdi.getText().toString();
         final AlertDialog.Builder alert = new AlertDialog.Builder(context);
         alert.setTitle("PARALO SIFIRLAMA");
-        alert.setMessage(email+"EMAIL ADRESINIZI GONDERILSIN MI?");
+        alert.setMessage(email+"EMAIL ADRESINIZE GONDERILSIN MI?");
         alert.setPositiveButton("GONDER", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

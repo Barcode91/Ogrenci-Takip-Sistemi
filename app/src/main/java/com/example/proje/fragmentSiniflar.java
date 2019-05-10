@@ -17,11 +17,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<< HEAD
-=======
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
->>>>>>> mehmet/master
+
 import android.widget.Spinner;
 
 

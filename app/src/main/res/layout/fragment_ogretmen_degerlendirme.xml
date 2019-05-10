@@ -27,17 +27,25 @@
         android:textColor="@android:color/holo_red_dark"
         android:layout_centerHorizontal="true"
         />
+    <ListView
+        android:id="@+id/listViewDegerlendirmeGecmisi"
+        android:layout_below="@id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_height="250dp"
+        android:entries="@array/degerlendirme"
+        ></ListView>
 
     <EditText
         android:id="@+id/editxt_ogretmenDegerlendirmeGirisi"
         android:layout_width="match_parent"
-        android:layout_height="244dp"
-        android:layout_below="@id/textView6"
+        android:layout_height="144dp"
+        android:layout_below="@id/listViewDegerlendirmeGecmisi"
         android:ems="10"
         android:hint="Degerlendirmenizi Bu Kısıma Girebilirsiniz"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="25dp"
         android:background="@android:color/holo_blue_bright"
         />
 
@@ -47,18 +55,10 @@
         android:layout_height="53dp"
         android:layout_below="@id/editxt_ogretmenDegerlendirmeGirisi"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp"
-        android:background="@drawable/btnbg"
-        android:text="GONDER" />
-    <Button
-        android:id="@+id/btn_oncekiDegerlendirmeler"
-        android:layout_width="wrap_content"
-        android:layout_height="53dp"
-        android:layout_below="@id/btn_degerlendirmeKayit"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
         android:background="@drawable/btnbg"
-        android:text="Onceki YorumlarIm" />
+        android:text="GONDER" />
+
 
 
 

@@ -9,14 +9,37 @@
 
     <ImageView
         android:id="@+id/ogrenciFotograf"
-        android:layout_width="139dp"
-        android:layout_height="155dp"
+        android:layout_width="195dp"
+        android:layout_height="190dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
 
          />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ogrenciFotograf"
+        android:text="LUTFEN BILGILERINIZIN DOGRULUGUNDAN EMIN OLUN"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="13dp"
+        />
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="T.C KIMLIK NO :"
+        android:layout_below="@id/ogrenciFotograf"
+        android:layout_marginTop="55dp"
+        android:textSize="20sp"
+        android:layout_marginLeft="50dp"
+        android:textStyle="bold"
+
+        />
 
     <TextView
         android:id="@+id/ogrenci_tc_kimlikNo"
@@ -24,10 +47,23 @@
         android:layout_height="wrap_content"
         android:text="OGRENCI TC KIMLIK NO"
         android:layout_below="@id/ogrenciFotograf"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="55dp"
+        android:layout_toRightOf="@id/txt1"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dp"
         android:textSize="20sp"
         android:textStyle="italic"
+        />
+    <TextView
+        android:id="@+id/txt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt1"
+        android:text="AD SOYAD :"
+        android:layout_marginLeft="55dp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:textSize="20dp"
         />
     <TextView
         android:id="@+id/OgrenciAdSoyad"
@@ -36,9 +72,21 @@
         android:text="OGRENCI ADI SOYADI"
         android:layout_below="@id/ogrenci_tc_kimlikNo"
         android:layout_marginTop="15dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="18dp"
+        android:layout_toRightOf="@id/txt2"
+        android:textSize="20dp"
         android:textStyle="italic"
+        android:layout_marginLeft="47dp"
+        />
+    <TextView
+        android:id="@+id/txt3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt2"
+        android:text="E POSTA :"
+        android:layout_marginLeft="60dp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:textSize="20dp"
         />
     <TextView
         android:id="@+id/OgrenciEposta"
@@ -47,8 +95,22 @@
         android:text="ogrencieposta@hotmail.com"
         android:layout_below="@id/OgrenciAdSoyad"
         android:layout_marginTop="15dp"
-        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/txt3"
         android:textStyle="italic"
+        android:textSize="20dp"
+        android:layout_marginLeft="59dp"
+
+        />
+    <TextView
+        android:id="@+id/txt4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt3"
+        android:text="SINIF:"
+        android:layout_marginLeft="70dp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:textSize="20sp"
         />
     <TextView
         android:id="@+id/OgrenciSinif"
@@ -57,8 +119,32 @@
         android:text="OGRENCI sinif"
         android:layout_below="@id/OgrenciEposta"
         android:layout_marginTop="15dp"
-        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/txt4"
+        android:textSize="20sp"
         android:textStyle="italic"
+        android:layout_marginLeft="89dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt4"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="35dp"
+        android:textStyle="bold"
+
+        android:text="BILGILENDIRME : Sifre degistirmek icin e postanıza gonderilecek olan iletiden sifre sıfırlama işlemini yapabilirsiniz."
+        />
+
+    <Button
+        android:id="@+id/btnParolaSifirla"
+        android:layout_width="223dp"
+        android:layout_height="52dp"
+        android:layout_below="@id/txt4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="79dp"
+        android:background="@drawable/btnbg"
+        android:text="SIFRE DEGISTIR"
+
         />
 
 </RelativeLayout>

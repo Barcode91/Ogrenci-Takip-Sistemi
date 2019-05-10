@@ -82,6 +82,16 @@
         android:inputType="number"
 
         />
+    <TextView
+        android:id="@+id/txt55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vizeNotu"
+        android:layout_marginLeft="39dp"
+        android:text=""
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
 
     <EditText
         android:id="@+id/FinalNotu"
@@ -93,6 +103,17 @@
         android:ems="2"
         android:gravity="center"
         android:inputType="number" />
+    <TextView
+        android:id="@+id/txt56"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/FinalNotu"
+        android:layout_toRightOf="@id/txt55"
+        android:layout_marginLeft="59dp"
+        android:text=""
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
     <EditText
         android:id="@+id/odevNotu"
         android:layout_width="wrap_content"
@@ -103,6 +124,17 @@
         android:ems="4"
         android:gravity="center"
         android:inputType="number" />
+    <TextView
+        android:id="@+id/txt57"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/FinalNotu"
+        android:layout_toRightOf="@id/txt56"
+        android:layout_marginLeft="79dp"
+        android:text=""
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
     <EditText
         android:id="@+id/ProjeNotu"
         android:layout_width="wrap_content"
@@ -114,13 +146,24 @@
         android:gravity="center"
         android:inputType="number" />
     <TextView
+        android:id="@+id/txt58"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/FinalNotu"
+        android:layout_toRightOf="@id/txt57"
+        android:layout_marginLeft="85dp"
+        android:text=""
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+    <TextView
         android:id="@+id/txt_harfNotu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/odevNotu"
         android:layout_centerHorizontal="true"
         android:text="Harf Notu"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="35dp"
         />
     <TextView
         android:id="@+id/txt_SETharfNotu"
