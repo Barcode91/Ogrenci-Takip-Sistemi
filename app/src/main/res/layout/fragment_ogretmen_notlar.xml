@@ -122,6 +122,16 @@
         android:text="Harf Notu"
         android:layout_marginTop="15dp"
         />
+    <TextView
+        android:id="@+id/txt_SETharfNotu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_harfNotu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text=""
+        android:textSize="85sp"
+        />
 
     <Button
         android:id="@+id/btnHarfNotuHesapla"
@@ -131,7 +141,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="242dp"
         android:background="@drawable/btnbg"
-        android:text="HARF NOTU HESAPLA" />
+        android:text="HARF NOTU HESAPLA"
+
+        />
     <Button
         android:id="@+id/btnNotKaydet"
         android:layout_width="198dp"
