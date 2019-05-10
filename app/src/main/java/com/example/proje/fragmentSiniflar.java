@@ -1,8 +1,11 @@
 package com.example.proje;
 
 import android.content.Context;
+
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -16,6 +19,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public class fragmentSiniflar extends Fragment {
+
+    Database database;
+    Context context;
+
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -57,9 +71,14 @@ public class fragmentSiniflar extends Fragment {
         this.context = context;
     }
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_ogretmen_siniflar, container, false);
+        context = getActivity();
+
         View view =inflater.inflate(R.layout.fragment_ogretmen_siniflar,container,false);
         recyclerView = view.findViewById(R.id.recyler_view_sinif);
         sinifSecim = (Spinner) view.findViewById(R.id.sinifSecimi);

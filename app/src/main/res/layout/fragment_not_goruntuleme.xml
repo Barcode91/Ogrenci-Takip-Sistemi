@@ -62,7 +62,7 @@
         android:layout_marginTop="75dp"
         />
 <TextView
-    android:id="@+id/vizeNotu"
+    android:id="@+id/txt_vizeNotu"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_below="@id/txtVize"
@@ -71,30 +71,30 @@
     android:layout_marginTop="25sp"
     />
     <TextView
-        android:id="@+id/finalNotu"
+        android:id="@+id/txt_finalNotu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/vizeNotu"
+        android:layout_toRightOf="@id/txt_vizeNotu"
         android:layout_below="@id/txtFinal"
         android:layout_marginLeft="32dp"
         android:text="FNLNOTU"
         android:layout_marginTop="25sp"
         />
     <TextView
-        android:id="@+id/odevNotu"
+        android:id="@+id/txt_odevNotu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/finalNotu"
+        android:layout_toRightOf="@id/txt_finalNotu"
         android:layout_below="@id/txtFinal"
         android:layout_marginLeft="32dp"
         android:text="ODVNOTU"
         android:layout_marginTop="25sp"
         />
     <TextView
-        android:id="@+id/ProjeNotu"
+        android:id="@+id/txt_ProjeNotu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/odevNotu"
+        android:layout_toRightOf="@id/txt_odevNotu"
         android:layout_below="@id/txtFinal"
         android:layout_marginLeft="32dp"
         android:text="PRJNOTU"
@@ -104,7 +104,7 @@
         android:id="@+id/txt_harfNotu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/odevNotu"
+        android:layout_below="@id/txt_odevNotu"
         android:layout_centerHorizontal="true"
         android:text="Harf Notu"
         android:layout_marginTop="45dp"
