@@ -71,6 +71,10 @@ Bundle bundle;
                     preferenceMekanizmasi.save(context,txtKullaniciAdi.getText().toString(),"KullaniciAdi");
                     preferenceMekanizmasi.save(context,txtKullaniciSifre.getText().toString(),"KullaniciSifre");
                 }
+                else{
+                    preferenceMekanizmasi.save(context,null,"KullaniciAdi");
+                    preferenceMekanizmasi.save(context,null,"KullaniciSifre");
+                }
 
 
 

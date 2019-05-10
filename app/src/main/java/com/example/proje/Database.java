@@ -27,7 +27,13 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import java.util.HashMap;
+
 
 
 //generic tip tanımlaması kullanıldı.
@@ -121,6 +127,8 @@ public class Database <tip> {
             password = ((Veli) t).getPass();
         }
     }
+
+
 
 /*
     public int tipCont(){
