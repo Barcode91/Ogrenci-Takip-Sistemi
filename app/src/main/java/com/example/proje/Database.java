@@ -27,13 +27,19 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-<<<<<<< HEAD
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-=======
+
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import java.util.HashMap;
->>>>>>> mehmet/master
+
+
 
 
 //generic tip tanımlaması kullanıldı.

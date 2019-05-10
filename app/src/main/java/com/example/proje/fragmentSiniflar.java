@@ -1,11 +1,9 @@
 package com.example.proje;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-<<<<<<< HEAD
-=======
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
->>>>>>> mehmet/master
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,19 +15,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<< HEAD
-import android.widget.ExpandableListView;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-public class fragmentSiniflar extends Fragment {
-
-    Database database;
-    Context context;
-=======
-import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -46,6 +31,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+@SuppressLint("ValidFragment")
 public class fragmentSiniflar extends Fragment {
     RecyclerView recyclerView;
     Spinner sinifSecim;
@@ -59,18 +45,15 @@ public class fragmentSiniflar extends Fragment {
     ArrayList<Ogrenci> sinifArraylist;
     int i;
 
+    @SuppressLint("ValidFragment")
     public fragmentSiniflar(Context context) {
         this.context = context;
     }
->>>>>>> mehmet/master
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-<<<<<<< HEAD
-        View view = inflater.inflate(R.layout.fragment_ogretmen_siniflar, container, false);
-        context = getActivity();
-=======
         View view =inflater.inflate(R.layout.fragment_ogretmen_siniflar,container,false);
         recyclerView = view.findViewById(R.id.recyler_view_sinif);
         sinifSecim = view.findViewById(R.id.sinifSecimi);
@@ -129,7 +112,6 @@ public class fragmentSiniflar extends Fragment {
         });
 
 
->>>>>>> mehmet/master
 
         return view;
     }

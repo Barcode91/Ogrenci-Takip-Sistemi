@@ -24,12 +24,12 @@
         android:layout_marginTop="10dp"
         android:textSize="15sp"
         />
+
     <ListView
         android:id="@+id/listviewDevamsizlikCizelgesi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/OgrenciAdiSoyadi"
-        android:layout_marginTop="35dp"
-        android:entries="@array/degerlendirme"
-        ></ListView>
+        android:layout_marginTop="-77dp"
+        android:entries="@array/degerlendirme"></ListView>
 </RelativeLayout>
