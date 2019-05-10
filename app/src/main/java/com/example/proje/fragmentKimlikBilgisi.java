@@ -1,18 +1,26 @@
 package com.example.proje;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
@@ -30,13 +38,14 @@ public class fragmentKimlikBilgisi extends Fragment {
     public void setResim1(Bitmap resim1) {
         this.resim1 = resim1;
     }
-
+    MainActivity mainActivity;
     TextView adSoyad, email,tcNo, sinif;
     ImageView resim;
     LinearLayout linearLayout;
     FirebaseStorage storage;
     StorageReference storageReference;
     File localFile;
+    Button parolaSifirla;
 
 
 //    T tip;
@@ -54,10 +63,43 @@ public class fragmentKimlikBilgisi extends Fragment {
         sinif = view.findViewById(R.id.OgrenciSinif);
         resim = view.findViewById(R.id.ogrenciFotograf);
         storageReference = FirebaseStorage.getInstance().getReference();
-
+        parolaSifirla=view.findViewById(R.id.btnParolaSifirla);
+        mainActivity=new MainActivity();
         bilgiGoster();
 
+        parolaSifirla.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                alert.setTitle("PARALO SIFIRLAMA");
+                alert.setMessage(email.getText().toString()+" EMAIL ADRESINIZE GONDERILSIN MI?");
+                alert.setPositiveButton("GONDER", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //mail adresini alert dialogdaki edittextten alacak
 
+                        mainActivity.mAuth.sendPasswordResetEmail(email.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getActivity(), "Yeni parola için gerekli bağlantı adresinize gönderildi!", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getActivity(), "Mail gönderme hatası!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                });
+
+                alert.setNegativeButton("IPTAL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).create().show();
+
+            }
+        });
 
 
 

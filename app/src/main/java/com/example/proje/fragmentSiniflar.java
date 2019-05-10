@@ -2,11 +2,8 @@ package com.example.proje;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -22,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+
 import android.widget.Spinner;
 
 
@@ -61,6 +59,7 @@ public class fragmentSiniflar extends Fragment {
     String [] siniflar = {"1-A","1-B","1-C","2-A", "2-B","2-C","3-A","3-B","3-C" };
     int i;
 
+    @SuppressLint("ValidFragment")
     public fragmentSiniflar(Context context) {
         this.context = context;
     }
