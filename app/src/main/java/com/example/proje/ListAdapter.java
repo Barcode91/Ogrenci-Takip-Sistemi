@@ -1,6 +1,7 @@
 package com.example.proje;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -42,6 +43,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     Thread thread;
     ProgressDialog pd = null;
     ArrayList<Bitmap> resimler= new ArrayList<>();
+    IOgrenciSecim ogrenciSecim;
 
 
     public ListAdapter(Context context, ArrayList<Ogrenci> sinifListe) {
@@ -100,7 +102,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             public void onClick(View v) {
                 ViewHolder viewHolder1 = (ViewHolder) v.getTag();
                 int index = viewHolder1.getPosition();
-                Toast.makeText(context,sinifListe.get(index).getAdSoyad(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Ögrenci Seçimi Yapıldı",Toast.LENGTH_SHORT).show();
+                OgretmenActivity ogretmenActivity = new OgretmenActivity();
+                ogretmenActivity.ogrenci1=sinifListe.get(i);
+
             }
         });
 

@@ -1,5 +1,6 @@
 package com.example.proje;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -47,6 +48,7 @@ FirebaseDatabase db;
 DatabaseReference myRef, myRefOku;
 private String email, passwd;
 Bundle bundle;
+ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +79,9 @@ Bundle bundle;
                 }
 
 
-
+                progressDialog = new ProgressDialog(context);
+                progressDialog.setMessage("Giriş Yapılıyor...");
+                progressDialog.show();
                 mAuth.signInWithEmailAndPassword(email,passwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -96,6 +100,7 @@ Bundle bundle;
                                     //veritabanında login idsi ile kullanıcı tipi eşleştirilir
                                     String kullaniciTur = dataSnapshot.getValue().toString();
                                     kullaniciBilgiGetir(kullaniciTur,loginId);
+                                    progressDialog.dismiss();
 
                                 }
 
@@ -139,36 +144,45 @@ Bundle bundle;
         preferenceMekanizmasi=new PreferenceMekanizmasi();
         paraloSifirla = findViewById(R.id.txt_sifremiUnuttum);
     }
-    public void parolaReset(){
+    public void parolaReset(View v){
 
         final String email=txtKullaniciAdi.getText().toString();
-        final AlertDialog.Builder alert = new AlertDialog.Builder(context);
-        alert.setTitle("PARALO SIFIRLAMA");
-        alert.setMessage(email+"EMAIL ADRESINIZE GONDERILSIN MI?");
-        alert.setPositiveButton("GONDER", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //mail adresini alert dialogdaki edittextten alacak
+        if (!email.isEmpty()){ // mail adresi girme durum kontrolü
+            final AlertDialog.Builder alert = new AlertDialog.Builder(context);
+            alert.setTitle("PARALO SIFIRLAMA");
+            alert.setMessage("."+email+"."+"\nEMAIL ADRESINIZE GONDERILSIN MI?");
+            alert.setPositiveButton("GONDER", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //mail adresini alert dialogdaki edittextten alacak
 
-                mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(context, "Yeni parola için gerekli bağlantı adresinize gönderildi!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(context, "Mail gönderme hatası!", Toast.LENGTH_SHORT).show();
+                    mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(context, "Yeni parola için gerekli bağlantı adresinize gönderildi!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(context, "Mail gönderme hatası!", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
-            }
-        });
+                    });
+                }
+            });
 
-        alert.setNegativeButton("IPTAL", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        }).create().show();
+            alert.setNegativeButton("IPTAL", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            }).create().show();
+
+        } else
+            Toast.makeText(context, "Lütfen Mail Adresini Giriniz!", Toast.LENGTH_SHORT).show();
+
+
+
+
+
 
     }
 

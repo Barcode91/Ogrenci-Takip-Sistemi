@@ -5,7 +5,7 @@
     android:background="@drawable/mainbackground"
     >
     <TextView
-        android:id="@+id/OgrenciAdiSoyadi"
+        android:id="@+id/NotlarOgrenciAdiSoyadi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -13,6 +13,8 @@
         android:gravity="center"
         android:layout_marginTop="30dp"
         android:textSize="20sp"
+        android:textColor="@color/fragment_metin"
+        android:textStyle="italic |bold"
         />
     <TextView
         android:id="@+id/txt_NotBilgisi"
@@ -21,7 +23,7 @@
         android:text="NOT BILGISI"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:layout_below="@id/OgrenciAdiSoyadi"
+        android:layout_below="@id/NotlarOgrenciAdiSoyadi"
         android:textSize="18sp"
         />
     <TextView

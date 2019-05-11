@@ -16,8 +16,9 @@ import android.widget.Toast;
 public class fragmentNotlar extends Fragment {
     @Nullable
     Button harfNotuHesapla;
-    TextView vizeNotu,finalNotu,odevNotu,projeNotu,txtHarfNotu,txt55,txt56,txt57,txt58;
+    TextView vizeNotu,finalNotu,odevNotu,projeNotu,txtHarfNotu,txt55,txt56,txt57,txt58, ogrenciKimlik;
     double harfNotu;
+    Ogrenci ogrenci;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_ogretmen_notlar,container,false);
@@ -31,14 +32,18 @@ public class fragmentNotlar extends Fragment {
         txt56=view.findViewById(R.id.txt56);
         txt57=view.findViewById(R.id.txt57);
         txt58=view.findViewById(R.id.txt58);
+        ogrenciKimlik= view.findViewById(R.id.NotlarOgrenciAdiSoyadi);
+        OgretmenActivity ogretmenActivity=new OgretmenActivity();
+        ogrenci=ogretmenActivity.ogrenci1;
+        ogrenciKimlik.setText(ogrenci.getAdSoyad());
 
         harfNotuHesapla.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              Log.e("SAAAAAA",finalNotu.getText().toString());
-              Log.e("SAAAAA",vizeNotu.getText().toString());
-                Log.e("SAAAAA",projeNotu.getText().toString());
-                Log.e("SAAAAA",odevNotu.getText().toString());
+//              Log.e("SAAAAAA",finalNotu.getText().toString());
+//              Log.e("SAAAAA",vizeNotu.getText().toString());
+//                Log.e("SAAAAA",projeNotu.getText().toString());
+//                Log.e("SAAAAA",odevNotu.getText().toString());
 
 
                 harfNotu= (Integer.parseInt(finalNotu.getText().toString())*0.4)+((Integer.parseInt(vizeNotu.getText().toString()))*0.5+((Integer.parseInt(projeNotu.getText().toString())*0.8)+(Integer.parseInt(odevNotu.getText().toString())*0.2))*0.5)*0.6;
@@ -57,6 +62,13 @@ public class fragmentNotlar extends Fragment {
                 txt57.setText(odevNotu.getText());
                 txt58.setText(projeNotu.getText());
                 Toast.makeText(getActivity(),"NOT HESAPLANDI LUTFEN KAYDEDINIZ.",Toast.LENGTH_LONG).show();
+                harfNotuHesapla.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        notKaydet();
+                    }
+                });
+
 
                 Log.e("SAAAAA",String.valueOf(harfNotu));
             }
@@ -66,4 +78,15 @@ public class fragmentNotlar extends Fragment {
 
         return view;
     }
+    public void notKaydet(){
+
+
+
+
+
+
+    }
+
+
+
 }

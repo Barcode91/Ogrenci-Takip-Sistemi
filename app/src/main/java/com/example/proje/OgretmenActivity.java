@@ -23,11 +23,12 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class OgretmenActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-        Context context;
-        Ogretmen ogretmen;
+        implements NavigationView.OnNavigationItemSelectedListener, IOgrenciSecim {
+    Context context;
+    Ogretmen ogretmen;
     TextView headerAd, headerMail ;
     ImageView headerResim;
+    static Ogrenci ogrenci1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,4 +132,9 @@ public class OgretmenActivity extends AppCompatActivity
         return true;
     }
 
+    @Override
+    public void ogrenciSecim(Ogrenci ogrenci) {
+//        this.ogrenci=ogrenci;
+
+    }
 }
