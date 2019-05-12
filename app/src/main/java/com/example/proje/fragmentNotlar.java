@@ -131,7 +131,6 @@ public class fragmentNotlar extends Fragment {
         oku.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                     HashMap notlarGelen = null;
                     HashMap notlar = (HashMap) dataSnapshot.getValue();
                     if(notlar!=null){

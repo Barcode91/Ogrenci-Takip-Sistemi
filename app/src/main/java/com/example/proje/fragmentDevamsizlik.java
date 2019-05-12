@@ -47,11 +47,12 @@ public class fragmentDevamsizlik extends Fragment {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange( CalendarView view, int yil, int ay, int gun) {
-
                 tarih=gun+"/"+(ay+1)+"/"+yil;
                 Log.i("Tarih",tarih);
+                view.setTag("devamsız");
             }
         });
+
 
         devamsizlikKayıt.setOnClickListener(new View.OnClickListener() {
             @Override
