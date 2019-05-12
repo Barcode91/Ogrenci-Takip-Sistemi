@@ -34,6 +34,7 @@
         android:layout_marginTop="25dp"
         android:layout_height="250dp"
         android:entries="@array/degerlendirme"
+
         ></ListView>
 
     <EditText
