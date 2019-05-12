@@ -9,6 +9,7 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class fragmentDevamsizlik extends Fragment {
     TextView ogreciKimlik;
@@ -20,7 +21,10 @@ public class fragmentDevamsizlik extends Fragment {
         ogreciKimlik=view.findViewById(R.id.Devamsizilik_OgrenciAdiSoyadi);
         OgretmenActivity ogretmenActivity= new OgretmenActivity();
         ogrenci=ogretmenActivity.ogrenci1;
-        ogreciKimlik.setText(ogrenci.getAdSoyad());
+        if (ogrenci!=null)
+            ogreciKimlik.setText(ogrenci.getAdSoyad());
+        else
+            Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_SHORT).show();
         return view;
     }
 }

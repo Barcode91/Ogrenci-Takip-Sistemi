@@ -35,7 +35,11 @@ public class fragmentNotlar extends Fragment {
         ogrenciKimlik= view.findViewById(R.id.NotlarOgrenciAdiSoyadi);
         OgretmenActivity ogretmenActivity=new OgretmenActivity();
         ogrenci=ogretmenActivity.ogrenci1;
+
+        if (ogrenci!=null)
         ogrenciKimlik.setText(ogrenci.getAdSoyad());
+        else
+            Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_SHORT).show();
 
         harfNotuHesapla.setOnClickListener(new View.OnClickListener() {
             @Override

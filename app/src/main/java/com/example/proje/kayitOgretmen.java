@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,14 +59,16 @@ public class kayitOgretmen extends Fragment {
            public void onClick(View v) {
 
                sifreDogruluk=sistemKayit.sifreDogrulukKontrol(txtSifre.getText().toString(),txtSifreTekrar.getText().toString());
-
-               if (sifreDogruluk&&onayDogruluk)
+               if (sifreDogruluk)
                {
+                   if (onayDogruluk){
                    Toast.makeText(context,"Kayıt Başarılı",Toast.LENGTH_SHORT).show();
                     kullaniciEkle();
                    Toast.makeText(context,"Kayıt Basarılı",Toast.LENGTH_SHORT).show();
                    Intent intent=new Intent(context,MainActivity.class);
-                   startActivity(intent);
+                   startActivity(intent);}
+                   else
+                       Toast.makeText(context,"ONAY KODUNUZ DOGRULAYINIZ",Toast.LENGTH_SHORT).show();
 
                }
                else
