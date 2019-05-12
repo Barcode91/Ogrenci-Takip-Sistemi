@@ -5,6 +5,8 @@ import android.media.Image;
 import android.net.Uri;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Ogrenci implements Serializable {
     final public String kulTip="ögrenci";
@@ -15,6 +17,7 @@ public class Ogrenci implements Serializable {
     private String emailAdres;
     private String yorum;
     private Uri resimUri;
+    private ArrayList<HashMap> notlar;
 
     public Ogrenci(){
         this.resim=null;
