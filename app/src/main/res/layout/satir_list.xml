@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/card_view"
@@ -13,12 +14,16 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/dalga_efect">
-       <ImageView
-           android:id="@+id/list_resim"
-           android:layout_width="70dp"
-           android:layout_height="60dp"
-           android:padding="3dp"/>
+        android:background="@drawable/dalga_efect"
+
+        >
+
+        <ImageView
+            android:id="@+id/list_resim"
+            android:layout_width="70dp"
+            android:layout_height="60dp"
+            android:padding="3dp"
+           />
         <TextView
             android:id="@+id/list_tcNo"
             android:layout_width="150dp"
@@ -35,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textStyle="italic | bold"
+            android:textStyle="italic|bold"
             android:textColor="@color/cardview_dark_background"
             android:padding="3dp"/>
         
