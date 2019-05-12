@@ -116,8 +116,6 @@ public class fragmentSiniflar extends Fragment {
                 listAdapter = new ListAdapter(context,sinifArraylist);
                 recyclerView.setAdapter(listAdapter);
 
-
-
             }
 
             @Override

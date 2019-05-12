@@ -40,6 +40,7 @@
         />
 
     <Button
+        android:id="@+id/devamsizlik_btn"
         android:layout_width="257dp"
         android:layout_height="41dp"
         android:layout_below="@id/calendarView"

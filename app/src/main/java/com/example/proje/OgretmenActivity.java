@@ -29,13 +29,16 @@ public class OgretmenActivity extends AppCompatActivity
     TextView headerAd, headerMail ;
     ImageView headerResim;
     static Ogrenci ogrenci1;
+    static String ogretmenBolum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ogretmen);
         context=this;
+
         Intent intent=getIntent();
         ogretmen=(Ogretmen) intent.getSerializableExtra("ogretmen");
+        ogretmenBolum=ogretmen.getBolum();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi();
@@ -102,7 +105,7 @@ public class OgretmenActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_notlar) {
-            fragmentNotlar notlar =new fragmentNotlar();
+            fragmentNotlar notlar =new fragmentNotlar(context);
             fragmentTransaction.replace(R.id.content_frame,notlar);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_degerlendirme) {
@@ -110,7 +113,7 @@ public class OgretmenActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.content_frame,degerlendirme);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_devamsizlik) {
-           fragmentDevamsizlik devamsizlik =new fragmentDevamsizlik();
+           fragmentDevamsizlik devamsizlik =new fragmentDevamsizlik(context);
             fragmentTransaction.replace(R.id.content_frame,devamsizlik);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_sinfilar) {
@@ -121,7 +124,7 @@ public class OgretmenActivity extends AppCompatActivity
             FirebaseAuth auth=FirebaseAuth.getInstance();
             auth.signOut();
             startActivity(new Intent(context,MainActivity.class));
-            finish();
+
 
 
 

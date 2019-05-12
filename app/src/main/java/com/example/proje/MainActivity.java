@@ -112,6 +112,7 @@ ProgressDialog progressDialog;
                             });
                         }
                         else { // GİRİŞ HATALI İSE
+                            progressDialog.dismiss();
                             Toast.makeText(context,"Giriş Bilgileriniz Hatalı",Toast.LENGTH_LONG).show();
                         }
                     }
