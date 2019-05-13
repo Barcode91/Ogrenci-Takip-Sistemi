@@ -25,11 +25,16 @@
         android:textSize="15sp"
         />
 
-    <ListView
-        android:id="@+id/listViewDegerlendirmeGecmisi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/OgrenciAdiSoyadi"
-        android:layout_marginTop="-77dp"
-        android:entries="@array/degerlendirme"></ListView>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/Veli_DegerlendirmeGecmisi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="109dp"
+
+        >
+
+    </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

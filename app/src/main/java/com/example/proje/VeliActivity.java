@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -36,11 +37,14 @@ public class VeliActivity extends AppCompatActivity
     ImageView headerResim;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    static Ogrenci ogrenci;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_veli);
         context=this;
+        firebaseDatabase=FirebaseDatabase.getInstance();
+        databaseReference=firebaseDatabase.getReference();
         Intent intent=getIntent();
         veli=(Veli) intent.getSerializableExtra("veli");
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -59,40 +63,56 @@ public class VeliActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-//        firebaseDatabase=FirebaseDatabase.getInstance();
-//        databaseReference=firebaseDatabase.getReference();
-//        databaseReference=databaseReference.child("ogrenciler").child(veli.getCocukTc());
-//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                String cocukId = dataSnapshot.getValue().toString();
-//                databaseReference=databaseReference.child("kullanicilar").child("ogrenci").child(cocukId);
-//                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        Ogrenci ogrenci = dataSnapshot.getValue(Ogrenci.class);
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                    }
-//                });
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
+        ogrenciGetir();
+
+
         headerAd = head.findViewById(R.id.VeliAdiSoyadi);
         headerMail = head.findViewById(R.id.VeliEposata);
         headerResim = head.findViewById(R.id.VeliFotograf);
         headerAd.setText(veli.getAdSoyad());
         headerMail.setText(veli.getEmailAdres());
 
+
+    }
+
+    private void ogrenciGetir() {
+        String ogrenciTc=veli.getCocukTc();
+        Log.i("ögrenci",ogrenciTc);
+        DatabaseReference oku = databaseReference.child("ogrenciler").child(ogrenciTc);
+        oku.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String key = dataSnapshot.getValue().toString();
+                Log.i("key------",key);
+                bilgiGetir(key);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void bilgiGetir(String key) {
+        DatabaseReference oku = databaseReference.child("kullanicilar").child("ogrenci").child(key);
+        oku.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ogrenci = new Ogrenci();
+                ogrenci = dataSnapshot.getValue(Ogrenci.class);
+                Log.i("key-ögrenci",ogrenci.gettCNo());
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
@@ -137,7 +157,7 @@ public class VeliActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_kimlikBilgisi) {
-            fragmentKimlikBilgisi kimlikBilgisi =new fragmentKimlikBilgisi(context);
+            fragmentKimlikBilgisi kimlikBilgisi =new fragmentKimlikBilgisi(context, ogrenci);
             fragmentTransaction.replace(R.id.content_frame,kimlikBilgisi);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_notlar) {
@@ -151,7 +171,7 @@ public class VeliActivity extends AppCompatActivity
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_degerlendirme) {
-            fragmentDegerlendirmeGoruntuleme fragmentDegerlendirmeGoruntuleme = new fragmentDegerlendirmeGoruntuleme();
+            fragmentDegerlendirmeGoruntuleme fragmentDegerlendirmeGoruntuleme = new fragmentDegerlendirmeGoruntuleme(context, ogrenci);
             fragmentTransaction.replace(R.id.content_frame,fragmentDegerlendirmeGoruntuleme);
             fragmentTransaction.commit();
         }

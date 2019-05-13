@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -121,12 +122,16 @@ public class fragmentDegerlendirme extends Fragment {
     }
 
     private void degerlendirmeKayit() {
+        if (degerlendirmetxt.getText().toString()!=""){
         DatabaseReference yaz = databaseReference;
         Degerlendirme degerlendirme = new Degerlendirme();
         degerlendirme.setOgretmenBolum(ogretmenActivity.ogretmenBolum);
         degerlendirme.setOgretmenKimlik(ogretmenActivity.ogretmen.getAdSoyad());
         degerlendirme.setDegerlendirme(degerlendirmetxt.getText().toString());
         yaz.child("Degerlendirme").child(ogrenci.gettCNo()).push().setValue(degerlendirme);
+        degerlendirmetxt.setText("");}
+        else
+            Toast.makeText(context,"Değerlendirme Giriniz",Toast.LENGTH_SHORT).show();
 
 
     }
