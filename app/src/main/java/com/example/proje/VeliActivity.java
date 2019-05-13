@@ -47,7 +47,7 @@ public class VeliActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi();
+        fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi(context);
         kimlikBilgisi.setVeli(veli); // veli nesnesi fragmente taşınır.
         fragmentTransaction.replace(R.id.content_frame,kimlikBilgisi);
         fragmentTransaction.commit();
@@ -137,7 +137,7 @@ public class VeliActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_kimlikBilgisi) {
-            fragmentKimlikBilgisi kimlikBilgisi =new fragmentKimlikBilgisi();
+            fragmentKimlikBilgisi kimlikBilgisi =new fragmentKimlikBilgisi(context);
             fragmentTransaction.replace(R.id.content_frame,kimlikBilgisi);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_notlar) {

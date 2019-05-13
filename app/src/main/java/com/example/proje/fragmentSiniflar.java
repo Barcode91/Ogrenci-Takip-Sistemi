@@ -24,6 +24,7 @@ import android.widget.Spinner;
 
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,6 +58,7 @@ public class fragmentSiniflar extends Fragment {
     ArrayList<Ogrenci> sinifArraylist;
     ArrayAdapter<String> sinifArrayAdp;
     String [] siniflar = {"1-A","1-B","1-C","2-A", "2-B","2-C","3-A","3-B","3-C" };
+    boolean kontrol=false;
     int i;
 
     @SuppressLint("ValidFragment")
@@ -69,6 +71,7 @@ public class fragmentSiniflar extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_ogretmen_siniflar,container,false);
+        sinifArraylist = new ArrayList<>();
         recyclerView = view.findViewById(R.id.recyler_view_sinif);
         sinifSecim = (Spinner) view.findViewById(R.id.sinifSecimi);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
@@ -76,6 +79,7 @@ public class fragmentSiniflar extends Fragment {
         layoutManager.scrollToPosition(0);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
+        listAdapter = new ListAdapter(context,sinifArraylist);
         db = FirebaseDatabase.getInstance();
         sinifArrayAdp = new ArrayAdapter<String>(context,R.layout.support_simple_spinner_dropdown_item,siniflar);
         sinifArrayAdp.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
@@ -83,13 +87,13 @@ public class fragmentSiniflar extends Fragment {
         sinifSecim.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                Log.i("Boyut-secim içerisi",String.valueOf(sinifArraylist.size()));
                 secim=parent.getSelectedItem().toString();
                 veriGetir(secim); // sınıflar getirilir.
 
 //                listAdapter = new ListAdapter(context,sinifArraylist);
 //                recyclerView.setAdapter(listAdapter);
-
-
 
             }
 
@@ -98,36 +102,72 @@ public class fragmentSiniflar extends Fragment {
 
             }
         });
-
+        Log.i("Boyut-oncreateson",String.valueOf(sinifArraylist.size()));
+        recyclerView.setAdapter(listAdapter);
 
         return view;
     }
 
     public void veriGetir(String sinif){
+        sinifArraylist.clear();
+//        databaseReference=db.getReference().child("Class").child(sinif);
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                //ilk hali
+//                sinifArraylist = new ArrayList<>();
+//                for (DataSnapshot gelenler : dataSnapshot.getChildren())
+//                    sinifArraylist.add(gelenler.getValue(Ogrenci.class));
+//                //resimGetir();
+//                listAdapter = new ListAdapter(context,sinifArraylist);
+//                listAdapter.notifyDataSetChanged();
+//                recyclerView.setAdapter(listAdapter);
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+        kontrol=false;
         databaseReference=db.getReference().child("Class").child(sinif);
-        databaseReference.addValueEventListener(new ValueEventListener() {
+            databaseReference.addChildEventListener(new ChildEventListener() {
+
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //ilk hali
-                sinifArraylist = new ArrayList<>();
-                for (DataSnapshot gelenler : dataSnapshot.getChildren())
-                    sinifArraylist.add(gelenler.getValue(Ogrenci.class));
-                //resimGetir();
-                listAdapter = new ListAdapter(context,sinifArraylist);
-                recyclerView.setAdapter(listAdapter);
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                kontrol=true;
+                Ogrenci o = dataSnapshot.getValue(Ogrenci.class);
+                sinifArraylist.add(o);
+                Log.i("Boyut",String.valueOf(sinifArraylist.size()));
+                listAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.i("Boyut",String.valueOf(sinifArraylist.size()));
 
             }
         });
-
-
-
-
-
+        if(!kontrol)
+            listAdapter.notifyDataSetChanged();
 
     }
 
@@ -147,7 +187,7 @@ public class fragmentSiniflar extends Fragment {
 
 
                     Bitmap res = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                    sinifArraylist.get(i).setResim(res);
+                    //sinifArraylist.get(i).setResim(res);
                     Log.i("resimgetir sayacı :", String.valueOf(i));
 
                 }

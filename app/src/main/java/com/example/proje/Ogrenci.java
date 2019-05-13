@@ -15,32 +15,20 @@ public class Ogrenci implements Serializable {
     private String pass;
     private String classNumber;
     private String emailAdres;
-    private String yorum;
-    private Uri resimUri;
-    private ArrayList<HashMap> notlar;
+    private String resim;
+
 
     public Ogrenci(){
         this.resim=null;
 
     }
 
-    public Bitmap getResim() {
+    public String getResim() {
         return resim;
     }
 
-    public void setResim(Bitmap resim) {
+    public void setResim(String resim) {
         this.resim = resim;
-    }
-
-    private Bitmap resim;
-
-
-    public Uri getResimUri() {
-        return resimUri;
-    }
-
-    public void setResimUri(Uri resimUri) {
-        this.resimUri = resimUri;
     }
 
     public String getAdSoyad() {
@@ -83,11 +71,5 @@ public class Ogrenci implements Serializable {
         this.classNumber = classNumber;
     }
 
-    public String getYorum() {
-        return yorum;
-    }
 
-    public void setYorum(String yorum) {
-        this.yorum = yorum;
-    }
 }

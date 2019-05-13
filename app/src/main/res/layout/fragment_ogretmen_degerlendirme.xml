@@ -11,42 +11,40 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lütfen Ogrenciniz Hakkındaki Gorüslerinizi Giriniz"
+        android:text="Ogrenciniz Hakkındaki Gorüslerinizi Giriniz"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:textSize="18dp"
+        android:layout_marginTop="5dp"
+        android:textSize="15dp"
         android:textStyle="bold"
          />
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Degerlendirmeleriniz Yanlızca Veli Tarafından Görüntülenecektir"
+        android:text="Degerlendirmeleriniz Yanlızca Veli \nTarafından Görüntülenecektir"
         android:layout_below="@id/textView5"
         android:textColor="@android:color/holo_red_dark"
         android:layout_centerHorizontal="true"
         />
-    <ListView
-        android:id="@+id/listViewDegerlendirmeGecmisi"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/DegerlendirmeGecmisi"
         android:layout_below="@id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_height="250dp"
-        android:entries="@array/degerlendirme"
-
-        ></ListView>
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="300dp"
+        ></android.support.v7.widget.RecyclerView>
 
     <EditText
         android:id="@+id/editxt_ogretmenDegerlendirmeGirisi"
         android:layout_width="match_parent"
-        android:layout_height="144dp"
-        android:layout_below="@id/listViewDegerlendirmeGecmisi"
+        android:layout_height="100dp"
+        android:layout_below="@id/DegerlendirmeGecmisi"
         android:ems="10"
         android:hint="Degerlendirmenizi Bu Kısıma Girebilirsiniz"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="5dp"
         android:background="@android:color/holo_blue_bright"
         />
 

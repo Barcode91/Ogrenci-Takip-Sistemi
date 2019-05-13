@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class OgretmenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, IOgrenciSecim {
     Context context;
-    Ogretmen ogretmen;
+    public static Ogretmen ogretmen;
     TextView headerAd, headerMail ;
     ImageView headerResim;
     static Ogrenci ogrenci1;
@@ -41,7 +41,7 @@ public class OgretmenActivity extends AppCompatActivity
         ogretmenBolum=ogretmen.getBolum();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi();
+        fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi(context);
         kimlikBilgisi.setOgretmen(ogretmen);  // öğretmen profil bilgileri için nesne taşınır
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
@@ -109,7 +109,7 @@ public class OgretmenActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.content_frame,notlar);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_degerlendirme) {
-            fragmentDegerlendirme degerlendirme =new fragmentDegerlendirme();
+            fragmentDegerlendirme degerlendirme =new fragmentDegerlendirme(context);
             fragmentTransaction.replace(R.id.content_frame,degerlendirme);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_devamsizlik) {

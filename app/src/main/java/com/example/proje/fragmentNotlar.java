@@ -61,7 +61,6 @@ public class fragmentNotlar extends Fragment {
         txt57=view.findViewById(R.id.txt57);
         txt58=view.findViewById(R.id.txt58);
         ogrenciKimlik= view.findViewById(R.id.NotlarOgrenciAdiSoyadi);
-<<<<<<< HEAD
         OgretmenActivity ogretmenActivity=new OgretmenActivity();
         ogrenci=ogretmenActivity.ogrenci1;
 
@@ -69,7 +68,7 @@ public class fragmentNotlar extends Fragment {
         ogrenciKimlik.setText(ogrenci.getAdSoyad());
         else
             Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_SHORT).show();
-=======
+
         //OgretmenActivity ogretmenActivity=new OgretmenActivity();
         //ogrenci=ogretmenActivity.ogrenci1;
         ogretmenBolum=ogretmenActivity.ogretmenBolum;
@@ -80,7 +79,7 @@ public class fragmentNotlar extends Fragment {
         progressDialog.setMessage("Ögrenci Notları Getiriliyor");
         progressDialog.show();
         notGetir();
->>>>>>> mehmet/master
+
 
         harfNotuHesapla.setOnClickListener(new View.OnClickListener() {
             @Override
