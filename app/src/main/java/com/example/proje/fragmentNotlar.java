@@ -1,5 +1,6 @@
 package com.example.proje;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -24,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Iterator;
 
+@SuppressLint("ValidFragment")
 public class fragmentNotlar extends Fragment {
     @Nullable
     Button harfNotuHesapla,btnNotKaydet ;
@@ -40,6 +42,7 @@ public class fragmentNotlar extends Fragment {
     ProgressDialog progressDialog;
 
 
+    @SuppressLint("ValidFragment")
     public fragmentNotlar(Context context) {
         ogrenci=ogretmenActivity.ogrenci1;
         ogretmenActivity=new OgretmenActivity();
@@ -61,7 +64,6 @@ public class fragmentNotlar extends Fragment {
         txt57=view.findViewById(R.id.txt57);
         txt58=view.findViewById(R.id.txt58);
         ogrenciKimlik= view.findViewById(R.id.NotlarOgrenciAdiSoyadi);
-<<<<<<< HEAD
         OgretmenActivity ogretmenActivity=new OgretmenActivity();
         ogrenci=ogretmenActivity.ogrenci1;
 
@@ -69,7 +71,6 @@ public class fragmentNotlar extends Fragment {
         ogrenciKimlik.setText(ogrenci.getAdSoyad());
         else
             Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_SHORT).show();
-=======
         //OgretmenActivity ogretmenActivity=new OgretmenActivity();
         //ogrenci=ogretmenActivity.ogrenci1;
         ogretmenBolum=ogretmenActivity.ogretmenBolum;
@@ -80,7 +81,6 @@ public class fragmentNotlar extends Fragment {
         progressDialog.setMessage("Ögrenci Notları Getiriliyor");
         progressDialog.show();
         notGetir();
->>>>>>> mehmet/master
 
         harfNotuHesapla.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +149,7 @@ public class fragmentNotlar extends Fragment {
                     txt56.setText(notlar.get("Final").toString());
                     txt57.setText(notlar.get("Ödev").toString());
                     txt58.setText(notlar.get("Proje").toString());
+
                     txtHarfNotu.setText(notlar.get("Harf").toString());}
                     progressDialog.dismiss();
             }

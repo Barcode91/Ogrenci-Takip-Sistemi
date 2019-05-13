@@ -1,5 +1,6 @@
 package com.example.proje;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,13 +15,13 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.Toast;
-<<<<<<< HEAD
-=======
+
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
->>>>>>> mehmet/master
 
+
+@SuppressLint("ValidFragment")
 public class fragmentDevamsizlik extends Fragment {
     TextView ogreciKimlik;
     Button devamsizlikKayıt;
@@ -44,12 +45,10 @@ public class fragmentDevamsizlik extends Fragment {
         devamsizlikKayıt=view.findViewById(R.id.devamsizlik_btn);
         OgretmenActivity ogretmenActivity= new OgretmenActivity();
         ogrenci=ogretmenActivity.ogrenci1;
-<<<<<<< HEAD
         if (ogrenci!=null)
             ogreciKimlik.setText(ogrenci.getAdSoyad());
         else
             Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_SHORT).show();
-=======
         ogreciKimlik.setText(ogrenci.getAdSoyad());
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
@@ -69,7 +68,6 @@ public class fragmentDevamsizlik extends Fragment {
             }
         });
 
->>>>>>> mehmet/master
         return view;
     }
     public void kayitEt(){

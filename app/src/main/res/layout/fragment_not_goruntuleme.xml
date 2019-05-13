@@ -101,13 +101,23 @@
         android:layout_marginTop="25sp"
         />
     <TextView
-        android:id="@+id/txt_harfNotu"
+        android:id="@+id/txt_harfNotuikaz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_odevNotu"
         android:layout_centerHorizontal="true"
         android:text="Harf Notu"
         android:layout_marginTop="45dp"
+        />
+    <TextView
+        android:id="@+id/txt_harfNotu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_harfNotuikaz"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text=""
+        android:textSize="85sp"
         />
 
 
