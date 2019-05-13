@@ -46,15 +46,12 @@ import java.util.HashMap;
 public class Database <tip> {
     FirebaseDatabase db;
     private String loginId;
-    DatabaseReference myRef, oku;
-    public static String veri;
-    public static boolean sonuc;
+    DatabaseReference myRef;
     String userType, id, password, email;
     tip t;
     FirebaseAuth myAuth;
     FirebaseStorage firebaseStorage;
     StorageReference storageReference;
-    byte [] profilPhoto;
 
 
     public Database(tip tip) {
@@ -84,14 +81,12 @@ public class Database <tip> {
                     loginId = task.getResult().getUser().getUid();
                     myRef.child("kullanicilar").child(userType).child(loginId).setValue(t);
                     myRef.child("girisBilgileri").child(loginId).setValue(userType);
-                    if (t instanceof Ogrenci){
-                        String sinif = ((Ogrenci) t).getClassNumber();
-                        myRef.child("ogrenciler").child(((Ogrenci) t).gettCNo()).setValue(loginId);
-                        myRef.child("Class").child(sinif).child(myAuth.getUid()).setValue(t);
-
-                    }
-
-
+//                    if (t instanceof Ogrenci){
+//                        String sinif = ((Ogrenci) t).getClassNumber();
+//                        myRef.child("ogrenciler").child(((Ogrenci) t).gettCNo()).setValue(loginId);
+//                        myRef.child("Class").child(sinif).child(myAuth.getUid()).setValue(t);
+//
+//                    }
 
                 }
                 else {
@@ -113,12 +108,12 @@ public class Database <tip> {
             id = ((Ogretmen) t).gettCNo();
             email = ((Ogretmen) t).getEmailAdres();
             password = ((Ogretmen) t).getPass();
-        } else if (t instanceof Ogrenci) {
-            userType = "ogrenci";
-            id = ((Ogrenci) t).gettCNo();
-            email = ((Ogrenci) t).getEmailAdres();
-            password = ((Ogrenci) t).getPass();
-            //profilPhoto = ((Ogrenci) t).getProfilPhoto();
+//        } else if (t instanceof Ogrenci) {
+//            userType = "ogrenci";
+//            id = ((Ogrenci) t).gettCNo();
+//            email = ((Ogrenci) t).getEmailAdres();
+//            password = ((Ogrenci) t).getPass();
+//            //profilPhoto = ((Ogrenci) t).getProfilPhoto();
         } else if (t instanceof Veli) {
             userType = "veli";
             id = ((Veli) t).gettCNo();
@@ -126,35 +121,5 @@ public class Database <tip> {
             password = ((Veli) t).getPass();
         }
     }
-
-
-
-/*
-    public int tipCont(){
-
-            int veri;
-
-            // Nesne tipi kontrol edilir. Kullanıcı rolüne göre işlem yapılması için
-            if(t instanceof Ogretmen){
-                veri=0;
-            }
-            else if (t instanceof Ogrenci){
-                veri=1;
-            }
-            else if (t instanceof Veli){
-               veri=2;
-            }
-            return veri;
-    }
-*/
-
-
-
-
-
-
-
-
-
 
 }

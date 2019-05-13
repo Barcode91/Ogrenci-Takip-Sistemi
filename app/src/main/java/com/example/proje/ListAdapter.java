@@ -73,29 +73,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
-        this.v = viewHolder;
-        // satır içerikleri burada atanır
 
-        System.out.println("resimgetir aktif");
-//        resimGetir(sinifListe.get(i).gettCNo());
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                viewHolder.adSoyad.setText(sinifListe.get(i).getAdSoyad());
-//                viewHolder.tcNo.setText(sinifListe.get(i).gettCNo());
-//
-//
-//
-//            }
-//        },5000);
-
-        viewHolder.resim.setImageBitmap(sinifListe.get(i).getResim());
         viewHolder.adSoyad.setText(sinifListe.get(i).getAdSoyad());
         viewHolder.tcNo.setText(sinifListe.get(i).gettCNo());
-        //viewHolder.resim.setImageBitmap(resimler.get(i));
-        System.out.println("resim getir pasif");
-        System.out.println("veritabanı dosya yolu :     "+"pht_"+sinifListe.get(i).gettCNo());
-        System.out.println("veritabanı -----> :     "+"pht_"+sinifListe.get(i).gettCNo());
+        Picasso.with(context).load(Uri.parse(sinifListe.get(i).getResim())).into(viewHolder.resim);
         viewHolder.linearLayout.setTag(viewHolder);
         viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,35 +90,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             }
         });
 
-
-
-
-
-//        storageReference = FirebaseStorage.getInstance().getReference("pht_" + sinifListe.get(i).gettCNo());
-//        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//            @Override
-//            public void onSuccess(Uri uri) {
-//                sinifListe.get(i).setResimUri(uri);
-//                System.out.println(i);
-//
-//                System.out.println(sinifListe.get(i).getResimUri());
-//
-//
-//
-////                    System.out.println("getEncoded metodu     "+uri.getEncodedPath());
-////                    System.out.println("getAuthoriy metodu     "+uri.getAuthority());
-////                    System.out.println("getPatch metodu     "+uri.getPath());
-//            }
-//        });
-
-
-
-
-
-
-
-
-        //viewHolder.resim.setImageURI((Uri.parse(sinifListe.get(i).getresimUrl())));
 
     }
 

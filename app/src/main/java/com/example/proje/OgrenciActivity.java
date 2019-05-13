@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,11 +25,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +42,8 @@ public class OgrenciActivity extends AppCompatActivity
     Context context;
     Ogrenci ogrenci;
     TextView headerAd, headerMail ;
-    ImageView headerResim;
+    //ImageView headerResim;
+    CircularImageView headerResim;
     LinearLayout linearLayout;
     StorageReference storageReference;
     File localFile;
@@ -66,17 +70,17 @@ public class OgrenciActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
-        fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi();
-        storageReference = FirebaseStorage.getInstance().getReference();
-        StorageReference ref = storageReference.child("pht_"+ogrenci.gettCNo());
-        ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                Bitmap res = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                headerResim.setImageBitmap(res);
-
-            }
-        });
+        fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi(context);
+//        storageReference = FirebaseStorage.getInstance().getReference();
+//        StorageReference ref = storageReference.child("pht_"+ogrenci.gettCNo());
+//        ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                Bitmap res = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+//                headerResim.setImageBitmap(res);
+//
+//            }
+//        });
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -91,7 +95,6 @@ public class OgrenciActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         View head = navigationView.getHeaderView(0);
-
                 ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -104,10 +107,7 @@ public class OgrenciActivity extends AppCompatActivity
         headerResim = head.findViewById(R.id.ogrenciFotograf);
         headerAd.setText(ogrenci.getAdSoyad());
         headerMail.setText(ogrenci.getEmailAdres());
-//        headerResim.setImageBitmap(ogrenci.getResim());
-
-
-
+        Picasso.with(context).load(Uri.parse(ogrenci.getResim())).into(headerResim);
 
     }
 
@@ -152,7 +152,7 @@ public class OgrenciActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_kimlikBilgisi) {
-            fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi();
+            fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi(context);
             kimlikBilgisi.setOgrenci(ogrenci);
             System.out.println(ogrenci.getAdSoyad());
             fragmentTransaction.replace(R.id.content_frame, kimlikBilgisi);

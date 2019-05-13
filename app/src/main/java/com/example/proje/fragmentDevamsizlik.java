@@ -19,6 +19,10 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+<<<<<<< HEAD
+=======
+
+>>>>>>> mehmet/master
 
 
 @SuppressLint("ValidFragment")
@@ -45,21 +49,30 @@ public class fragmentDevamsizlik extends Fragment {
         devamsizlikKayıt=view.findViewById(R.id.devamsizlik_btn);
         OgretmenActivity ogretmenActivity= new OgretmenActivity();
         ogrenci=ogretmenActivity.ogrenci1;
+<<<<<<< HEAD
+=======
+
+>>>>>>> mehmet/master
         if (ogrenci!=null)
             ogreciKimlik.setText(ogrenci.getAdSoyad());
         else
             Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_SHORT).show();
+<<<<<<< HEAD
+=======
+
+>>>>>>> mehmet/master
         ogreciKimlik.setText(ogrenci.getAdSoyad());
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange( CalendarView view, int yil, int ay, int gun) {
-
                 tarih=gun+"/"+(ay+1)+"/"+yil;
                 Log.i("Tarih",tarih);
+                view.setTag("devamsız");
             }
         });
+
 
         devamsizlikKayıt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +81,10 @@ public class fragmentDevamsizlik extends Fragment {
             }
         });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> mehmet/master
         return view;
     }
     public void kayitEt(){

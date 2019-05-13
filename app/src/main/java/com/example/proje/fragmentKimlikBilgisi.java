@@ -1,9 +1,11 @@
 package com.example.proje;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -25,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,23 +37,21 @@ public class fragmentKimlikBilgisi extends Fragment {
     private Ogretmen ogretmen =null;
     private Ogrenci ogrenci = null;
     private Veli veli = null;
-    private Bitmap resim1;
 
-    public void setResim1(Bitmap resim1) {
-        this.resim1 = resim1;
-    }
     MainActivity mainActivity;
     TextView adSoyad, email,tcNo, sinif;
+    //CircularImageView resim;
     ImageView resim;
     LinearLayout linearLayout;
     FirebaseStorage storage;
     StorageReference storageReference;
     File localFile;
     Button parolaSifirla;
+    Context context;
 
-
-//    T tip;
-//    Database database;
+    public fragmentKimlikBilgisi(Context context) {
+        this.context = context;
+    }
 
     @Nullable
     @Override
@@ -102,11 +104,49 @@ public class fragmentKimlikBilgisi extends Fragment {
         });
 
 
-
-        //database = new Database(tip);
-
         return view;
     }
+
+
+    public void bilgiGoster(){
+        if(ogretmen!= null){
+            adSoyad.setText(ogretmen.getAdSoyad());
+            tcNo.setText(ogretmen.gettCNo());
+            email.setText(ogretmen.getEmailAdres());
+
+        }
+        else if(ogrenci!= null){
+            System.out.println("--------------------ögrenci içindeyiz");
+            adSoyad.setText(ogrenci.getAdSoyad());
+            tcNo.setText(ogrenci.gettCNo());
+            email.setText(ogrenci.getEmailAdres());
+            sinif.setText(ogrenci.getClassNumber());
+
+            //resim.setImageBitmap(resim1);
+//            try {
+//                localFile = File.createTempFile("resim","jpg");
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            StorageReference ref = storageReference.child("pht_"+ogrenci.gettCNo());
+//            ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+//                @Override
+//                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                    Bitmap res = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+//                    resim.setImageBitmap(res);
+//                }
+//            });
+            Picasso.with(context).load(Uri.parse(ogrenci.getResim())).into(resim);
+
+        }
+        else if(veli!= null){
+            adSoyad.setText(veli.getAdSoyad());
+            tcNo.setText(veli.gettCNo());
+            email.setText(veli.getEmailAdres());
+
+        }
+    }
+
     public Ogretmen getOgretmen() {
         return ogretmen;
     }
@@ -129,50 +169,6 @@ public class fragmentKimlikBilgisi extends Fragment {
 
     public void setVeli(Veli veli) {
         this.veli = veli;
-    }
-
-    public void bilgiGoster(){
-        if(ogretmen!= null){
-            adSoyad.setText(ogretmen.getAdSoyad());
-            tcNo.setText(ogretmen.gettCNo());
-            email.setText(ogretmen.getEmailAdres());
-
-        }
-        else if(ogrenci!= null){
-            System.out.println("--------------------ögrenci içindeyiz");
-            adSoyad.setText(ogrenci.getAdSoyad());
-            tcNo.setText(ogrenci.gettCNo());
-            email.setText(ogrenci.getEmailAdres());
-            sinif.setText(ogrenci.getClassNumber());
-            if (ogrenci.getResim()==null)
-                System.out.println("resim boş  müdür-----------------------------------");
-            //resim.setImageBitmap(resim1);
-            try {
-                localFile = File.createTempFile("resim","jpg");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            StorageReference ref = storageReference.child("pht_"+ogrenci.gettCNo());
-            ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Bitmap res = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                    resim.setImageBitmap(res);
-                }
-            });
-
-        }
-        else if(veli!= null){
-            adSoyad.setText(veli.getAdSoyad());
-            tcNo.setText(veli.gettCNo());
-            email.setText(veli.getEmailAdres());
-
-        }
-
-
-        System.out.println("------------------------tansit geçtik");
-        //System.out.println(ogrenci.getAdSoyad());
-
     }
 
 
