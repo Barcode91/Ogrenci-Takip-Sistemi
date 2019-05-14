@@ -18,12 +18,22 @@
 
         >
 
-        <ImageView
+        <com.github.siyamed.shapeimageview.CircularImageView
             android:id="@+id/list_resim"
             android:layout_width="70dp"
             android:layout_height="60dp"
-            android:padding="3dp"
-           />
+            app:siBorderWidth="5dp"
+            app:siBorderColor="#E6665E"
+            android:layout_gravity="center"
+            android:contentDescription="@string/nav_header_desc"
+            android:padding="5dp"/>
+
+        <!--<ImageView-->
+            <!--android:id="@+id/list_resim"-->
+            <!--android:layout_width="70dp"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:padding="3dp"-->
+           <!--/>-->
         <TextView
             android:id="@+id/list_tcNo"
             android:layout_width="150dp"

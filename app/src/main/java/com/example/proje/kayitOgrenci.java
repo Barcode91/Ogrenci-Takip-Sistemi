@@ -2,6 +2,7 @@ package com.example.proje;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -67,6 +68,7 @@ public class kayitOgrenci extends Fragment {
     DatabaseReference databaseReference;
     String resimUrl;
     String id;
+    ProgressDialog pd;
     byte [] bytArray; //resimi tutacak hamveri
 
 
@@ -96,6 +98,7 @@ public class kayitOgrenci extends Fragment {
         ogrenciSinif = view.findViewById(R.id.OgrenciSinif);
         emailAdres = view.findViewById(R.id.emailAdresi);
         profilPhoto = view.findViewById(R.id.profil_photo);
+        pd=new ProgressDialog(context);
         myAuth=FirebaseAuth.getInstance();
         sistemKayit=new SistemKayit();
         profilPhoto.setOnClickListener(new View.OnClickListener() {
@@ -116,11 +119,14 @@ public class kayitOgrenci extends Fragment {
                 sifreDogruluk = sistemKayit.sifreDogrulukKontrol(passwd.getText().toString(),txtSifreTekrar.getText().toString());
                 if(sifreDogruluk) {
                     //kullaniciEkle();
+                    pd.setMessage("Kayıt Yapılıyor...");
+                    pd.show();
                     ogrenciAdd();
 
                     Toast.makeText(context,"Kayıt Basarılı",Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(context,MainActivity.class);
                     startActivity(intent);
+                    sistemKayit.finish();
 
                 }
                 else
@@ -248,6 +254,7 @@ public class kayitOgrenci extends Fragment {
                             DatabaseReference yazuc=databaseReference.child("Class").child(ogrenci.getClassNumber()).child(myAuth.getCurrentUser().getUid());
                             yaziki.child("resim").setValue(resimUrl);
                             yazuc.child("resim").setValue(resimUrl);
+                            pd.dismiss();
 
                         }
                     }

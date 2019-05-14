@@ -51,6 +51,12 @@ public class fragmentKimlikBilgisi extends Fragment {
 
     public fragmentKimlikBilgisi(Context context) {
         this.context = context;
+
+    }
+
+    public fragmentKimlikBilgisi(Context context, Ogrenci ogrenci) {
+        this.context = context;
+        setOgrenci(ogrenci);
     }
 
     @Nullable

@@ -110,27 +110,7 @@ public class fragmentSiniflar extends Fragment {
 
     public void veriGetir(String sinif){
         sinifArraylist.clear();
-//        databaseReference=db.getReference().child("Class").child(sinif);
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                //ilk hali
-//                sinifArraylist = new ArrayList<>();
-//                for (DataSnapshot gelenler : dataSnapshot.getChildren())
-//                    sinifArraylist.add(gelenler.getValue(Ogrenci.class));
-//                //resimGetir();
-//                listAdapter = new ListAdapter(context,sinifArraylist);
-//                listAdapter.notifyDataSetChanged();
-//                recyclerView.setAdapter(listAdapter);
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
+
         kontrol=false;
         databaseReference=db.getReference().child("Class").child(sinif);
             databaseReference.addChildEventListener(new ChildEventListener() {

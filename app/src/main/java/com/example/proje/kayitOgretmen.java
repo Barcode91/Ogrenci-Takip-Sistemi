@@ -1,6 +1,7 @@
 package com.example.proje;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,6 +32,7 @@ public class kayitOgretmen extends Fragment {
     Spinner bolum;
     Database database;
     Ogretmen ogretmen = new Ogretmen();
+    ProgressDialog pd;
     boolean onayDogruluk=false,sifreDogruluk=false;
     public kayitOgretmen(Context context) {
         this.context=context;
@@ -49,6 +51,8 @@ public class kayitOgretmen extends Fragment {
         passwd = view.findViewById(R.id.KayitSifre);
         bolum = view.findViewById(R.id.OgretmenBolum);
         emailAdres = view.findViewById(R.id.emailAdresi);
+        pd=new ProgressDialog(context);
+        pd.setMessage("Kayıt Tamamlanıyor...");
 
         sistemKayit=new SistemKayit();
 
@@ -62,11 +66,12 @@ public class kayitOgretmen extends Fragment {
                if (sifreDogruluk)
                {
                    if (onayDogruluk){
-                   Toast.makeText(context,"Kayıt Başarılı",Toast.LENGTH_SHORT).show();
+                    pd.show();
                     kullaniciEkle();
                    Toast.makeText(context,"Kayıt Basarılı",Toast.LENGTH_SHORT).show();
                    Intent intent=new Intent(context,MainActivity.class);
-                   startActivity(intent);}
+                   startActivity(intent);
+                       sistemKayit.finish();}
                    else
                        Toast.makeText(context,"ONAY KODUNUZ DOGRULAYINIZ",Toast.LENGTH_SHORT).show();
 
@@ -118,6 +123,7 @@ public class kayitOgretmen extends Fragment {
     ogretmen.setEmailAdres(emailAdres.getText().toString());
     database = new Database(ogretmen); // ogretmen nesnesini veritabanı constructer aracılığyla gönderilir
     database.userAdd(new SistemKayit(),context); // kullanıcı veritabanına eklenir.
+        pd.dismiss();
 
     }
 
