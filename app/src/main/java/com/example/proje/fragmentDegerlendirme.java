@@ -138,14 +138,11 @@ public class fragmentDegerlendirme extends Fragment {
         degerlendirme.setDegerlendirme(degerlendirmetxt.getText().toString());
         if (ogrenci!=null)
         yaz.child("Degerlendirme").child(ogrenci.gettCNo()).push().setValue(degerlendirme);
-<<<<<<< HEAD
         else   Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_LONG).show();
-=======
         degerlendirmetxt.setText("");}
         else
             Toast.makeText(context,"Değerlendirme Giriniz",Toast.LENGTH_SHORT).show();
 
->>>>>>> mehmet/master
 
     }
 }

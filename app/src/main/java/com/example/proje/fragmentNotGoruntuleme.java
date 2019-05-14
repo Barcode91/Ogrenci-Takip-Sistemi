@@ -75,6 +75,7 @@ public class fragmentNotGoruntuleme  extends Fragment {
                   @Override
                   public void onClick(DialogInterface dialog, int which) {
                       //OGRETMENE MESAJ ATACAKKKKKK
+                      Toast.makeText(getActivity(),"ITIRAZ MAILINIZ GONDERILDI",Toast.LENGTH_SHORT).show();
                   }
               });
               alert.setNegativeButton("VAZGECTIM", new DialogInterface.OnClickListener() {

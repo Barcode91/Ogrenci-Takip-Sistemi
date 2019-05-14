@@ -78,13 +78,11 @@ public class fragmentDevamsizlik extends Fragment {
         return view;
     }
     public void kayitEt(){
-<<<<<<< HEAD
+
         if(ogrenci!=null){
-=======
         Devamsizlik yeni = new Devamsizlik();
         yeni.setDersAdi(ders);
         yeni.setTarih(tarih);
->>>>>>> mehmet/master
         DatabaseReference yaz = databaseReference.child("Devamsızlık").child(ogrenci.gettCNo());
         yaz.push().setValue(yeni);
         Toast.makeText(context,"Kayıt Tamamlandı",Toast.LENGTH_SHORT).show();

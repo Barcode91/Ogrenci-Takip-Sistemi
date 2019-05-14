@@ -32,19 +32,15 @@ import com.google.firebase.database.ValueEventListener;
 public class VeliActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Context context;
-    Ogrenci ogrenci;
+    //Ogrenci ogrenci;
     Veli veli;
     TextView headerAd, headerMail ;
     ImageView headerResim;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-<<<<<<< HEAD
 
-
-
-=======
     static Ogrenci ogrenci;
->>>>>>> mehmet/master
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
