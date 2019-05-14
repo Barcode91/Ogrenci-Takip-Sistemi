@@ -1,5 +1,6 @@
 package com.example.proje;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
+@SuppressLint("ValidFragment")
 public class fragmentDevamsizlik extends Fragment {
     TextView ogreciKimlik;
     Button devamsizlikKayıt;
@@ -50,8 +52,9 @@ public class fragmentDevamsizlik extends Fragment {
             ogreciKimlik.setText(ogrenci.getAdSoyad());
         else
             Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_SHORT).show();
-
-        ogreciKimlik.setText(ogrenci.getAdSoyad());
+        /*if (ogrenci!=null){
+        ogreciKimlik.setText(ogrenci.getAdSoyad());}
+        else  Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_LONG).show();*/
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -75,12 +78,19 @@ public class fragmentDevamsizlik extends Fragment {
         return view;
     }
     public void kayitEt(){
+
+        if(ogrenci!=null){
         Devamsizlik yeni = new Devamsizlik();
         yeni.setDersAdi(ders);
         yeni.setTarih(tarih);
         DatabaseReference yaz = databaseReference.child("Devamsızlık").child(ogrenci.gettCNo());
         yaz.push().setValue(yeni);
         Toast.makeText(context,"Kayıt Tamamlandı",Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_SHORT).show();
+
+
 
     }
 

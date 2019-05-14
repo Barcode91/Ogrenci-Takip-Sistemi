@@ -1,5 +1,6 @@
 package com.example.proje;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -24,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Iterator;
 
+@SuppressLint("ValidFragment")
 public class fragmentNotlar extends Fragment {
     @Nullable
     Button harfNotuHesapla,btnNotKaydet ;
@@ -40,6 +42,7 @@ public class fragmentNotlar extends Fragment {
     ProgressDialog progressDialog;
 
 
+    @SuppressLint("ValidFragment")
     public fragmentNotlar(Context context) {
         ogrenci=ogretmenActivity.ogrenci1;
         ogretmenActivity=new OgretmenActivity();
@@ -72,7 +75,7 @@ public class fragmentNotlar extends Fragment {
         //OgretmenActivity ogretmenActivity=new OgretmenActivity();
         //ogrenci=ogretmenActivity.ogrenci1;
         ogretmenBolum=ogretmenActivity.ogretmenBolum;
-        ogrenciKimlik.setText(ogrenci.getAdSoyad());
+        //ogrenciKimlik.setText(ogrenci.getAdSoyad());
         firebaseDatabase=FirebaseDatabase.getInstance();
         reference=firebaseDatabase.getReference();
         progressDialog = new ProgressDialog(context);
@@ -136,6 +139,7 @@ public class fragmentNotlar extends Fragment {
         Toast.makeText(context,"Notlar Kaydedildi",Toast.LENGTH_SHORT).show();
     }
     public void notGetir(){ // öğrenci notu veritabanından getirilir
+        if (ogrenci!=null){
         DatabaseReference oku = reference.child("Notlar").child(ogrenci.gettCNo()).child(ogretmenBolum);
         oku.addValueEventListener(new ValueEventListener() {
             @Override
@@ -147,6 +151,7 @@ public class fragmentNotlar extends Fragment {
                     txt56.setText(notlar.get("Final").toString());
                     txt57.setText(notlar.get("Ödev").toString());
                     txt58.setText(notlar.get("Proje").toString());
+
                     txtHarfNotu.setText(notlar.get("Harf").toString());}
                     progressDialog.dismiss();
             }
@@ -156,6 +161,9 @@ public class fragmentNotlar extends Fragment {
 
             }
         });
+        }
+        else
+            Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_LONG).show();
 
     }
 
