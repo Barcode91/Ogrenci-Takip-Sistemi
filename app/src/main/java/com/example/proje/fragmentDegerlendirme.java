@@ -1,10 +1,13 @@
 package com.example.proje;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+@SuppressLint("ValidFragment")
 public class fragmentDegerlendirme extends Fragment {
     Button btn_degerlendirmeKayit;
     EditText degerlendirmetxt;
@@ -34,6 +39,7 @@ public class fragmentDegerlendirme extends Fragment {
     Context context;
     DegerlendirmeOgretmenListAdapter adapter;
     ArrayList<Degerlendirme> liste;
+
     public fragmentDegerlendirme(Context context) {
         this.context = context;
     }
@@ -72,6 +78,7 @@ public class fragmentDegerlendirme extends Fragment {
     }
 
     private void veriGetir() {
+        if (ogrenci!=null){
         DatabaseReference oku = databaseReference.child("Degerlendirme").child(ogrenci.gettCNo());
         oku.addChildEventListener(new ChildEventListener() {
             @Override
@@ -114,7 +121,9 @@ public class fragmentDegerlendirme extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });}
+        else
+            Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_LONG).show();
 
 
 
@@ -126,8 +135,9 @@ public class fragmentDegerlendirme extends Fragment {
         degerlendirme.setOgretmenBolum(ogretmenActivity.ogretmenBolum);
         degerlendirme.setOgretmenKimlik(ogretmenActivity.ogretmen.getAdSoyad());
         degerlendirme.setDegerlendirme(degerlendirmetxt.getText().toString());
+        if (ogrenci!=null)
         yaz.child("Degerlendirme").child(ogrenci.gettCNo()).push().setValue(degerlendirme);
-
+        else   Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_LONG).show();
 
     }
 }

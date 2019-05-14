@@ -19,10 +19,6 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-<<<<<<< HEAD
-=======
-
->>>>>>> mehmet/master
 
 
 @SuppressLint("ValidFragment")
@@ -49,19 +45,14 @@ public class fragmentDevamsizlik extends Fragment {
         devamsizlikKayıt=view.findViewById(R.id.devamsizlik_btn);
         OgretmenActivity ogretmenActivity= new OgretmenActivity();
         ogrenci=ogretmenActivity.ogrenci1;
-<<<<<<< HEAD
-=======
 
->>>>>>> mehmet/master
         if (ogrenci!=null)
             ogreciKimlik.setText(ogrenci.getAdSoyad());
         else
             Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_SHORT).show();
-<<<<<<< HEAD
-=======
-
->>>>>>> mehmet/master
-        ogreciKimlik.setText(ogrenci.getAdSoyad());
+        /*if (ogrenci!=null){
+        ogreciKimlik.setText(ogrenci.getAdSoyad());}
+        else  Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_LONG).show();*/
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -81,16 +72,19 @@ public class fragmentDevamsizlik extends Fragment {
             }
         });
 
-<<<<<<< HEAD
-=======
 
->>>>>>> mehmet/master
         return view;
     }
     public void kayitEt(){
+        if(ogrenci!=null){
         DatabaseReference yaz = databaseReference.child("Devamsızlık").child(ogrenci.gettCNo());
         yaz.push().setValue(tarih);
         Toast.makeText(context,"Kayıt Tamamlandı",Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_SHORT).show();
+
+
 
     }
 

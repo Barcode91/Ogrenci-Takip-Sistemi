@@ -71,24 +71,18 @@ public class fragmentNotlar extends Fragment {
         ogrenciKimlik.setText(ogrenci.getAdSoyad());
         else
             Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_SHORT).show();
-<<<<<<< HEAD
-=======
 
->>>>>>> mehmet/master
         //OgretmenActivity ogretmenActivity=new OgretmenActivity();
         //ogrenci=ogretmenActivity.ogrenci1;
         ogretmenBolum=ogretmenActivity.ogretmenBolum;
-        ogrenciKimlik.setText(ogrenci.getAdSoyad());
+        //ogrenciKimlik.setText(ogrenci.getAdSoyad());
         firebaseDatabase=FirebaseDatabase.getInstance();
         reference=firebaseDatabase.getReference();
         progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Ögrenci Notları Getiriliyor");
         progressDialog.show();
         notGetir();
-<<<<<<< HEAD
-=======
 
->>>>>>> mehmet/master
 
         harfNotuHesapla.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +139,7 @@ public class fragmentNotlar extends Fragment {
         Toast.makeText(context,"Notlar Kaydedildi",Toast.LENGTH_SHORT).show();
     }
     public void notGetir(){ // öğrenci notu veritabanından getirilir
+        if (ogrenci!=null){
         DatabaseReference oku = reference.child("Notlar").child(ogrenci.gettCNo()).child(ogretmenBolum);
         oku.addValueEventListener(new ValueEventListener() {
             @Override
@@ -166,6 +161,9 @@ public class fragmentNotlar extends Fragment {
 
             }
         });
+        }
+        else
+            Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_LONG).show();
 
     }
 

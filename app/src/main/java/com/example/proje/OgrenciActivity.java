@@ -40,7 +40,7 @@ import java.util.zip.Inflater;
 public class OgrenciActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Context context;
-    Ogrenci ogrenci;
+    static Ogrenci ogrenci;
     TextView headerAd, headerMail ;
     //ImageView headerResim;
     CircularImageView headerResim;
@@ -158,7 +158,7 @@ public class OgrenciActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.content_frame, kimlikBilgisi);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_notlar) {
-            fragmentNotGoruntuleme fragmentNotGoruntuleme = new fragmentNotGoruntuleme();
+            fragmentNotGoruntuleme fragmentNotGoruntuleme = new fragmentNotGoruntuleme(ogrenci);
             fragmentTransaction.replace(R.id.content_frame, fragmentNotGoruntuleme);
             fragmentTransaction.commit();
 

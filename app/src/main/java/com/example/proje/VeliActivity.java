@@ -31,11 +31,15 @@ import com.google.firebase.database.ValueEventListener;
 public class VeliActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Context context;
+    Ogrenci ogrenci;
     Veli veli;
     TextView headerAd, headerMail ;
     ImageView headerResim;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,7 +145,7 @@ public class VeliActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.content_frame,kimlikBilgisi);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_notlar) {
-            fragmentNotGoruntuleme fragmentNotGoruntuleme =new fragmentNotGoruntuleme();
+            fragmentNotGoruntuleme fragmentNotGoruntuleme =new fragmentNotGoruntuleme(ogrenci);
             fragmentTransaction.replace(R.id.content_frame,fragmentNotGoruntuleme);
             fragmentTransaction.commit();
 

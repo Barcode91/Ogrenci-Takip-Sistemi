@@ -10,9 +10,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class fragmentAdapter extends FragmentPagerAdapter {
     private String tabTitle[]=new String[]{"Ogretmen","Veli","Ogrenci"};
     Context context;
+
     public fragmentAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context=context;
+
     }
 
 
