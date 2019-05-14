@@ -10,36 +10,33 @@
     app:cardElevation="5dp"
     android:layout_margin="3dp">
     <LinearLayout
-        android:id="@+id/degerlendirme_list_linear"
-        android:orientation="vertical"
+        android:id="@+id/list_linear"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/dalga_efect"
 
         >
 
         <TextView
-            android:id="@+id/ogretmenKimlik_degerlendirme"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
+            android:id="@+id/devamsız_ders"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:text="ögretmen Kimlik"
-            android:padding="5dp"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            android:padding="3dp"
             android:textColor="@color/cardview_dark_background"
-
             />
         <TextView
-            android:id="@+id/list_degerlendirme"
+            android:id="@+id/devamsız_tarih"
             android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="degerlendirmeler"
+            android:textSize="20sp"
             android:textStyle="italic|bold"
             android:textColor="@color/cardview_dark_background"
-            android:padding="5dp"/>
+            android:padding="3dp"/>
         
     </LinearLayout>
 

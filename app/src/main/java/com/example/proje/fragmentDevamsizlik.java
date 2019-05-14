@@ -29,6 +29,7 @@ public class fragmentDevamsizlik extends Fragment {
     DatabaseReference databaseReference;
     String tarih;
     Context context;
+    String ders;
 
     public fragmentDevamsizlik(Context context) {
         this.context = context;
@@ -43,6 +44,7 @@ public class fragmentDevamsizlik extends Fragment {
         devamsizlikKayıt=view.findViewById(R.id.devamsizlik_btn);
         OgretmenActivity ogretmenActivity= new OgretmenActivity();
         ogrenci=ogretmenActivity.ogrenci1;
+        ders=ogretmenActivity.ogretmenBolum;
 
         if (ogrenci!=null)
             ogreciKimlik.setText(ogrenci.getAdSoyad());
@@ -73,8 +75,11 @@ public class fragmentDevamsizlik extends Fragment {
         return view;
     }
     public void kayitEt(){
+        Devamsizlik yeni = new Devamsizlik();
+        yeni.setDersAdi(ders);
+        yeni.setTarih(tarih);
         DatabaseReference yaz = databaseReference.child("Devamsızlık").child(ogrenci.gettCNo());
-        yaz.push().setValue(tarih);
+        yaz.push().setValue(yeni);
         Toast.makeText(context,"Kayıt Tamamlandı",Toast.LENGTH_SHORT).show();
 
     }

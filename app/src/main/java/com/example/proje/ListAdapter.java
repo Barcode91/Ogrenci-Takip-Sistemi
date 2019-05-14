@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
@@ -194,7 +195,8 @@ int j;
 
     class ViewHolder extends RecyclerView.ViewHolder{
         TextView adSoyad, tcNo;
-        ImageView resim;
+        CircularImageView resim;
+        //ImageView resim;
         LinearLayout linearLayout;
 
 

@@ -94,6 +94,12 @@ public class Database <tip> {
                     Toast.makeText(context,"kayıt yapılamadı",Toast.LENGTH_SHORT).show();
                 }
             }
+        }).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful())
+                    myAuth.signOut();
+            }
         });
 
 

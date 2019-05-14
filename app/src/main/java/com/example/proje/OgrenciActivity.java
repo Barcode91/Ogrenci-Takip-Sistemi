@@ -163,7 +163,7 @@ public class OgrenciActivity extends AppCompatActivity
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_devamsizlik) {
-            fragmentDevamsizlikGoruntuleme fragmentDevamsizlikGoruntuleme = new fragmentDevamsizlikGoruntuleme();
+            fragmentDevamsizlikGoruntuleme fragmentDevamsizlikGoruntuleme = new fragmentDevamsizlikGoruntuleme(ogrenci,context);
             fragmentTransaction.replace(R.id.content_frame, fragmentDevamsizlikGoruntuleme);
             fragmentTransaction.commit();
             DrawerLayout drawer = findViewById(R.id.drawer_layout);

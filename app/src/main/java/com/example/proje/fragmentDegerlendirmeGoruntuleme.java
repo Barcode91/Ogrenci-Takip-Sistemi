@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +26,7 @@ public class fragmentDegerlendirmeGoruntuleme extends Fragment {
     DatabaseReference databaseReference;
     Ogrenci ogrenci;
     RecyclerView recyclerView;
+    TextView kimlik;
     Context context;
     DegerlendirmeOgretmenListAdapter adapter;
     ArrayList<Degerlendirme> liste;
@@ -49,6 +51,8 @@ public class fragmentDegerlendirmeGoruntuleme extends Fragment {
 //        ogrenci=veliActivity.ogrenci;
         liste=new ArrayList<>();
         recyclerView=view.findViewById(R.id.Veli_DegerlendirmeGecmisi);
+        kimlik=view.findViewById(R.id.OgrenciKimlik_degerlendirme);
+        kimlik.setText(ogrenci.getAdSoyad());
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         layoutManager.scrollToPosition(0);

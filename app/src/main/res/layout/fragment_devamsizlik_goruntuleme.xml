@@ -6,7 +6,7 @@
     android:background="@drawable/mainbackground"
     >
     <TextView
-        android:id="@+id/OgrenciAdiSoyadi"
+        android:id="@+id/OgrenciKimlik_devamsizlik"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="OGRENCI ADI SOYADI"
@@ -18,18 +18,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DEVAMSIZLIK CIZELGESI"
-        android:layout_below="@id/OgrenciAdiSoyadi"
+        android:layout_below="@id/OgrenciKimlik_devamsizlik"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
         />
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/listviewDevamsizlikCizelgesi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/OgrenciAdiSoyadi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/OgrenciKimlik_devamsizlik"
         android:layout_marginTop="35dp"
-        android:entries="@array/devamsizlik"
-        ></ListView>
+        ></android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>
