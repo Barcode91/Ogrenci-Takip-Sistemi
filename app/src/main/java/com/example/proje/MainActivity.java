@@ -101,13 +101,9 @@ ProgressDialog progressDialog;
                                     String kullaniciTur = dataSnapshot.getValue().toString();
                                     kullaniciBilgiGetir(kullaniciTur,loginId);
                                     progressDialog.dismiss();
-
                                 }
-
-
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
                                 }
                             });
                         }
@@ -129,11 +125,6 @@ ProgressDialog progressDialog;
                 finish();
             }
         });
-
-
-
-
-
     }
     public void init(){
         context=this;

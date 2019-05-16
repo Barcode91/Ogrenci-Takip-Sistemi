@@ -30,6 +30,9 @@
         android:layout_marginTop="@dimen/kayıt_bosluk"
         android:ems="11"
         android:layout_below="@id/profil_photo"
+        android:maxLength="11"
+        android:minEms="11"
+        android:maxEms="11"
         android:hint="TC KIMLIK NUMARASI"
         />
     <EditText
@@ -94,6 +97,7 @@
         android:textColor="@android:color/black"
         android:textSize="17sp"
         android:layout_marginTop="@dimen/kayıt_bosluk"
+        android:minEms="6"
         android:inputType="textPassword"
         />
     <EditText

@@ -2,8 +2,10 @@ package com.example.proje;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -69,14 +71,15 @@ public class kayitOgrenci extends Fragment {
     String resimUrl;
     String id;
     ProgressDialog pd;
+    AlertDialog.Builder alertDialog;
+    Uri uri=null;
     byte [] bytArray; //resimi tutacak hamveri
+    static final int GALERI_CODE=11;
+    static final  int KAMERA_CODE=22;
 
 
     kayitOgrenci(Context contex){
         this.context=contex;
-
-
-
     }
 
 
@@ -105,8 +108,33 @@ public class kayitOgrenci extends Fragment {
             @Override
             public void onClick(View v) {
                 // KAMERA İÇİN TETİKLEME YAPILIR
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent,13);
+                alertDialog=new AlertDialog.Builder(context);
+                alertDialog.setTitle("Fotograf Ekleme");
+                alertDialog.setPositiveButton("GALERİ", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("image/*");
+                        startActivityForResult(intent,GALERI_CODE);
+
+                    }
+                });
+                alertDialog.setNegativeButton("KAMERA", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(intent,KAMERA_CODE);
+
+                    }
+                });
+                alertDialog.show();
+
+
+
+
+
+
+
 
             }
         });
@@ -116,12 +144,17 @@ public class kayitOgrenci extends Fragment {
         btnKaydet.setOnClickListener(new View.OnClickListener() { // kaydet butonu işlevi
             @Override
             public void onClick(View v) {
+                if(myAuth.getCurrentUser() != null){
+                    myAuth.signOut();
+                }
+
+
                 sifreDogruluk = sistemKayit.sifreDogrulukKontrol(passwd.getText().toString(),txtSifreTekrar.getText().toString());
                 if(sifreDogruluk) {
                     //kullaniciEkle();
                     pd.setMessage("Kayıt Yapılıyor...");
                     pd.show();
-                    ogrenciAdd();
+                    ogrenciAdd(uri);
 
                     Toast.makeText(context,"Kayıt Basarılı",Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(context,MainActivity.class);
@@ -139,41 +172,10 @@ public class kayitOgrenci extends Fragment {
 
     }
 
-
-
-    private void kullaniciEkle(){
-        ogrenci.setAdSoyad(adSoyad.getText().toString());
-        ogrenci.settCNo(tcNo.getText().toString());
-        ogrenci.setPass(passwd.getText().toString());
-        ogrenci.setClassNumber(ogrenciSinif.getSelectedItem().toString());
-        ogrenci.setEmailAdres(emailAdres.getText().toString());
-
-        database = new Database(ogrenci); // ogretmen nesnesini veritabanı constructer aracılığyla gönderilir
-        database.userAdd(new SistemKayit(),context);
-
-        String sinif = ogrenciSinif.getSelectedItem().toString();
-        String dosya =tcNo.getText().toString();
-        //ogrenci.setLoginId(dosya);
-        System.out.println("----------------"+dosya+"-----------------------");
-        //final StorageReference ref = storageReference.child("pht_"+dosya);
-        //StorageReference ref = storageReference.child(sinif).child("pht_"+dosya);
-        Uri uri = Uri.fromFile(new File("/storage/emulated/0/OTS/fotograf.jpg"));
-        final StorageReference ref = storageReference.child("pht_"+dosya);
-        UploadTask uploadTask = ref.putFile(uri);
-        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-            }
-        });
-    }
-
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 13 && resultCode == RESULT_OK){
+//        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == KAMERA_CODE && resultCode == RESULT_OK){ // kameradan resim çekimi
             Bundle bundle = data.getExtras(); // kameradan dönen data alınır.
             resim=(Bitmap) bundle.get("data");
             profilPhoto.setImageBitmap(resim); // resim ekrana yerleştirilir
@@ -198,16 +200,35 @@ public class kayitOgrenci extends Fragment {
                 e.printStackTrace();
             }
 
+        } else if (requestCode == GALERI_CODE && resultCode == RESULT_OK){ //galeri resim seçimi
+            Uri resimUri = data.getData();
+
+            profilPhoto.setImageURI(resimUri);
+            uri=resimUri;
+            Log.i("galeri",resimUri.toString());
+
+
+
+
+
+
         }
+
     }
 
-    public void ogrenciAdd(){
+    public void ogrenciAdd(Uri resimuri){
         ogrenci.setAdSoyad(adSoyad.getText().toString());
         ogrenci.settCNo(tcNo.getText().toString());
         ogrenci.setPass(passwd.getText().toString());
         ogrenci.setClassNumber(ogrenciSinif.getSelectedItem().toString());
         ogrenci.setEmailAdres(emailAdres.getText().toString());
         ogrenci.setResim("default");
+        Uri uri;
+        if (resimuri==null)
+            uri=Uri.fromFile(new File("/storage/emulated/0/OTS/fotograf.jpg"));
+        else
+            uri=resimuri;
+
         myAuth.createUserWithEmailAndPassword(ogrenci.getEmailAdres(),ogrenci.getPass()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -216,7 +237,7 @@ public class kayitOgrenci extends Fragment {
         });
         final StorageReference ref = storageReference.child(ogrenci.gettCNo()+".jpg");
 
-        Uri uri = Uri.fromFile(new File("/storage/emulated/0/OTS/fotograf.jpg"));
+        //Uri uri = Uri.fromFile(new File("/storage/emulated/0/OTS/fotograf.jpg"));
         final UploadTask uploadTask = ref.putFile(uri);
         uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override

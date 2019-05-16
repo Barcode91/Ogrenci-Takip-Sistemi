@@ -42,10 +42,8 @@ public class OgrenciActivity extends AppCompatActivity
     Context context;
     static Ogrenci ogrenci;
     TextView headerAd, headerMail ;
-    //ImageView headerResim;
     CircularImageView headerResim;
-    LinearLayout linearLayout;
-    StorageReference storageReference;
+
     File localFile;
     FirebaseAuth mAuth;
     @Override
@@ -53,17 +51,10 @@ public class OgrenciActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ogrenci);
         mAuth=FirebaseAuth.getInstance();
-       // LayoutInflater layoutInflater = LayoutInflater.from(context);
-        //View view= (LinearLayout)findViewById(R.id.ogrenci_nav_header);
-
-        //View view1 = inflater.inflate(R.layout.nav_header_ogrenci,container,false);
-
         context=this;
         Intent intent=getIntent();
         ogrenci=(Ogrenci)intent.getSerializableExtra("ogrenci");
 
-        //auth=FirebaseAuth.getInstance();
-        //ogrenci.setLoginId(auth.getUid());
         try {
             localFile = File.createTempFile("resim","jpg");
         } catch (IOException e) {
@@ -71,23 +62,11 @@ public class OgrenciActivity extends AppCompatActivity
         }
 
         fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi(context);
-//        storageReference = FirebaseStorage.getInstance().getReference();
-//        StorageReference ref = storageReference.child("pht_"+ogrenci.gettCNo());
-//        ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//            @Override
-//            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                Bitmap res = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-//                headerResim.setImageBitmap(res);
-//
-//            }
-//        });
-
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-//        fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi();
         kimlikBilgisi.setOgrenci(ogrenci); // ögrenci kimlik bilgisi taşınır
         fragmentTransaction.replace(R.id.content_frame,kimlikBilgisi);
         fragmentTransaction.commit();
