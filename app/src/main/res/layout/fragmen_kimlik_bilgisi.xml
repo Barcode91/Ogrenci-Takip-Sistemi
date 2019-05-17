@@ -29,18 +29,20 @@
         android:textColor="@android:color/holo_red_dark"
         android:textSize="13dp"
         />
+
     <TextView
         android:id="@+id/txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="T.C KIMLIK NO :"
         android:layout_below="@id/ogrenciFotograf"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="55dp"
-        android:textSize="20sp"
-        android:layout_marginLeft="50dp"
-        android:textStyle="bold"
+        android:text="T.C KIMLIK NO :"
 
-        />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/ogrenci_tc_kimlikNo"
@@ -55,17 +57,19 @@
         android:textSize="20sp"
         android:textStyle="italic"
         />
+
     <TextView
         android:id="@+id/txt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt1"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="19dp"
         android:text="AD SOYAD :"
-        android:layout_marginLeft="55dp"
-        android:textStyle="bold"
-        android:layout_marginTop="15dp"
         android:textSize="20dp"
-        />
+        android:textStyle="bold" />
     <TextView
         android:id="@+id/OgrenciAdSoyad"
         android:layout_width="wrap_content"
@@ -78,17 +82,19 @@
         android:textStyle="italic"
         android:layout_marginLeft="47dp"
         />
+
     <TextView
         android:id="@+id/txt3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt2"
-        android:text="E POSTA :"
-        android:layout_marginLeft="60dp"
-        android:textStyle="bold"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="15dp"
+        android:text="E POSTA :"
         android:textSize="20dp"
-        />
+        android:textStyle="bold" />
     <TextView
         android:id="@+id/OgrenciEposta"
         android:layout_width="wrap_content"
@@ -102,17 +108,19 @@
         android:layout_marginLeft="59dp"
 
         />
+
     <TextView
         android:id="@+id/txt4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt3"
-        android:text="SINIF:"
-        android:layout_marginLeft="70dp"
-        android:textStyle="bold"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="15dp"
+        android:text="SINIF:"
         android:textSize="20sp"
-        />
+        android:textStyle="bold" />
     <TextView
         android:id="@+id/OgrenciSinif"
         android:layout_width="wrap_content"

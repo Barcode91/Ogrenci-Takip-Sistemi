@@ -57,6 +57,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     }
 
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -193,7 +194,7 @@ int j;
         }
     };
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView adSoyad, tcNo;
         CircularImageView resim;
         //ImageView resim;
@@ -206,6 +207,7 @@ int j;
             resim = itemView.findViewById(R.id.list_resim);
             tcNo = itemView.findViewById(R.id.list_tcNo);
             linearLayout = itemView.findViewById(R.id.list_linear);
+
 
 
         }

@@ -1,7 +1,11 @@
 package com.example.proje;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.ClipData;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +14,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +44,7 @@ public class fragmentDegerlendirme extends Fragment {
     Context context;
     DegerlendirmeOgretmenListAdapter adapter;
     ArrayList<Degerlendirme> liste;
+    AlertDialog.Builder alert;
 
     public fragmentDegerlendirme(Context context) {
         this.context = context;
@@ -50,6 +56,7 @@ public class fragmentDegerlendirme extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_ogretmen_degerlendirme,container,false);
         liste=new ArrayList<>();
+
         btn_degerlendirmeKayit = view.findViewById(R.id.btn_degerlendirmeKayit);
         degerlendirmetxt=view.findViewById(R.id.editxt_ogretmenDegerlendirmeGirisi);
         recyclerView=view.findViewById(R.id.DegerlendirmeGecmisi);
@@ -63,8 +70,6 @@ public class fragmentDegerlendirme extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         adapter = new DegerlendirmeOgretmenListAdapter(context,liste);
-
-
         btn_degerlendirmeKayit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +78,7 @@ public class fragmentDegerlendirme extends Fragment {
         });
 
         veriGetir();
+        new ItemTouchHelper(simpleCallback).attachToRecyclerView(recyclerView);
         recyclerView.setAdapter(adapter);
         return view;
     }
@@ -129,6 +135,7 @@ public class fragmentDegerlendirme extends Fragment {
 
     }
 
+
     private void degerlendirmeKayit() {
         if (degerlendirmetxt.getText().toString()!=""){
         DatabaseReference yaz = databaseReference;
@@ -136,8 +143,15 @@ public class fragmentDegerlendirme extends Fragment {
         degerlendirme.setOgretmenBolum(ogretmenActivity.ogretmenBolum);
         degerlendirme.setOgretmenKimlik(ogretmenActivity.ogretmen.getAdSoyad());
         degerlendirme.setDegerlendirme(degerlendirmetxt.getText().toString());
-        if (ogrenci!=null)
-        yaz.child("Degerlendirme").child(ogrenci.gettCNo()).push().setValue(degerlendirme);
+        if (ogrenci!=null){
+            String id = yaz.child("Degerlendirme").child(ogrenci.gettCNo()).push().getKey();
+            degerlendirme.setId(id);
+            Log.i("idler",id);
+            yaz.child("Degerlendirme").child(ogrenci.gettCNo()).child(id).setValue(degerlendirme);
+            //yaz.setValue(degerlendirme);
+
+
+        }
         else   Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_LONG).show();
         degerlendirmetxt.setText("");}
         else
@@ -145,4 +159,22 @@ public class fragmentDegerlendirme extends Fragment {
 
 
     }
+
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder holder, int i) {
+            final int secim = holder.getAdapterPosition();
+            DatabaseReference sil = databaseReference.child("Degerlendirme").child(ogrenci.gettCNo()).child(liste.get(secim).getId());
+            sil.removeValue();
+            liste.remove(secim);
+            adapter.notifyDataSetChanged();
+            Toast.makeText(context,"Değerlendirme Silindi...",Toast.LENGTH_SHORT).show();
+        }
+    };
+
 }
