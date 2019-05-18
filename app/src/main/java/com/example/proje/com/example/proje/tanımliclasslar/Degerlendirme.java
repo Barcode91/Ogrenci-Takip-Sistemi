@@ -1,10 +1,19 @@
-package com.example.proje;
+package com.example.proje.com.example.proje.tanımliclasslar;
 
 public class Degerlendirme {
     private String  ogretmenBolum;
     private String ogretmenKimlik;
     private String degerlendirme;
     private String id;
+    private String tarih;
+
+    public String getTarih() {
+        return tarih;
+    }
+
+    public void setTarih(String tarih) {
+        this.tarih = tarih;
+    }
 
     public String getId() {
         return id;

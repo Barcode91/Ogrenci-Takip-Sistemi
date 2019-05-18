@@ -1,4 +1,4 @@
-package com.example.proje;
+package com.example.proje.com.example.proje.ogrenci_veli_activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,80 +13,71 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.proje.R;
+import com.example.proje.com.example.proje.tanımliclasslar.Devamsizlik;
+import com.example.proje.com.example.proje.tanımliclasslar.Ogrenci;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
-public class fragmentDegerlendirmeGoruntuleme extends Fragment {
+public class fragmentDevamsizlikGoruntuleme extends Fragment {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     Ogrenci ogrenci;
     RecyclerView recyclerView;
-    TextView kimlik;
     Context context;
-    DegerlendirmeOgretmenListAdapter adapter;
-    ArrayList<Degerlendirme> liste;
-    VeliActivity veliActivity;
+    DevamsizlikGörüntülemAdapter adapter;
+    ArrayList<Devamsizlik> liste;
+    TextView kimlik;
 
-    public fragmentDegerlendirmeGoruntuleme(Context context) {
-        this.context = context;
-    }
-
-    public fragmentDegerlendirmeGoruntuleme(Context context, Ogrenci ogrenci ) {
+    public fragmentDevamsizlikGoruntuleme(Ogrenci ogrenci, Context context) {
         this.ogrenci = ogrenci;
         this.context = context;
+        liste=new ArrayList<>();
+        Log.i("gelenveri",ogrenci.gettCNo());
+
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.fragment_degerlendirme_goruntuleme,container,false);
+        View view =inflater.inflate(R.layout.fragment_devamsizlik_goruntuleme,container,false);
+        recyclerView = view.findViewById(R.id.listviewDevamsizlikCizelgesi);
+        Log.i("gelenveri",ogrenci.getAdSoyad());
+        kimlik=view.findViewById(R.id.OgrenciKimlik_devamsizlik);
+        kimlik.setText(ogrenci.getAdSoyad());
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
-//        veliActivity = new VeliActivity();
-//        ogrenci=veliActivity.ogrenci;
-        liste=new ArrayList<>();
-        recyclerView=view.findViewById(R.id.Veli_DegerlendirmeGecmisi);
-        kimlik=view.findViewById(R.id.OgrenciKimlik_degerlendirme);
-        kimlik.setText(ogrenci.getAdSoyad());
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         layoutManager.scrollToPosition(0);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-
-        veriGetir();
-        adapter = new DegerlendirmeOgretmenListAdapter(context,liste);
+        devamsizlikGetir();
+        adapter = new DevamsizlikGörüntülemAdapter(context,liste);
         recyclerView.setAdapter(adapter);
-
-
-
 
         return view;
     }
-    private void veriGetir() {
-        Log.i("tcNo",ogrenci.gettCNo());
-        DatabaseReference oku = databaseReference.child("Degerlendirme").child(ogrenci.gettCNo());
-        oku.addChildEventListener(new ChildEventListener() {
+
+    private void devamsizlikGetir() {
+        String ogrenciTc=ogrenci.gettCNo();
+        Query kuyruk = databaseReference.child("Devamsızlık").child(ogrenciTc)
+                .orderByChild("tarih")
+                .endAt("31/12/2020");
+        //DatabaseReference oku = databaseReference.child("Devamsızlık").child(ogrenciTc);
+        kuyruk.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                Log.i("ögrenci tc:",ogrenci.gettCNo());
-                Degerlendirme e = dataSnapshot.getValue(Degerlendirme.class);
-                    liste.add(e);
-                    Log.i("veriler ",e.toString());
-//                liste.add(e);
-//                Log.i("veriler ",e.toString());
-//                Log.i("veriler_liste",liste.get((liste.size()-1)).toString());
-
+                Devamsizlik devamsizlik = dataSnapshot.getValue(Devamsizlik.class);
+                liste.add(devamsizlik);
+                Log.i("devam",devamsizlik.getTarih()+devamsizlik.getDersAdi());
                 adapter.notifyDataSetChanged();
-                recyclerView.scrollToPosition(liste.size()-1);
-
-
 
             }
 
@@ -110,8 +101,6 @@ public class fragmentDegerlendirmeGoruntuleme extends Fragment {
 
             }
         });
-
-
 
     }
 }

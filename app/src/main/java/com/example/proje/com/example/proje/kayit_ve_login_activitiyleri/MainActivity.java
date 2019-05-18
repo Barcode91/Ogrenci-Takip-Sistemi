@@ -1,25 +1,27 @@
-package com.example.proje;
+package com.example.proje.com.example.proje.kayit_ve_login_activitiyleri;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.proje.R;
+import com.example.proje.com.example.proje.ogrenci_veli_activity.OgrenciActivity;
+import com.example.proje.com.example.proje.ogrenci_veli_activity.VeliActivity;
+import com.example.proje.com.example.proje.ogretmenactivity.OgretmenActivity;
+import com.example.proje.com.example.proje.tanımliclasslar.Ogrenci;
+import com.example.proje.com.example.proje.tanımliclasslar.Ogretmen;
+import com.example.proje.com.example.proje.tanımliclasslar.Veli;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,12 +31,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
-import java.io.File;
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 Button btnKayitol,btnGiris;
@@ -42,7 +38,7 @@ CheckBox beniHatirla;
 Context context;
 TextView txtKullaniciAdi,txtKullaniciSifre, paraloSifirla;
 PreferenceMekanizmasi preferenceMekanizmasi;
-FirebaseAuth mAuth;
+public FirebaseAuth mAuth;
 FirebaseUser firebaseUser;
 FirebaseDatabase db;
 DatabaseReference myRef, myRefOku;
@@ -189,7 +185,7 @@ ProgressDialog progressDialog;
                     System.out.println("-------------13333");
 
                     Ogretmen ogretmen = dataSnapshot.getValue(Ogretmen.class);
-                    intent=new Intent(context,OgretmenActivity.class);
+                    intent=new Intent(context, OgretmenActivity.class);
                     intent.putExtra("ogretmen",ogretmen);
                     startActivity(intent);
                     finish();
@@ -199,7 +195,7 @@ ProgressDialog progressDialog;
                     System.out.println("-------------14444");
                     Ogrenci ogrenci = dataSnapshot.getValue(Ogrenci.class);
                     System.out.println("-----------------------111111"+ogrenci.getAdSoyad());
-                    intent=new Intent(context,OgrenciActivity.class);
+                    intent=new Intent(context, OgrenciActivity.class);
                     intent.putExtra("ogrenci",ogrenci);
                     startActivity(intent);
                     finish();
@@ -209,7 +205,7 @@ ProgressDialog progressDialog;
                     System.out.println("-------------55555");
 
                     Veli veli = dataSnapshot.getValue(Veli.class);
-                    intent=new Intent(context,VeliActivity.class);
+                    intent=new Intent(context, VeliActivity.class);
                     intent.putExtra("veli",veli);
                     startActivity(intent);
                     finish();

@@ -1,4 +1,4 @@
-package com.example.proje;
+package com.example.proje.com.example.proje.kayit_ve_login_activitiyleri;
 
 import android.content.Context;
 import android.content.SharedPreferences;

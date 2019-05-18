@@ -1,27 +1,25 @@
-package com.example.proje;
+package com.example.proje.com.example.proje.ogretmenactivity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.ContentFrameLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.proje.R;
+import com.example.proje.com.example.proje.tanımliclasslar.Ogrenci;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
@@ -44,7 +42,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     Thread thread;
     ProgressDialog pd = null;
     ArrayList<Bitmap> resimler= new ArrayList<>();
-    IOgrenciSecim ogrenciSecim;
+
 
 
     public ListAdapter(Context context, ArrayList<Ogrenci> sinifListe) {

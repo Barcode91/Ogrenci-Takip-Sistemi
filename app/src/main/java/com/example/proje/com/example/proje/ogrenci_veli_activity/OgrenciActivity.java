@@ -1,14 +1,14 @@
-package com.example.proje;
+package com.example.proje.com.example.proje.ogrenci_veli_activity;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -16,52 +16,69 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.proje.com.example.proje.kayit_ve_login_activitiyleri.MainActivity;
+import com.example.proje.R;
+import com.example.proje.com.example.proje.tanımliclasslar.Ogrenci;
+import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
-public class OgretmenActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, IOgrenciSecim {
+import java.io.File;
+import java.io.IOException;
+
+public class OgrenciActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
     Context context;
-    public static Ogretmen ogretmen;
+    static Ogrenci ogrenci;
     TextView headerAd, headerMail ;
-    ImageView headerResim;
-    static Ogrenci ogrenci1;
-    static String ogretmenBolum;
+    CircularImageView headerResim;
+
+    File localFile;
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ogretmen);
+        setContentView(R.layout.activity_ogrenci);
+        mAuth=FirebaseAuth.getInstance();
         context=this;
-
         Intent intent=getIntent();
-        ogretmen=(Ogretmen) intent.getSerializableExtra("ogretmen");
-        ogretmenBolum=ogretmen.getBolum();
+        ogrenci=(Ogrenci)intent.getSerializableExtra("ogrenci");
+
+        try {
+            localFile = File.createTempFile("resim","jpg");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi(context);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi(context);
-        kimlikBilgisi.setOgretmen(ogretmen);  // öğretmen profil bilgileri için nesne taşınır
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentSiniflar siniflar = new fragmentSiniflar(context);
-        fragmentTransaction.replace(R.id.content_frame,siniflar);
+        kimlikBilgisi.setOgrenci(ogrenci); // ögrenci kimlik bilgisi taşınır
+        fragmentTransaction.replace(R.id.content_frame,kimlikBilgisi);
         fragmentTransaction.commit();
+        System.out.println("------------------------------------------"+ogrenci.getAdSoyad());
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         View head = navigationView.getHeaderView(0);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        headerAd = head.findViewById(R.id.OgretmenAdiSoyadi);
-        headerMail = head.findViewById(R.id.OgretmenEposta);
-        headerResim = head.findViewById(R.id.OgretmenFotograf);
-        headerAd.setText(ogretmen.getAdSoyad());
-        headerMail.setText(ogretmen.getEmailAdres());
+
+        headerAd = head.findViewById(R.id.OgrenciAdiSoyadi);
+        headerMail = head.findViewById(R.id.OgrenciEmail);
+        headerResim = head.findViewById(R.id.ogrenciFotograf);
+        headerAd.setText(ogrenci.getAdSoyad());
+        headerMail.setText(ogrenci.getEmailAdres());
+        Picasso.with(context).load(Uri.parse(ogrenci.getResim())).into(headerResim);
+
     }
 
     @Override
@@ -77,7 +94,7 @@ public class OgretmenActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.ogretmen, menu);
+        getMenuInflater().inflate(R.menu.ogrenci, menu);
         return true;
     }
 
@@ -101,44 +118,40 @@ public class OgretmenActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         int id = item.getItemId();
 
-        if (id == R.id.nav_notlar) {
-            fragmentNotlar notlar =new fragmentNotlar(context);
-            fragmentTransaction.replace(R.id.content_frame,notlar);
+        if (id == R.id.nav_kimlikBilgisi) {
+            fragmentKimlikBilgisi kimlikBilgisi = new fragmentKimlikBilgisi(context);
+            kimlikBilgisi.setOgrenci(ogrenci);
+            System.out.println(ogrenci.getAdSoyad());
+            fragmentTransaction.replace(R.id.content_frame, kimlikBilgisi);
             fragmentTransaction.commit();
-        } else if (id == R.id.nav_degerlendirme) {
-            fragmentDegerlendirme degerlendirme =new fragmentDegerlendirme(context);
-            fragmentTransaction.replace(R.id.content_frame,degerlendirme);
+        } else if (id == R.id.nav_notlar) {
+            fragmentNotGoruntuleme fragmentNotGoruntuleme = new fragmentNotGoruntuleme(ogrenci);
+            fragmentTransaction.replace(R.id.content_frame, fragmentNotGoruntuleme);
             fragmentTransaction.commit();
-        } else if (id == R.id.nav_devamsizlik) {
-           fragmentDevamsizlik devamsizlik =new fragmentDevamsizlik(context);
-            fragmentTransaction.replace(R.id.content_frame,devamsizlik);
-            fragmentTransaction.commit();
-        } else if (id == R.id.nav_sinfilar) {
-            fragmentSiniflar siniflar = new fragmentSiniflar(context);
-            fragmentTransaction.replace(R.id.content_frame,siniflar);
-            fragmentTransaction.commit();
-        } else if (id == R.id.nav_cikis){
-            FirebaseAuth auth=FirebaseAuth.getInstance();
-            auth.signOut();
-            startActivity(new Intent(context,MainActivity.class));
-            finish();
 
+        } else if (id == R.id.nav_devamsizlik) {
+            fragmentDevamsizlikGoruntuleme fragmentDevamsizlikGoruntuleme = new fragmentDevamsizlikGoruntuleme(ogrenci,context);
+            fragmentTransaction.replace(R.id.content_frame, fragmentDevamsizlikGoruntuleme);
+            fragmentTransaction.commit();
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);}
+        else if (id == R.id.nav_cikis){
+
+            mAuth.signOut();
+            startActivity(new Intent(context, MainActivity.class));
+            finish();
 
 
 
         }
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
+        }
 
-    @Override
-    public void ogrenciSecim(Ogrenci ogrenci) {
-//        this.ogrenci=ogrenci;
+
+
 
     }
-}

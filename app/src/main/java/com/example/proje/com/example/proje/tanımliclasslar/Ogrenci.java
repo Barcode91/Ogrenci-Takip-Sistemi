@@ -1,4 +1,4 @@
-package com.example.proje;
+package com.example.proje.com.example.proje.tanımliclasslar;
 
 import android.graphics.Bitmap;
 import android.media.Image;

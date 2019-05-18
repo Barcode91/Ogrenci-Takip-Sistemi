@@ -1,16 +1,12 @@
-package com.example.proje;
+package com.example.proje.com.example.proje.kayit_ve_login_activitiyleri;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+
+import com.example.proje.R;
 
 public class SistemKayit extends AppCompatActivity {
     TabLayout tabLayout;

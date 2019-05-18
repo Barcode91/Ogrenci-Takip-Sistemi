@@ -1,4 +1,4 @@
-package com.example.proje;
+package com.example.proje.com.example.proje.ogrenci_veli_activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -16,6 +16,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.proje.R;
+import com.example.proje.com.example.proje.tanımliclasslar.Ogrenci;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,8 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
-
-import static com.example.proje.OgretmenActivity.ogretmenBolum;
 
 public class fragmentNotGoruntuleme  extends Fragment {
     Button itirazEt;

@@ -1,4 +1,4 @@
-package com.example.proje;
+package com.example.proje.com.example.proje.ogretmenactivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,8 +16,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.proje.R;
+import com.example.proje.com.example.proje.tanımliclasslar.Devamsizlik;
+import com.example.proje.com.example.proje.tanımliclasslar.Ogrenci;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 
 @SuppressLint("ValidFragment")
@@ -47,25 +52,25 @@ public class fragmentDevamsizlik extends Fragment {
         OgretmenActivity ogretmenActivity= new OgretmenActivity();
         ogrenci=ogretmenActivity.ogrenci1;
         ders=ogretmenActivity.ogretmenBolum;
+        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        final Calendar calendar = Calendar.getInstance();
 
         if (ogrenci!=null)
             ogreciKimlik.setText(ogrenci.getAdSoyad());
         else
             Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_SHORT).show();
-        /*if (ogrenci!=null){
-        ogreciKimlik.setText(ogrenci.getAdSoyad());}
-        else  Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_LONG).show();*/
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference();
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange( CalendarView view, int yil, int ay, int gun) {
-                tarih=gun+"/"+(ay+1)+"/"+yil;
-                Log.i("Tarih",tarih);
-                view.setTag("devamsız");
+                calendar.set(yil,ay,gun);
+                long selectedDateInMillis = calendar.getTimeInMillis();
+                tarih = simpleDateFormat.format(selectedDateInMillis);
+                Log.i("deneme",tarih);
             }
         });
-
 
         devamsizlikKayıt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,8 +78,6 @@ public class fragmentDevamsizlik extends Fragment {
                 kayitEt();
             }
         });
-
-
         return view;
     }
     public void kayitEt(){
@@ -89,10 +92,5 @@ public class fragmentDevamsizlik extends Fragment {
         }
         else
             Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_SHORT).show();
-
-
-
     }
-
-
 }

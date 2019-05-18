@@ -2,44 +2,23 @@
 FİREBASE İŞLEMLERİNİ YAPACAK OLAN TEMEL SINIFTIR.
  */
 
-package com.example.proje;
+package com.example.proje.com.example.proje.tanımliclasslar;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.proje.com.example.proje.tanımliclasslar.Ogretmen;
+import com.example.proje.com.example.proje.tanımliclasslar.Veli;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import java.util.HashMap;
-
-
 
 
 //generic tip tanımlaması kullanıldı.

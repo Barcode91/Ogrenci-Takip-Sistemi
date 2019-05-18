@@ -15,23 +15,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".OgrenciActivity"
+            android:name=".com.example.proje.ogrenci_veli_activity.OgrenciActivity"
             android:label="@string/title_activity_ogrenci"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".VeliActivity"
+            android:name=".com.example.proje.ogrenci_veli_activity.VeliActivity"
             android:label="@string/title_activity_veli"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".OgretmenActivity"
+            android:name=".com.example.proje.ogretmenactivity.OgretmenActivity"
             android:label="@string/title_activity_ogretmen"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize"
             />
-        <activity android:name=".SistemKayit" />
+        <activity android:name=".com.example.proje.kayit_ve_login_activitiyleri.SistemKayit" />
 
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".com.example.proje.kayit_ve_login_activitiyleri.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

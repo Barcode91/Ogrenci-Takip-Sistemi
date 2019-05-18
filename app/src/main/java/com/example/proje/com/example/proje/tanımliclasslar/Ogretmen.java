@@ -1,16 +1,15 @@
-package com.example.proje;
-
-import android.media.Image;
+package com.example.proje.com.example.proje.tanımliclasslar;
 
 import java.io.Serializable;
 
-public class Veli implements Serializable {
+public class Ogretmen implements Serializable {
+    final public String kulTip="ögretmen";
     private String adSoyad;
     private String tCNo;
     private String pass;
-    private String cocukTc;
+    private String bolum;
     private String emailAdres;
-    final public String kulTip="veli";
+
 
     public String getEmailAdres() {
         return emailAdres;
@@ -19,6 +18,8 @@ public class Veli implements Serializable {
     public void setEmailAdres(String emailAdres) {
         this.emailAdres = emailAdres;
     }
+
+    private String onayKod;
 
     public String getAdSoyad() {
         return adSoyad;
@@ -44,11 +45,19 @@ public class Veli implements Serializable {
         this.pass = pass;
     }
 
-    public String getCocukTc() {
-        return cocukTc;
+    public String getBolum() {
+        return bolum;
     }
 
-    public void setCocukTc(String cocukTc) {
-        this.cocukTc = cocukTc;
+    public void setBolum(String bolum) {
+        this.bolum = bolum;
+    }
+
+    public String getOnayKod() {
+        return onayKod;
+    }
+
+    public void setOnayKod(String onayKod) {
+        this.onayKod = onayKod;
     }
 }

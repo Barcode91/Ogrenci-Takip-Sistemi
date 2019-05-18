@@ -1,4 +1,4 @@
-package com.example.proje;
+package com.example.proje.com.example.proje.tanımliclasslar;
 
 public class Devamsizlik {
     private String dersAdi;

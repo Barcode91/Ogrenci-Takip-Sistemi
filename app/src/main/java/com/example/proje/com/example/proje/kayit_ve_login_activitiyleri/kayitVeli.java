@@ -1,4 +1,4 @@
-package com.example.proje;
+package com.example.proje.com.example.proje.kayit_ve_login_activitiyleri;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,6 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.proje.R;
+import com.example.proje.com.example.proje.tanımliclasslar.Database;
+import com.example.proje.com.example.proje.tanımliclasslar.Veli;
 
 @SuppressLint("ValidFragment")
 public class kayitVeli extends Fragment {

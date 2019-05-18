@@ -1,17 +1,12 @@
-package com.example.proje;
+package com.example.proje.com.example.proje.ogretmenactivity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.ClipData;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -21,16 +16,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.proje.R;
+import com.example.proje.com.example.proje.tanımliclasslar.Degerlendirme;
+import com.example.proje.com.example.proje.tanımliclasslar.Ogrenci;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 @SuppressLint("ValidFragment")
 public class fragmentDegerlendirme extends Fragment {
@@ -45,6 +45,8 @@ public class fragmentDegerlendirme extends Fragment {
     DegerlendirmeOgretmenListAdapter adapter;
     ArrayList<Degerlendirme> liste;
     AlertDialog.Builder alert;
+    Date tarih = new Date();
+    SimpleDateFormat girisTarihi = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
     public fragmentDegerlendirme(Context context) {
         this.context = context;
@@ -85,8 +87,11 @@ public class fragmentDegerlendirme extends Fragment {
 
     private void veriGetir() {
         if (ogrenci!=null){
-        DatabaseReference oku = databaseReference.child("Degerlendirme").child(ogrenci.gettCNo());
-        oku.addChildEventListener(new ChildEventListener() {
+            Query kuyruk = databaseReference.child("Degerlendirme").child(ogrenci.gettCNo())
+                    .orderByChild("tarih")
+                    .endAt("2020/03/11 12:00");
+        //DatabaseReference oku = databaseReference.child("Degerlendirme").child(ogrenci.gettCNo());
+        kuyruk.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
@@ -94,47 +99,29 @@ public class fragmentDegerlendirme extends Fragment {
                 Degerlendirme e = dataSnapshot.getValue(Degerlendirme.class);
                 if (e.getOgretmenBolum().equals(ogretmenActivity.ogretmenBolum)){
                     liste.add(e);
-
-
                 Log.i("veriler ",e.toString());}
-//                liste.add(e);
-//                Log.i("veriler ",e.toString());
-//                Log.i("veriler_liste",liste.get((liste.size()-1)).toString());
-
                 adapter.notifyDataSetChanged();
                 recyclerView.scrollToPosition(liste.size()-1);
-
-
 
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
             }
-
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
             }
-
             @Override
             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });}
         else
             Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_LONG).show();
 
-
-
     }
-
 
     private void degerlendirmeKayit() {
         if (degerlendirmetxt.getText().toString()!=""){
@@ -143,21 +130,21 @@ public class fragmentDegerlendirme extends Fragment {
         degerlendirme.setOgretmenBolum(ogretmenActivity.ogretmenBolum);
         degerlendirme.setOgretmenKimlik(ogretmenActivity.ogretmen.getAdSoyad());
         degerlendirme.setDegerlendirme(degerlendirmetxt.getText().toString());
+        degerlendirme.setTarih(girisTarihi.format(tarih));
+
+
+
         if (ogrenci!=null){
             String id = yaz.child("Degerlendirme").child(ogrenci.gettCNo()).push().getKey();
             degerlendirme.setId(id);
             Log.i("idler",id);
             yaz.child("Degerlendirme").child(ogrenci.gettCNo()).child(id).setValue(degerlendirme);
-            //yaz.setValue(degerlendirme);
-
 
         }
         else   Toast.makeText(getActivity(),"Lutfen Ogrenci Secimi yapiniz",Toast.LENGTH_LONG).show();
         degerlendirmetxt.setText("");}
         else
             Toast.makeText(context,"Değerlendirme Giriniz",Toast.LENGTH_SHORT).show();
-
-
     }
 
     ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {

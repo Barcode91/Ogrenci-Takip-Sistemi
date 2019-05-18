@@ -26,7 +26,7 @@
             android:textSize="15sp"
             android:textStyle="bold"
             android:text="ögretmen Kimlik"
-            android:padding="5dp"
+            android:padding="2dp"
             android:textColor="@color/cardview_dark_background"
 
             />
@@ -35,7 +35,7 @@
             android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:text="degerlendirmeler"
             android:textStyle="italic|bold"
             android:textColor="@color/cardview_dark_background"

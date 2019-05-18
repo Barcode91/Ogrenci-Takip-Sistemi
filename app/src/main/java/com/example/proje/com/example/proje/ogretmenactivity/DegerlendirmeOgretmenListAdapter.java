@@ -1,6 +1,5 @@
-package com.example.proje;
+package com.example.proje.com.example.proje.ogretmenactivity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.proje.R;
+import com.example.proje.com.example.proje.tanımliclasslar.Degerlendirme;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,9 +49,9 @@ public class DegerlendirmeOgretmenListAdapter extends RecyclerView.Adapter<Deger
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
         String kimlikSatiri;
       viewHolder.degerlendirme.setText(degerlendirmeListe.get(i).getDegerlendirme());
-      kimlikSatiri=degerlendirmeListe.get(i).getOgretmenBolum()+"\t\t"+
-              degerlendirmeListe.get(i).getOgretmenKimlik()+"\t\t"+
-              girisTarihi.format(tarih);
+      kimlikSatiri=degerlendirmeListe.get(i).getOgretmenBolum()+"\t\t\t"+
+              degerlendirmeListe.get(i).getOgretmenKimlik()+"\t\t\t\t"+
+              degerlendirmeListe.get(i).getTarih();
 
       viewHolder.ogretmenKimlik.setText(kimlikSatiri);
 
