@@ -8,6 +8,14 @@
             android:layout_height="fill_parent"
             android:background="@drawable/mainbackground">
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="400dp"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/textView5"
@@ -34,26 +42,20 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/DegerlendirmeGecmisi"
                 android:layout_width="fill_parent"
-                android:layout_height="350dp"
+                android:layout_height="200dp"
                 android:layout_below="@id/textView6"
                 android:layout_marginTop="5dp">
 
             </android.support.v7.widget.RecyclerView>
-            <!--<ScrollView-->
-            <!--android:layout_width="fill_parent"-->
-            <!--android:layout_height="fill_parent">-->
-            <!--<RelativeLayout-->
-            <!--android:layout_width="fill_parent"-->
-            <!--android:layout_height="400dp"-->
-            <!--android:layout_marginTop="270dp"-->
-            <!--&gt;-->
+
+
 
             <EditText
                 android:id="@+id/editxt_ogretmenDegerlendirmeGirisi"
                 android:layout_width="fill_parent"
                 android:layout_height="150dp"
                 android:layout_below="@id/DegerlendirmeGecmisi"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:background="@android:color/holo_blue_bright"
                 android:ems="10"
                 android:gravity="start|top"
@@ -67,13 +69,13 @@
             android:layout_height="53dp"
             android:layout_below="@id/editxt_ogretmenDegerlendirmeGirisi"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/btnbg"
             android:text="GONDER" />
 
 
-            <!--</RelativeLayout>-->
+            </RelativeLayout>
 
-            <!--</ScrollView>-->
+            </ScrollView>
 </RelativeLayout>
 
