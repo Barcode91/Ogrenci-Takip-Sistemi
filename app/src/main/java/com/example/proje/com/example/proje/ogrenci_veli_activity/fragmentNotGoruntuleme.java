@@ -1,17 +1,24 @@
 package com.example.proje.com.example.proje.ogrenci_veli_activity;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
+import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,15 +34,17 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 
 public class fragmentNotGoruntuleme  extends Fragment {
-    Button itirazEt;
+    Button itirazEt, buttonSend, buttonCancel;
     TextView vizeNotu,finalNotu,odevNotu,projeNotu,txtHarfnotu;
     Spinner dersler;
     DatabaseReference reference;
     FirebaseDatabase firebaseDatabase;
     Ogrenci ogrenci;
     String dersadi;
+    EditText kime, konu, mesaj;
     public fragmentNotGoruntuleme(Ogrenci ogrenci) {
         this.ogrenci = ogrenci;
+
     }
     @Nullable
     @Override
@@ -67,33 +76,32 @@ public class fragmentNotGoruntuleme  extends Fragment {
       itirazEt.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-              AlertDialog.Builder alert= new AlertDialog.Builder(getActivity());
-              alert.setTitle("UYARI");
-              alert.setMessage("EMIN MISIN !!??");
-              alert.setIcon(R.drawable.surprised);
-              alert.setPositiveButton("EVET", new DialogInterface.OnClickListener() {
-                  @Override
-                  public void onClick(DialogInterface dialog, int which) {
-                      //OGRETMENE MESAJ ATACAKKKKKK
-                      Toast.makeText(getActivity(),"ITIRAZ MAILINIZ GONDERILDI",Toast.LENGTH_SHORT).show();
-                  }
-              });
-              alert.setNegativeButton("VAZGECTIM", new DialogInterface.OnClickListener() {
-                  @Override
-                  public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(getActivity(),"AFERIN",Toast.LENGTH_SHORT).show();
-                  }
-              });
-              alert.show();
+
+              mailGonderDialog();
+//              AlertDialog.Builder alert= new AlertDialog.Builder(getActivity());
+//              alert.setTitle("UYARI");
+//              alert.setMessage("EMIN MISIN !!??");
+//              alert.setIcon(R.drawable.surprised);
+//              alert.setPositiveButton("EVET", new DialogInterface.OnClickListener() {
+//                  @Override
+//                  public void onClick(DialogInterface dialog, int which) {
+//                      //OGRETMENE MESAJ ATACAKKKKKK
+//                      Toast.makeText(getActivity(),"ITIRAZ MAILINIZ GONDERILDI",Toast.LENGTH_SHORT).show();
+//                  }
+//              });
+//              alert.setNegativeButton("VAZGECTIM", new DialogInterface.OnClickListener() {
+//                  @Override
+//                  public void onClick(DialogInterface dialog, int which) {
+//                    Toast.makeText(getActivity(),"AFERIN",Toast.LENGTH_SHORT).show();
+//                  }
+//              });
+//              alert.show();
           }
       });
 
-
-
-
-
         return view;
     }
+
 
     public void notGetir(String dersAdi) { // öğrenci notu veritabanından getirilir
         DatabaseReference oku = reference.child("Notlar").child(ogrenci.gettCNo()).child(dersAdi);
@@ -148,6 +156,51 @@ public class fragmentNotGoruntuleme  extends Fragment {
     }
 
 
+    private void mailGonderDialog() {
 
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.itiraz_alert_dialog);
+
+        kime = dialog.findViewById(R.id.edit_text_to);
+        konu =  dialog.findViewById(R.id.edit_text_subject);
+        mesaj =  dialog.findViewById(R.id.edit_text_message);
+        buttonSend =  dialog.findViewById(R.id.button_send);
+        buttonCancel = dialog.findViewById(R.id.button_iptal);
+        buttonSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mailAdresi, mailKonu, mailMesaj;
+
+                mailAdresi=kime.getText().toString();
+                mailKonu=konu.getText().toString();
+                mailMesaj = mesaj.getText().toString();
+                String [] adresler = mailAdresi.split(",");
+                if(mailAdresi.equals("") || mailKonu.equals("") || mailMesaj.equals(""))
+                    Toast.makeText(getActivity(),"Lütfen Gerekli Yerleri Doldurun..",Toast.LENGTH_SHORT).show();
+                else {
+                    Log.i("mail",mailAdresi+mailKonu+mailMesaj);
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.putExtra(Intent.EXTRA_EMAIL, adresler);
+                    intent.putExtra(Intent.EXTRA_SUBJECT, mailKonu);
+                    intent.putExtra(Intent.EXTRA_TEXT, mailMesaj);
+
+                    intent.setType("message/rfc822");
+                    startActivity(Intent.createChooser(intent, "Mail Hesabınızı Seçiniz..."));
+                    dialog.dismiss();
+
+
+                }
+            }
+        });
+
+        buttonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
+    }
 
 }

@@ -124,21 +124,6 @@ public class fragmentKimlikBilgisi extends Fragment {
             tcNo.setText(ogrenci.gettCNo());
             email.setText(ogrenci.getEmailAdres());
             sinif.setText(ogrenci.getClassNumber());
-
-            //resim.setImageBitmap(resim1);
-//            try {
-//                localFile = File.createTempFile("resim","jpg");
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            StorageReference ref = storageReference.child("pht_"+ogrenci.gettCNo());
-//            ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                @Override
-//                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                    Bitmap res = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-//                    resim.setImageBitmap(res);
-//                }
-//            });
             Picasso.with(context).load(Uri.parse(ogrenci.getResim())).into(resim);
 
         }
