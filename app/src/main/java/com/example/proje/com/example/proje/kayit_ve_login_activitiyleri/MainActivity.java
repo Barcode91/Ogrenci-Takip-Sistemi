@@ -1,10 +1,15 @@
 package com.example.proje.com.example.proje.kayit_ve_login_activitiyleri;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,6 +37,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 Button btnKayitol,btnGiris;
 CheckBox beniHatirla;
@@ -45,11 +52,17 @@ DatabaseReference myRef, myRefOku;
 private String email, passwd;
 Bundle bundle;
 ProgressDialog progressDialog;
+private final int REQEST_CODE=1453;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+        if (!izinKontrol()) {
+            Toast.makeText(context,"İzinler Verilmedi.\n Uygulama Düzgün Çalışmayabilir.",Toast.LENGTH_SHORT).show();
+        }
+
+
 
         preferencedanVeriCek();
         //oturum açıkmı kapalımı kontrol edilir.
@@ -245,6 +258,33 @@ ProgressDialog progressDialog;
 
     }
 
+    private boolean izinKontrol(){
+        int camera = ContextCompat.checkSelfPermission(context, android.Manifest.permission.CAMERA);
+        int strogeRead = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE);
+        int strogeWrite = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int internet  = ContextCompat.checkSelfPermission(context, Manifest.permission.INTERNET);
+        ArrayList<String> izinler = new ArrayList<>();
+        String [] izin = new String[4];
+        if(camera!= PackageManager.PERMISSION_GRANTED) {
+            izinler.add(android.Manifest.permission.CAMERA);
+        }
+        if(strogeRead!= PackageManager.PERMISSION_GRANTED) {
+            izinler.add(android.Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+        if(strogeWrite!= PackageManager.PERMISSION_GRANTED) {
+
+            izinler.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if(internet!= PackageManager.PERMISSION_GRANTED) {
+            izinler.add(android.Manifest.permission.INTERNET);
+
+        }
+        if (!izinler.isEmpty()){
+            ActivityCompat.requestPermissions(this,izinler.toArray(new String[izinler.size()]),REQEST_CODE);
+            return false;}
+        return true;
+
+    }
 
 
 }
